@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sections.each do |section| %>
+      <tr>
+        <td>
+          <%= section.name %>
+          <%= section.narrative %>
+          <%= link_to 'section examples', section %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
