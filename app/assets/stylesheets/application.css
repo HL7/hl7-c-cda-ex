@@ -12,8 +12,8 @@
  *
  * ..require_tree .
  * ..require_self
- *= depend_on foundation_and_overrides
+ *= require foundation_and_overrides
 
  */
 
-@import "foundation_and_overrides";
+/* @import "foundation_and_overrides.css.scss"; */
