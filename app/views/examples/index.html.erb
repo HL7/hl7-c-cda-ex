@@ -1,49 +1,132 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Examples</h1>
+<% content_for :title, 'Retrieved Example List' %>
+<a id="tour-invoke">Info</a>
+<%= form_tag(examples_path, :method => 'get', id: 'search-form', name: 'searchform') do %>
+    <fieldset id="search-criteria">
+      <legend>search criteria</legend>
+      <div class="input-container small-6 large-7 columns" id="search[search_text]">
+        <%= text_field_tag 'search[search_text]', @search.nil? ? nil : @search.search_text,
+                           required: true %>
+        <label for="search[search_text]">text to search</label>
+      </div>
+      <fieldset class="large-4 large-offset-1 small-6 columns push-buttons" id="search-by-status">
+        <legend>filter by example status</legend>
+        <%= collection_check_boxes :search, :status, CodeValue.where(code_table: 'appr-stat'),
+                                   :code, :print_name %>
+      </fieldset>
+      <fieldset class="large-10 columns push-buttons" id="search-by-section">
+        <legend>filter by document or section</legend>
+        <%= collection_check_boxes :search, :section_ids, Section.all, :id, :name,
+        checked: @search.try(:section_ids) %>
+      </fieldset>
+      <div class="large-2 columns">
+        <%= submit_tag "Search", :name => nil, id: 'sub-btn', class: 'button' %>
+      </div>
+    </fieldset>
+<% end %>
 
-<table>
+<p class="large-9 columns" id="query-count"> The query found <%= pluralize(@examples.count, 'example') %></p>
+<p class="return-link large-3 columns" id="main-page-link"><%= link_to 'return to Main Search', sections_path %></p>
+
+<table class="listing">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Comments</th>
-      <th>Customdian</th>
-      <th>Validation</th>
-      <th>Keywords</th>
-      <th>Full sample</th>
-      <th>Status</th>
-      <th>Example</th>
-      <th>Committee</th>
-      <th>Approved</th>
-      <th>Date</th>
-      <th>Comment</th>
-      <th colspan="3"></th>
+      <th id="results-name">Name</th>
+      <th id="results-section">Section</th>
+      <th id="results-status">Status</th>
+      <th id="results-actions"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @examples.each do |example| %>
       <tr>
-        <td><%= example.name %></td>
-        <td><%= example.comments %></td>
-        <td><%= example.customdian %></td>
-        <td><%= example.validation %></td>
-        <td><%= example.keywords %></td>
-        <td><%= example.full_sample %></td>
-        <td><%= example.status %></td>
-        <td><%= example.example %></td>
-        <td><%= example.committee %></td>
-        <td><%= example.approved %></td>
-        <td><%= example.date %></td>
-        <td><%= example.comment %></td>
-        <td><%= link_to 'Show', example %></td>
-        <td><%= link_to 'Edit', edit_example_path(example) %></td>
-        <td><%= link_to 'Destroy', example, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <p class="list-title"><%= example.name %></p>
+          <p class="list-detail"><%= example.comments %></p>
+        </td>
+        <td><%= example.section.name %></td>
+        <td><%= CodeValue.by_table_and_code('appr-stat', example.status)[0].print_name %></td>
+        <td><%= link_to 'download', example %> <%= link_to 'details', example %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<ol class="joyride-list" data-joyride>
+  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
+    <h4>C-CDA Example Search Help</h4>
+    <p><strong>C-CDA Example Search Results</strong><br/>
+    This screen displays the results of executing the example search criteria
+      against the existing examples recorded in the example database.</p>
+  </li>
+  <li data-id="search-criteria" data-text="Next" data-options="tip_location: left">
+    <h4>Search Criteria Panel</h4>
+    <p>This panel allow you to further refine your queries and narrow the results</p>
+  </li>
+  <li data-id="search[search_text]" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
+    <h4>Text Search Words</h4>
+    <p>Use this field to enter words related to your search. These words can appear in the
+    title, the comments or as part of a special list of keywords associated with the example.</p>
+  </li>
+  <li data-id="search-by-status" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <h4>Filter by example status</h4>
+    <p>Get the details right by styling Joyride with a custom stylesheet!</p>
+  </li>
+  <li data-id="search-by-section" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <h4>Filter by C-CDA document types and/or sections</h4>
+    <p>Get the details right by styling Joyride with a custom stylesheet!</p>
+  </li>
+  <li data-id="sub-btn" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>Execute the search based on the criteria entered (or retrieve all examples if no
+    criteria specified).</p>
+  </li>
+  <li data-id="query-count" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>The number of results that match the query parameters can be found here.</p>
+  </li>
+  <li data-id="main-page-link" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>Use this link to jump back to the initial page of the application (that lists the sections).</p>
+  </li>
+  <li data-id="results-name" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns list the names of the examples that match the criteria (and the comment for each example).</p>
+  </li>
+  <li data-id="results-section" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns list the names of the examples that match the criteria (and the comment for each example).</p>
+  </li>
+  <li data-id="results-status" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns list the names of the examples that match the criteria (and the comment for each example).</p>
+  </li>
+  <li data-id="results-actions" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>You can select to download the examples directly or navigate to page with the full detailed description of the example.</p>
+  </li>
+  <li data-button="End" data-prev-text="Prev">
+    <h4>Tour Complete</h4>
+    <p>Return to the C-CDA Example Search Results page.</p>
+  </li>
+</ol>
 
-<%= link_to 'New Example', new_example_path %>
+<script>
+  $(document).foundation();
+
+  function activateJoyride() {
+    $(document).foundation('joyride', 'start');
+  }
+
+  $( document ).ready(function() {
+
+    $('#sub-btn').click(function validateForm() {
+      var isValid = true;
+      $('.field').each(function() {
+        if ( $(this).val() === '' )
+          $(this).removeAttr("required");
+      });
+      document.searchform.submit();
+      return isValid;
+    });
+
+    $('#tour-invoke').click(function () {
+      $(document).foundation('joyride', 'start')
+    });
+  });
+</script>

@@ -4,7 +4,14 @@ class ExamplesController < ApplicationController
   # GET /examples
   # GET /examples.json
   def index
-    @examples = Example.all
+    if params[:search]
+      @search = SearchCriteria.new(params[:search])
+      logger.debug "Got search params: #{params[:search]}"
+      @examples = Example.query(@search)
+    else
+      @search = SearchCriteria.new
+      @examples = Example.all
+    end
   end
 
   # GET /examples/1

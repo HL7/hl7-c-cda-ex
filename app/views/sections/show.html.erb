@@ -1,19 +1,31 @@
 <p id="notice"><%= notice %></p>
+<% content_for :title, @section.name +  ' ' +
+    CodeValue.by_table_and_code('sect-type', @section.section_type)[0].print_name %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @section.name %>
-</p>
+<%=raw markdown.render(@section.narrative) %>
 
-<p>
-  <strong>Type:</strong>
-  <%= @section.type %>
-</p>
+<p> This section has <%= pluralize(@section.examples.count, 'example') %></p>
+<p class="return-link"><%= link_to 'return to Main Search', sections_path %></p>
 
-<p>
-  <strong>Narrative:</strong>
-  <%= @section.narrative %>
-</p>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_section_path(@section) %> |
-<%= link_to 'Back', sections_path %>
+  <tbody>
+  <% @section.examples.each do |example| %>
+      <tr>
+        <td>
+          <p class="list-title"><%= example.name %></p>
+          <p class="list-detail"><%= example.comments %></p>
+        </td>
+        <td><%= CodeValue.by_table_and_code('appr-stat', example.status)[0].print_name %></td>
+        <td><%= link_to 'download', example %> <%= link_to 'details', example %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

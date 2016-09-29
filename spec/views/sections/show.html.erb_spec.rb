@@ -7,8 +7,8 @@ RSpec.describe 'sections/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/Type/)
+    expect(rendered).to match(/Allergies and Intolerances/)
+    expect(rendered).to match(/thing/)
     expect(rendered).to match(/MyText/)
   end
 end

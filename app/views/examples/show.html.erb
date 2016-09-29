@@ -1,8 +1,23 @@
 <p id="notice"><%= notice %></p>
 
+<% content_for :title, @example.section.name + ' ' +
+    CodeValue.by_table_and_code('sect-type', @example.section.section_type)[0].print_name %>
+
+<h2><%= @example.name %></h2>
+
+<%= link_to 'return to Main search', sections_path %>
+<br/>
+<%= link_to 'return to example list', examples_path %>
 <p>
-  <strong>Name:</strong>
-  <%= @example.name %>
+  <strong>Approval Status:</strong>
+</p>
+
+<p>
+<% if @example.validation -%>
+    <%= link_to 'Validation site', @example.validation %>
+<% else -%>
+    No validation URL supplied
+<% end -%>
 </p>
 
 <p>
@@ -11,19 +26,10 @@
 </p>
 
 <p>
-  <strong>Customdian:</strong>
-  <%= @example.customdian %>
+  <strong>Custodian:</strong>
+  <%= @example.custodian %>
 </p>
 
-<p>
-  <strong>Validation:</strong>
-  <%= @example.validation %>
-</p>
-
-<p>
-  <strong>Keywords:</strong>
-  <%= @example.keywords %>
-</p>
 
 <p>
   <strong>Full sample:</strong>
@@ -31,34 +37,7 @@
 </p>
 
 <p>
-  <strong>Status:</strong>
-  <%= @example.status %>
-</p>
-
-<p>
   <strong>Example:</strong>
-  <%= @example.example %>
 </p>
 
-<p>
-  <strong>Committee:</strong>
-  <%= @example.committee %>
-</p>
-
-<p>
-  <strong>Approved:</strong>
-  <%= @example.approved %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @example.date %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @example.comment %>
-</p>
-
-<%= link_to 'Edit', edit_example_path(@example) %> |
-<%= link_to 'Back', examples_path %>
+<%= raw syntax_highlight(@example.example) %>

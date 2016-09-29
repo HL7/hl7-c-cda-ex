@@ -7,7 +7,7 @@ RSpec.describe 'sections/index', type: :view do
 
   it 'renders a list of sections' do
     render
-    assert_select 'tr>td', text: /MyString.*/, count: 2
+    assert_select 'tr>td', text: /Allergies and Intolerances.*/, count: 2
     assert_select 'tr>td>a', text: 'section examples', count: 2
   end
 end

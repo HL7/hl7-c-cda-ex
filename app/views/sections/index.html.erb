@@ -1,8 +1,22 @@
 <p id="notice"><%= notice %></p>
+<% content_for :title, 'C-CDA Example Search' %>
 
-<h1>Listing Sections</h1>
+<%= form_tag(examples_path, :method => 'get', id: 'search-form') do %>
+    <%= text_field_tag 'search[search_text]', @search.nil? ? nil : @search.search_text,
+                       placeholder: 'Search for word or phrase', class: 'small-6' %>
+    <div class="large-12">
+      <%= collection_check_boxes :search, :section_ids, Section.all, :id, :name %>
+    </div>
+    <div class="large-9 columns">
+      <%= collection_check_boxes :search, :status, CodeValue.where(code_table: 'appr-stat'),
+                                   :code, :print_name %>
+    </div>
+    <div class="large-1 large-offset-2 columns">
+      <%= submit_tag "Search", :name => nil %>
+    </div>
+<% end %>
 
-<table>
+<table class="listing">
   <thead>
     <tr>
       <th>Name</th>
@@ -13,12 +27,29 @@
     <% @sections.each do |section| %>
       <tr>
         <td>
-          <p><%= section.name %></p>
-          <p><%= section.narrative %></p>
-          <%= link_to 'section examples', section %>
+          <div class="large-10 small-9 columns">
+            <p class="list-title"><%= section.name %></p>
+            <p class="list-detail"><%= maruku_string(section.narrative) %></p>
+          </div>
+          <div class="large-2 small-3 columns">
+            <%= link_to 'section examples', section %>
+          </div>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<script>
+  $( document ).ready(function() {
+
+    $('#sub-btn').click(function validateForm() {
+      var isValid = true;
+      $('.field').each(function() {
+        if ( $(this).val() === '' )
+          $(this).removeAttr("required");
+      });
+      return isValid;
+    });
+  });
+</script>
