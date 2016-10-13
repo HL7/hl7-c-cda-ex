@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <% content_for :title, @section.name +  ' ' +
-    CodeValue.by_table_and_code('sect-type', @section.section_type)[0].print_name %>
+    CodeValue.find_by(code_table: 'sect-type', code: @section.section_type).print_name %>
 
 <%=raw markdown.render(@section.narrative) %>
 
@@ -23,8 +23,8 @@
           <p class="list-title"><%= example.name %></p>
           <p class="list-detail"><%= example.comments %></p>
         </td>
-        <td><%= CodeValue.by_table_and_code('appr-stat', example.status)[0].print_name %></td>
-        <td><%= link_to 'download', example_path(@example, format: :xml) %> <%= link_to 'details', example %></td>
+        <td><%= CodeValue.find_by(code_table: 'appr-stat', code: example.status).print_name %></td>
+        <td><%= link_to 'download', example_path(example, format: :xml) %> <%= link_to 'details', example %></td>
       </tr>
   <% end %>
   </tbody>
@@ -34,8 +34,7 @@
   <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
     <h4>C-CDA Example Search Help</h4>
     <p><strong>C-CDA Example Section Display</strong><br/>
-      This screen displays the results of executing the example search criteria
-      against the existing examples recorded in the example database.</p>
+      This screen displays the examples for a particular .</p>
   </li>
 </ol>
 

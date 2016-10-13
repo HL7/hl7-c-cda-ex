@@ -25,7 +25,7 @@
           <p class="list-detail"><%= example.comments %></p>
         </td>
         <td><%= example.section.name %></td>
-        <td><%= CodeValue.by_table_and_code('appr-stat', example.status)[0].print_name %></td>
+        <td><%= CodeValue.find_by(code_table: 'appr-stat', code: example.status).print_name %></td>
         <td>
           <%= link_to example_path(example, format: :xml) do %>
               <span class="list-link-text">Download</span><span class="link-pointer">D</span>

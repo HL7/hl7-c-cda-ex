@@ -20,7 +20,7 @@
           </div>
           <div class="large-2 small-3 columns">
             <%= link_to section do %>
-                <span class="list-link-text">section examples</span><span class="link-pointer"> }</span>
+                <span class="list-link-text"><%= CodeValue.find_by(code_table: 'sect-type', code: section.section_type).print_name %> examples</span><span class="link-pointer"> }</span>
             <% end %>
           </div>
         </td>

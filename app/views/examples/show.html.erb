@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <% content_for :title, @example.section.name + ' ' +
-    CodeValue.by_table_and_code('sect-type', @example.section.section_type)[0].print_name %>
+    CodeValue.find_by(code_table: 'sect-type', code: @example.section.section_type).print_name %>
 
 <h2><%= @example.name %></h2>
 
