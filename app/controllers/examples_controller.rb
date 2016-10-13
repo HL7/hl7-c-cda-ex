@@ -17,6 +17,14 @@ class ExamplesController < ApplicationController
   # GET /examples/1
   # GET /examples/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.xml do
+        #response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=#{@example.name}.xml"
+        render layout: false
+      end
+    end
   end
 
   private

@@ -9,3 +9,15 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'AppSymbol';
+  src:url(font-path('AppSymbol.eot'));
+  src:url(font-path('AppSymbol.eot') + '?#iefix') format('embedded-opentype'),
+  url(font-path('AppSymbol.woff')) format('woff'),
+  url(font-path('AppSymbol.ttf')) format('truetype'),
+  url(font-path('AppSymbol.svg') + '#AppSymbol') format('svg');
+
+  font-weight: normal;
+  font-style: normal;
+}

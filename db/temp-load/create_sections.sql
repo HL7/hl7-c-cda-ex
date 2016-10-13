@@ -6,7 +6,7 @@ insert into sections (id,name,section_type,narrative,created_at,updated_at)
     (5,'Problem','sect','##Problem Section Examples from C-CDA','2016-09-01','2016-09-01');
 
 insert into examples (id,section_id,name,comments,custodian,keywords,status,
-                      example,created_at,updated_at)
+                      example,example_url,created_at,updated_at)
   values (1,4,'Allergy to specific substance','This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/cod','John D''Amore jdamore@diameterhealth.com (GitHub: jddamore)','{substance,allergies,allergy}','pend',
 $$
 <section>
@@ -109,9 +109,9 @@ $$
 		</act>
 	</entry>
 </section>
-$$,'2016-09-01','2016-09-01'),
+$$,'https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-cat-hair/Allergy%20to%20specific%20substance-cat-hair(C-CDA2.1).xml','2016-09-01','2016-09-01'),
     (2,4,'No Known Allergies','','','{unknown,allergies,allergy}','pend',
-     '','2016-09-01','2016-09-01');
+     '','https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Allergies/No-Known-Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml','2016-09-01','2016-09-01');
 
 INSERT INTO approvals (example_id,committee,approved,date,comment)
   VALUES (1,'Example Task Force', TRUE ,'2014-10-4',null),

@@ -1,20 +1,7 @@
 <p id="notice"><%= notice %></p>
 <% content_for :title, 'C-CDA Example Search' %>
 
-<%= form_tag(examples_path, :method => 'get', id: 'search-form') do %>
-    <%= text_field_tag 'search[search_text]', @search.nil? ? nil : @search.search_text,
-                       placeholder: 'Search for word or phrase', class: 'small-6' %>
-    <div class="large-12">
-      <%= collection_check_boxes :search, :section_ids, Section.all, :id, :name %>
-    </div>
-    <div class="large-9 columns">
-      <%= collection_check_boxes :search, :status, CodeValue.where(code_table: 'appr-stat'),
-                                   :code, :print_name %>
-    </div>
-    <div class="large-1 large-offset-2 columns">
-      <%= submit_tag "Search", :name => nil %>
-    </div>
-<% end %>
+<%= render 'common/search' %>
 
 <table class="listing">
   <thead>
@@ -32,7 +19,9 @@
             <p class="list-detail"><%= maruku_string(section.narrative) %></p>
           </div>
           <div class="large-2 small-3 columns">
-            <%= link_to 'section examples', section %>
+            <%= link_to section do %>
+                <span class="list-link-text">section examples</span><span class="link-pointer"> }</span>
+            <% end %>
           </div>
         </td>
       </tr>
@@ -40,7 +29,29 @@
   </tbody>
 </table>
 
+<ol class="joyride-list" data-joyride>
+  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
+    <h4>C-CDA Example Search Help</h4>
+    <p><strong>C-CDA Example Search</strong><br/>
+      This screen displays the main interface for the C-CDA Example repository. The repository
+      contains a set of example files that have undergone a review and vetting process to
+      ensure completeness and rigour. The examples have been created in smaller, consumable
+      snippets and associated with the section in the specification.
+    </p>
+    <p>This page provides a panel for specifying search criteria and list the various
+    sections that contain examples files. Pressing [Begin Tour] will walk through the various
+    interface elements of this page in detail.</p>
+  </li>
+  <%= render 'common/tour_search' %>
+</ol>
+
 <script>
+  $(document).foundation();
+
+  function activateJoyride() {
+    $(document).foundation('joyride', 'start');
+  }
+
   $( document ).ready(function() {
 
     $('#sub-btn').click(function validateForm() {
@@ -49,7 +60,12 @@
         if ( $(this).val() === '' )
           $(this).removeAttr("required");
       });
+      document.searchform.submit();
       return isValid;
+    });
+
+    $('#tour-invoke').click(function () {
+      $(document).foundation('joyride', 'start')
     });
   });
 </script>

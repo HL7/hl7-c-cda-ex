@@ -8,8 +8,9 @@ class CreateExamples < ActiveRecord::Migration
       t.string     :validation
       t.string     :keywords
       t.string     :full_sample
-      t.string     :status, limit: 20
+      t.string     :status, limit: 20, null: false
       t.text       :example
+      t.string     :example_url
 
       t.timestamps null: false
     end

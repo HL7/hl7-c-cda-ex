@@ -5,9 +5,9 @@
 
 <h2><%= @example.name %></h2>
 
-<%= link_to 'return to Main search', sections_path %>
-<br/>
-<%= link_to 'return to example list', examples_path %>
+<%= link_to 'return to Main screen', sections_path, class: 'button small' %>
+
+<%= link_to 'return to result list', examples_path, class: 'button small' %>
 <p>
   <strong>Approval Status:</strong>
 </p>
@@ -38,6 +38,32 @@
 
 <p>
   <strong>Example:</strong>
+  <%= link_to 'download example', example_path(@example, format: :xml), class: 'button tiny' %>
+  <%= link_to 'view on GitHub', @example.example_url, class: 'button tiny' %>
 </p>
 
 <%= raw syntax_highlight(@example.example) %>
+
+<ol class="joyride-list" data-joyride>
+  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
+    <h4>C-CDA Example Search Help</h4>
+    <p><strong>C-CDA Example Details Display</strong><br/>
+      This screen displays the results of executing the example search criteria
+      against the existing examples recorded in the example database.</p>
+  </li>
+</ol>
+
+<script>
+  $(document).foundation();
+
+  function activateJoyride() {
+    $(document).foundation('joyride', 'start');
+  }
+
+  $( document ).ready(function() {
+
+    $('#tour-invoke').click(function () {
+      $(document).foundation('joyride', 'start')
+    });
+  });
+</script>

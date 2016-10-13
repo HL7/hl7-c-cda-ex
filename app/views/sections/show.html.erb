@@ -24,8 +24,32 @@
           <p class="list-detail"><%= example.comments %></p>
         </td>
         <td><%= CodeValue.by_table_and_code('appr-stat', example.status)[0].print_name %></td>
-        <td><%= link_to 'download', example %> <%= link_to 'details', example %></td>
+        <td><%= link_to 'download', example_path(@example, format: :xml) %> <%= link_to 'details', example %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
+
+<ol class="joyride-list" data-joyride>
+  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
+    <h4>C-CDA Example Search Help</h4>
+    <p><strong>C-CDA Example Section Display</strong><br/>
+      This screen displays the results of executing the example search criteria
+      against the existing examples recorded in the example database.</p>
+  </li>
+</ol>
+
+<script>
+  $(document).foundation();
+
+  function activateJoyride() {
+    $(document).foundation('joyride', 'start');
+  }
+
+  $( document ).ready(function() {
+
+    $('#tour-invoke').click(function () {
+      $(document).foundation('joyride', 'start')
+    });
+  });
+</script>

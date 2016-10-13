@@ -36,6 +36,10 @@ class Example < ActiveRecord::Base
                                the_arel[:section_id].in(search_params.section_ids))
     end
 
+    if search_params.status.count > 0
+      where_filter = and_where(where_filter,
+                               the_arel[:status].in(search_params.status))
+    end
     # if search_params.area.count > 0
     #   where_filter = and_where(where_filter,
     #                            the_arel[:functional_area].overlap(search_params.area))

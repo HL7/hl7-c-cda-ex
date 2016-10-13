@@ -1,30 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <% content_for :title, 'Retrieved Example List' %>
-<a id="tour-invoke">Info</a>
-<%= form_tag(examples_path, :method => 'get', id: 'search-form', name: 'searchform') do %>
-    <fieldset id="search-criteria">
-      <legend>search criteria</legend>
-      <div class="input-container small-6 large-7 columns" id="search[search_text]">
-        <%= text_field_tag 'search[search_text]', @search.nil? ? nil : @search.search_text,
-                           required: true %>
-        <label for="search[search_text]">text to search</label>
-      </div>
-      <fieldset class="large-4 large-offset-1 small-6 columns push-buttons" id="search-by-status">
-        <legend>filter by example status</legend>
-        <%= collection_check_boxes :search, :status, CodeValue.where(code_table: 'appr-stat'),
-                                   :code, :print_name %>
-      </fieldset>
-      <fieldset class="large-10 columns push-buttons" id="search-by-section">
-        <legend>filter by document or section</legend>
-        <%= collection_check_boxes :search, :section_ids, Section.all, :id, :name,
-        checked: @search.try(:section_ids) %>
-      </fieldset>
-      <div class="large-2 columns">
-        <%= submit_tag "Search", :name => nil, id: 'sub-btn', class: 'button' %>
-      </div>
-    </fieldset>
-<% end %>
+
+<%= render 'common/search' %>
 
 <p class="large-9 columns" id="query-count"> The query found <%= pluralize(@examples.count, 'example') %></p>
 <p class="return-link large-3 columns" id="main-page-link"><%= link_to 'return to Main Search', sections_path %></p>
@@ -48,7 +26,15 @@
         </td>
         <td><%= example.section.name %></td>
         <td><%= CodeValue.by_table_and_code('appr-stat', example.status)[0].print_name %></td>
-        <td><%= link_to 'download', example %> <%= link_to 'details', example %></td>
+        <td>
+          <%= link_to example_path(example, format: :xml) do %>
+              <span class="list-link-text">Download</span><span class="link-pointer">D</span>
+          <% end %>
+          <br/>
+          <%= link_to example do %>
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -61,27 +47,7 @@
     This screen displays the results of executing the example search criteria
       against the existing examples recorded in the example database.</p>
   </li>
-  <li data-id="search-criteria" data-text="Next" data-options="tip_location: left">
-    <h4>Search Criteria Panel</h4>
-    <p>This panel allow you to further refine your queries and narrow the results</p>
-  </li>
-  <li data-id="search[search_text]" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
-    <h4>Text Search Words</h4>
-    <p>Use this field to enter words related to your search. These words can appear in the
-    title, the comments or as part of a special list of keywords associated with the example.</p>
-  </li>
-  <li data-id="search-by-status" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <h4>Filter by example status</h4>
-    <p>Get the details right by styling Joyride with a custom stylesheet!</p>
-  </li>
-  <li data-id="search-by-section" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <h4>Filter by C-CDA document types and/or sections</h4>
-    <p>Get the details right by styling Joyride with a custom stylesheet!</p>
-  </li>
-  <li data-id="sub-btn" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <p>Execute the search based on the criteria entered (or retrieve all examples if no
-    criteria specified).</p>
-  </li>
+  <%= render 'common/tour_search' %>
   <li data-id="query-count" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
     <p>The number of results that match the query parameters can be found here.</p>
   </li>
