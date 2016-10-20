@@ -6,7 +6,7 @@
 <table class="listing">
   <thead>
     <tr>
-      <th>Name</th>
+      <th id="section-list-col">Name</th>
     </tr>
   </thead>
 
@@ -29,21 +29,7 @@
   </tbody>
 </table>
 
-<ol class="joyride-list" data-joyride>
-  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
-    <h4>C-CDA Example Search Help</h4>
-    <p><strong>C-CDA Example Search</strong><br/>
-      This screen displays the main interface for the C-CDA Example repository. The repository
-      contains a set of example files that have undergone a review and vetting process to
-      ensure completeness and rigour. The examples have been created in smaller, consumable
-      snippets and associated with the section in the specification.
-    </p>
-    <p>This page provides a panel for specifying search criteria and list the various
-    sections that contain examples files. Pressing [Begin Tour] will walk through the various
-    interface elements of this page in detail.</p>
-  </li>
-  <%= render 'common/tour_search' %>
-</ol>
+<%= render 'tour_index' %>
 
 <script>
   $(document).foundation();

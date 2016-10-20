@@ -56,6 +56,9 @@ group :development, :test do
   gem 'terminal-notifier'
   gem 'dotenv-rails'
   gem 'rb-readline'
+  gem 'rest-client'
+  gem 'highline'
+  gem 'json'
 end
 
 group :development do

@@ -3,16 +3,16 @@
 <% content_for :title, @example.section.name + ' ' +
     CodeValue.find_by(code_table: 'sect-type', code: @example.section.section_type).print_name %>
 
-<h2><%= @example.name %></h2>
+<h2 id="example-name"><%= @example.name %></h2>
 
-<%= link_to 'return to Main screen', sections_path, class: 'button small' %>
+<%= link_to 'return to Main screen', sections_path, class: 'button small', id: 'main-page-link' %>
 
-<%= link_to 'return to result list', examples_path, class: 'button small' %>
+<%= link_to 'return to result list', examples_path, class: 'button small', id: 'search-list-link' %>
 <p>
-  <strong>Approval Status:</strong>
+  <strong id="example-status">Approval Status:</strong>
 </p>
 
-<p>
+<p id="example-validation">
 <% if @example.validation -%>
     <%= link_to 'Validation site', @example.validation %>
 <% else -%>
@@ -20,38 +20,30 @@
 <% end -%>
 </p>
 
-<p>
+<p id="example-comments">
   <strong>Comments:</strong>
   <%= @example.comments %>
 </p>
 
-<p>
+<p id="example-custodian">
   <strong>Custodian:</strong>
   <%= @example.custodian %>
 </p>
 
-
 <p>
-  <strong>Full sample:</strong>
+  <strong id="example-full">Full sample:</strong>
   <%= @example.full_sample %>
 </p>
 
 <p>
-  <strong>Example:</strong>
-  <%= link_to 'download example', example_path(@example, format: :xml), class: 'button tiny' %>
-  <%= link_to 'view on GitHub', @example.example_url, class: 'button tiny' %>
+  <strong id="example-example">Example:</strong>
+  <%= link_to 'download example', example_path(@example, format: :xml), class: 'button tiny', id: 'example-download' %>
+  <%= link_to 'view on GitHub', @example.example_url, class: 'button tiny', id: 'example-github' %>
 </p>
 
 <%= raw syntax_highlight(@example.example) %>
 
-<ol class="joyride-list" data-joyride>
-  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
-    <h4>C-CDA Example Search Help</h4>
-    <p><strong>C-CDA Example Details Display</strong><br/>
-      This screen displays the results of executing the example search criteria
-      against the existing examples recorded in the example database.</p>
-  </li>
-</ol>
+<%= render 'tour_show' %>
 
 <script>
   $(document).foundation();

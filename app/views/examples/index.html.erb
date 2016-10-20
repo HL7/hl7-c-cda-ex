@@ -40,37 +40,7 @@
   </tbody>
 </table>
 
-<ol class="joyride-list" data-joyride>
-  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
-    <h4>C-CDA Example Search Help</h4>
-    <p><strong>C-CDA Example Search Results</strong><br/>
-    This screen displays the results of executing the example search criteria
-      against the existing examples recorded in the example database.</p>
-  </li>
-  <%= render 'common/tour_search' %>
-  <li data-id="query-count" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <p>The number of results that match the query parameters can be found here.</p>
-  </li>
-  <li data-id="main-page-link" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <p>Use this link to jump back to the initial page of the application (that lists the sections).</p>
-  </li>
-  <li data-id="results-name" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <p>This columns list the names of the examples that match the criteria (and the comment for each example).</p>
-  </li>
-  <li data-id="results-section" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <p>This columns list the names of the examples that match the criteria (and the comment for each example).</p>
-  </li>
-  <li data-id="results-status" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <p>This columns list the names of the examples that match the criteria (and the comment for each example).</p>
-  </li>
-  <li data-id="results-actions" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-    <p>You can select to download the examples directly or navigate to page with the full detailed description of the example.</p>
-  </li>
-  <li data-button="End" data-prev-text="Prev">
-    <h4>Tour Complete</h4>
-    <p>Return to the C-CDA Example Search Results page.</p>
-  </li>
-</ol>
+<%= render 'tour_index' %>
 
 <script>
   $(document).foundation();
