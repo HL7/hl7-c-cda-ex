@@ -56,9 +56,6 @@ group :development, :test do
   gem 'terminal-notifier'
   gem 'dotenv-rails'
   gem 'rb-readline'
-  gem 'rest-client'
-  gem 'highline'
-  gem 'json'
 end
 
 group :development do
@@ -72,5 +69,10 @@ end
 gem 'redcarpet'
 gem 'maruku'
 gem 'rouge'
+
+# Gems to access the GitHub REST interface
+gem 'rest-client'
+gem 'highline'
+gem 'json'
 
 gem 'rails_12factor', group: :production

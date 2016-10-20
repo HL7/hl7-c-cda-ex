@@ -1,0 +1,1956 @@
+id,section_id,name,comments,custodian,validation,keywords,full_sample,status,example,example_url,created_at,updated_at
+1,1,Allergy to specific drug-Codeine,,,,,,draft,"<!-- Allergies Section -->
+<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<list>
+			<item ID=""AllergyIntoleranceObservation_1.1"">
+				<table>
+					<thead>
+						<tr>
+							<th ID=""AllergyIntolerance_1.1Label"">Allergy or Intolerance</th>
+							<th ID=""AllergyIntolerance_1.1Data"">Data</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th ID=""AllergyType_1.1L"">Type:</th>
+							<td ID=""AllergyType_1.1D"">Drug intolerance (disorder)</td>
+						</tr>
+						<tr>
+							<th ID=""AllergyAgent_1.1L"">Agent:</th>
+							<td ID=""AllergyAgent_1.1D"">Codeine</td>
+						</tr>
+						<tr>
+							<th>Allergy Start Date:</th>
+							<td>03/15/2010</td>
+						</tr>
+						<tr>
+							<th>Allergy End Date:</th>
+							<td/>
+						</tr>
+						<tr>
+							<th ID=""Reactions_1.1Label"">Reactions:</th>
+							<td>
+								<list>
+									<item>
+										<table>
+											<thead>
+												<tr>
+												<th>Start Date</th>
+												<th>End Date</th>
+												<th ID=""REACT_1.1.0L"">Reaction</th>
+												<th ID=""SEV_1.1.0L"">Severity</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+												<td>01/29/2012</td>
+												<td>01/29/2012</td>
+												<td ID=""REACT_1.1.1D"">Nausea</td>
+												<td ID=""SEV_1.1.1D"">Severe</td>
+												</tr>
+												<tr>
+												<td>03/15/2010</td>
+												<td>03/15/2010</td>
+												<td ID=""REACT_1.1.2D"">Nausea</td>
+												<td ID=""SEV_1.1.2D"">Mild</td>
+												</tr>
+											</tbody>
+										</table>
+									</item>
+								</list>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</item>
+		</list>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""
+				displayName=""Allergies, adverse reactions, alerts"" codeSystemName=""LOINC"">
+				<originalText>
+					<reference value=""#AllergyIntoleranceObservation_1.1""/>
+				</originalText>
+			</code>
+			<text>
+				<reference value=""#AllergyIntoleranceObservation_1.1""/>
+			</text>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<effectiveTime>
+				<low value=""20140103""/>
+				<!--show time when this author's concern about the allergy became active. -->
+				<high nullFlavor=""NA""/>
+			</effectiveTime>
+
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140103102500-0500""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<!-- Root means NPI number. -->
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101""
+						codeSystemName=""Health Care Provider Taxonomy""
+						displayName=""Family Medicine""/>
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<effectiveTime>
+						<low value=""20100315""/>
+					</effectiveTime>
+					<!-- The time when this was biologically relevant ie True for the patient. -->
+					<!-- As a minimum time interval over which this is true, populate the effectiveTime/low with the current time. -->
+					<!-- It would be equally valid to have a longer range of time over which this statement was represented as being true. -->
+					<!-- As a maximum, you would never indicate an effectiveTime/high that was greater than the current point in time. -->
+					<value xsi:type=""CD"" code=""59037007"" displayName=""Drug intolerance (disorder)""
+						codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"">
+						<originalText>
+							<reference value=""#AllergyType_1.1D""/>
+						</originalText>
+					</value>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140103102500-0500""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<!-- Root means NPI number. -->
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101""
+						codeSystemName=""Health Care Provider Taxonomy""
+						displayName=""Family Medicine""/>
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+					<informant>
+						<assignedEntity>
+							<!-- This is a fictional OID and identifier for the patient. This should be adapted to local implementation -->
+							<id root=""2.16.840.1.113883.3.3208.101.2""
+								extension=""20130607100800-Patient1""/>
+							<addr use=""HP"">
+								<streetAddressLine>1111 StreetName St.</streetAddressLine>
+								<city>Silver Spring</city>
+								<state>MD</state>
+								<postalCode>20901</postalCode>
+								<country>US</country>
+							</addr>
+							<telecom value=""tel:+1(301)111-1111"" use=""HP""/>
+							<assignedPerson>
+								<name>
+									<given>Patient</given>
+									<family>One</family>
+								</name>
+							</assignedPerson>
+						</assignedEntity>
+					</informant>
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<playingEntity classCode=""MMAT"">
+								<code code=""2670"" displayName=""Codeine""
+									codeSystem=""2.16.840.1.113883.6.88"" codeSystemName=""RxNorm"">
+									<originalText>
+										<reference value=""#AllergyAgent_1.1D""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""20120129""/>
+								<!-- Not sure about the effectiveTime for reaction -->
+								<high value=""20120129""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""422587007""
+								codeSystem=""2.16.840.1.113883.6.96"" displayName=""Nausea"">
+								<originalText>
+									<reference value=""#REACT_1.1.1D""/>
+								</originalText>
+							</value>
+							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
+										extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
+										codeSystemName=""ActCode""/>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""24484000"" displayName=""Severe""
+										codeSystem=""2.16.840.1.113883.6.96""
+										codeSystemName=""SNOMED CT"">
+										<originalText>
+											<reference value=""#SEV_1.1.1D""/>
+										</originalText>
+									</value>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+			<!-- Note that multiple reactions may be recorded to the same substance ([0..*] -->
+			<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- Reaction Observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+					<id root=""fea0b775-f3fe-4e0a-9c4f-4a5c235c2af0""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+
+					<statusCode code=""completed""/>
+					<effectiveTime>
+						<low value=""20100315""/>
+						<!-- Not sure about the effectiveTime for reaction -->
+						<high value=""20100315""/>
+					</effectiveTime>
+					<value xsi:type=""CD"" code=""422587007"" codeSystem=""2.16.840.1.113883.6.96""
+						displayName=""Nausea"">
+						<originalText>
+							<reference value=""#REACT_1.1.2D""/>
+						</originalText>
+					</value>
+					<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Severity Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
+							<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
+								codeSystemName=""ActCode""/>
+							<statusCode code=""completed""/>
+							<value xsi:type=""CD"" code=""255604002"" displayName=""Mild""
+								codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"">
+								<originalText>
+									<reference value=""#SEV_1.1.2D""/>
+								</originalText>
+							</value>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Codeine/Allergy%20to%20specific%20drug-Codeine(C-CDA2.1).xml,2016-10-20,2016-10-20
+2,1,Allergy to specific drug-Epineprhine,,,,,,draft,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy6"">
+					<td ID=""allergy6allergen"">Epineprhine</td>
+					<td>
+						<content ID=""allergy6reaction"">Ventricular tachycardia</content>
+						<br/>
+						<content ID=""allergy6reaction2"">Tremor</content>
+					</td>
+					<td>
+						<content ID=""allergy6reactionseverity"">Severe</content>
+						<br/>
+						<content ID=""allergy6reactionseverity2"">Moderate</content>
+					</td>
+					<td>Jan 4 2014</td>
+					<td>Jan 3 2014</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<effectiveTime>
+				<low value=""20140104123506+0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140104""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101""
+						codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine""/>
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- Just the year is shown since a specific month and date was not reported -->
+					<effectiveTime>
+						<low value=""20140103""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is to a medication in contrast to other allergies (substance) -->
+					<value xsi:type=""CD"" code=""59037007"" displayName=""Drug intolerance (disorder)""
+						codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""/>
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20140104""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101""
+								codeSystemName=""Health Care Provider Taxonomy""
+								displayName=""Family Medicine""/>
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<informant>
+						<assignedEntity>
+							<!-- This is a fictional OID and identifier for the patient. This should be adapted to local implementation -->
+							<id root=""2.16.840.1.113883.3.3208.101.2""
+								extension=""20130607100800-Patient1""/>
+							<addr use=""HP"">
+								<streetAddressLine>1111 StreetName St.</streetAddressLine>
+								<city>Silver Spring</city>
+								<state>MD</state>
+								<postalCode>20901</postalCode>
+								<country>US</country>
+							</addr>
+							<telecom value=""tel:+1(301)111-1111"" use=""HP""/>
+							<assignedPerson>
+								<name>
+									<given>Patient</given>
+									<family>One</family>
+								</name>
+							</assignedPerson>
+						</assignedEntity>
+					</informant>
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<playingEntity classCode=""MMAT"">
+								<!-- RxNorm is used to report specific drug allergies. Note to use NDF-RT for drug classes -->
+								<!-- Best practice is to report drug allergies at ingredient level (e.g. epinephrine) not at the adminsitration level (e.g. 0.3mL 0.5mg/mL Prefilled Syringe)-->
+								<code code=""3992"" displayName=""epinephrine""
+									codeSystem=""2.16.840.1.113883.6.88"" codeSystemName=""RxNorm"">
+									<originalText>
+										<reference value=""#allergy6allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy6reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""20140103""/>
+								<high nullFlavor=""NA""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""25569003"" codeSystem=""2.16.840.1.113883.6.96""
+								codeSystemName=""SNOMED CT"" displayName=""Ventricular tachycardia""/>
+							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
+										extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
+										codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy6reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""24484000""
+										codeSystem=""2.16.840.1.113883.6.96""
+										codeSystemName=""SNOMED CT"" displayName=""Severe""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+			<!-- Note that multiple reactions may be recorded to the same substance ([0..*] -->
+			<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- Reaction Observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+					<id root=""fea0b775-f3fe-4e0a-9c4f-4a5c235c2af0""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<text>
+						<reference value=""#allergy6reaction2""/>
+					</text>
+					<statusCode code=""completed""/>
+					<effectiveTime>
+						<low value=""20140103""/>
+						<high nullFlavor=""NA""/>
+					</effectiveTime>
+					<value xsi:type=""CD"" code=""26079004"" codeSystem=""2.16.840.1.113883.6.96""
+						codeSystemName=""SNOMED CT"" displayName=""Tremor""/>
+					<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Severity Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
+							<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
+								codeSystemName=""ActCode""/>
+							<text>
+								<reference value=""#allergy6reactionseverity2""/>
+							</text>
+							<statusCode code=""completed""/>
+							<value xsi:type=""CD"" code=""6736007"" codeSystem=""2.16.840.1.113883.6.96""
+								codeSystemName=""SNOMED CT"" displayName=""Moderate""/>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Epineprhine/Allergy%20to%20specific%20drug-Epineprhine(C-CDA2.1).xml,2016-10-20,2016-10-20
+3,1,Allergy to specific drug-Penicillin,,,,,,draft,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy2"">
+					<td ID=""allergy2allergen"">Penicillin</td>
+					<td ID=""allergy2reaction"">Anaphylaxis</td>
+					<td ID=""allergy2reactionseverity"">Severe</td>
+					<td>Jan 4 2014</td>
+					<td>2006</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974"" />
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<effectiveTime>
+				<low value=""20140104123506+0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140104""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- Just the year is shown since a specific month and date was not reported -->
+					<effectiveTime>
+						<low value=""2006""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is to a medication in contrast to other allergies (substance) -->
+					<value xsi:type=""CD"" code=""416098002"" displayName=""drug allergy"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""/>
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20140104""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<playingEntity classCode=""MMAT"">
+								<!-- RxNorm is used to report specific drug allergies. Note to use NDF-RT for drug classes -->
+								<!-- Best practice is to report drug allergies at ingredient level (e.g. penicillin) not at the adminsitration level (e.g. 10mg tablet)-->
+								<code code=""7980"" displayName=""penicillin"" codeSystem=""2.16.840.1.113883.6.88"" codeSystemName=""RxNorm"">
+									<originalText>
+										<reference value=""#allergy2allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy2reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""2006""/>
+								<high nullFlavor=""NA""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""39579001"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Anaphylaxis""/>
+							<!-- The Severity observation is no longer recommended, use criticality observation in future exchanges -->
+							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy2reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""24484000"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Severe""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Penicillin/Allergy%20to%20specific%20drug-Penicillin(C-CDA2.1).xml,2016-10-20,2016-10-20
+4,1,Allergy-to-cat-hair,,,,,,draft,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy1"">
+					<td ID=""allergy1allergen"">Cat hair</td>
+					<td ID=""allergy1reaction"">Rash</td>
+					<td ID=""allergy1reactionseverity"">Moderate</td>
+					<td>Jan 4 2014</td>
+					<td>1998</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<!-- If the statusCode=""completed"", the effective time shall contain a high value. -->
+			<effectiveTime>
+				<low value=""20140104123506+0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20100103""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<!-- In C-CDA R2.1 the participant is required. -->
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- Just the year is shown since a specific month and date was not reported -->
+					<effectiveTime>
+						<low value=""1998""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is to a substance (cat hair) in contrast to other allergies (drug) -->
+					<value xsi:type=""CD"" code=""419199007"" displayName=""allergy to substance""
+						codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""/>
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20100103""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<!-- In C-CDA R2.1 the participant is required. -->
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<!-- The agent responsible for an allergy or adverse reaction is not always a manufactured material (for example, food allergies), 
+													nor is it necessarily consumed. The following constraints reflect limitations in the base CDA R2 specification, 
+													and should be used to represent any type of responsible agent, i.e., use playingEntity classCode = ""MMAT"" for all agents, 
+													manufactured or not. -->
+							<!-- 
+													... the expectation for use is that the chosen concept identifier for a substance should be appropriately specific and 
+													drawn from the available code systems in the following priority order: NDFRT, then RXNORM, then UNII, then SNOMED CT. 
+													This overarching grouping value set is intended to support identification of drug classes, individual medication 
+													ingredients, foods, general substances and environmental entities. Value set intensionally defined as a GROUPING made 
+													up of: Value Set: Medication Drug Class (2.16.840.1.113883.3.88.12.80.18) (NDFRT drug class codes); 
+													Value Set: Clinical Drug Ingredient (2.16.840.1.113762.1.4.1010.7) (RxNORM ingredient codes); 
+													Value Set: Unique Ingredient Identifier - Complete Set (2.16.840.1.113883.3.88.12.80.20) (UNII ingredient codes); 
+													Value Set: Substance Other Than Clinical Drug (2.16.840.1.113762.1.4.1010.9) (SNOMED CT substance codes).
+												
+												-->
+							<playingEntity classCode=""MMAT"">
+								<code code=""1564HD0N96"" displayName=""Cat hair""
+									codeSystem=""2.16.840.1.113883.4.9"" codeSystemName=""UNII"">
+									<originalText>
+										<reference value=""#allergy1allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy1reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""1998""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""64144002"" codeSystem=""2.16.840.1.113883.6.96""
+								codeSystemName=""SNOMED CT"" displayName=""Rash""/>
+							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
+										extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
+										codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy1reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""6736007""
+										codeSystem=""2.16.840.1.113883.6.96""
+										codeSystemName=""SNOMED CT"" displayName=""moderate""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-cat-hair/Allergy%20to%20specific%20substance-cat-hair(C-CDA2.1).xml,2016-10-20,2016-10-20
+5,1,Allergy-to-food-egg,,,,,,draft,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy5"">
+					<td ID=""allergy5allergen"">Egg</td>
+					<td ID=""allergy5reaction"">Hives</td>
+					<td ID=""allergy5reactionseverity"">Moderate</td>
+					<td>Jan 4 2014</td>
+					<td>1998</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""0fffb34f-c1e0-47c2-92af-c414a3ff21ec"" />
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<effectiveTime>
+				<low value=""20140104123506-0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140104""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""0fffb34f-c1e0-47c2-92af-c414a3ff21ec""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- Just the year is shown since a specific month and date was not reported -->
+					<effectiveTime>
+						<low value=""1998""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is to a food in contrast to other allergies (drug) -->
+					<value xsi:type=""CD"" code=""414285001"" displayName=""Food allergy (disorder)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""></value>
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20140104""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<!-- In C-CDA R2.1 the participant is required. -->
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<playingEntity classCode=""MMAT"">
+								<!-- The agent responsible for an allergy or adverse reaction is not always a manufactured material (for example, food allergies), 
+													nor is it necessarily consumed. The following constraints reflect limitations in the base CDA R2 specification, 
+													and should be used to represent any type of responsible agent, i.e., use playingEntity classCode = ""MMAT"" for all agents, 
+													manufactured or not. -->
+								<!-- 
+													... the expectation for use is that the chosen concept identifier for a substance should be appropriately specific and 
+													drawn from the available code systems in the following priority order: NDFRT, then RXNORM, then UNII, then SNOMED CT. 
+													This overarching grouping value set is intended to support identification of drug classes, individual medication 
+													ingredients, foods, general substances and environmental entities. Value set intensionally defined as a GROUPING made 
+													up of: Value Set: Medication Drug Class (2.16.840.1.113883.3.88.12.80.18) (NDFRT drug class codes); 
+													Value Set: Clinical Drug Ingredient (2.16.840.1.113762.1.4.1010.7) (RxNORM ingredient codes); 
+													Value Set: Unique Ingredient Identifier - Complete Set (2.16.840.1.113883.3.88.12.80.20) (UNII ingredient codes); 
+													Value Set: Substance Other Than Clinical Drug (2.16.840.1.113762.1.4.1010.9) (SNOMED CT substance codes).
+												
+												-->
+								<code code=""102263004"" displayName=""Eggs (edible)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"">
+									<originalText>
+										<reference value=""#allergy5allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""d89ce431-e0f1-4f8d-a81f-489b6ed91f09""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy5reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""1998""/>
+								<high nullFlavor=""NA""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""247472004"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Hives""/>
+							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy5reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""6736007"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""moderate""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-food-egg/Allergy%20to%20food%20-%20egg(C-CDA2.1).xml,2016-10-20,2016-10-20
+6,1,Allergy-to-latex,,,,,,draft,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy4"">
+					<td ID=""allergy4allergen"">Latex</td>
+					<td ID=""allergy4reaction"">Anaphylaxis</td>
+					<td ID=""allergy4reactionseverity"">Severe</td>
+					<td>Jan 4 2014</td>
+					<td>Jan 3 2014</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974"" />
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<effectiveTime>
+				<low value=""20140104123506+0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140104""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- This documents that the allergy began at given year month and day, although hour and minute not specified-->
+					<effectiveTime>
+						<low value=""20140103""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is a propensity to adverse reactions to substance -->
+					<value xsi:type=""CD"" code=""418038007"" displayName=""Propensity to adverse reactions to substance (disorder)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" />
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20140104""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<playingEntity classCode=""MMAT"">
+								<!-- SNOMED or UNII may be used for allergies in both C-CDA 1.1 and 2.0 -->
+								<!-- SNOMED was added to C-CDA 1.1 by DSTU  381 and illustrated below -->
+								<!-- Note that the SNOMED code for 'latex allergy' is not appropriate since the allergy is conveyed elsewhere in the observation -->
+								<code code=""111088007"" displayName=""Latex"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"">
+									<originalText>
+										<reference value=""#allergy4allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy2reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""20140103""/>
+								<high nullFlavor=""NA""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""39579001"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Anaphylaxis""/>
+                        	<!-- The Severity observation is no longer recommended, use criticality observation in future exchanges -->							
+                            <entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy2reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""24484000"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Severe""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-latex/Allergy%20to%20specific%20substance-latex(C-CDA2.1).xml,2016-10-20,2016-10-20
+7,1,Allergy-to-specific-drug-class-Penicillins,,,,,,draft,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy3"">
+					<td ID=""allergy3allergen"">Penicillins (drug class)</td>
+					<td ID=""allergy3reaction"">Anaphylaxis</td>
+					<td ID=""allergy3reactionseverity"">Severe</td>
+					<td>Jan 4 2014</td>
+					<td>2006</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974"" />
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<effectiveTime>
+				<low value=""20140104123506+0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140104""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- Just the year is shown since a specific month and date was not reported -->
+					<effectiveTime>
+						<low value=""2006""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is to a medication in contrast to other allergies (substance) -->
+					<value xsi:type=""CD"" code=""416098002"" displayName=""drug allergy"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""></value>
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20140104""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<playingEntity classCode=""MMAT"">
+								<!-- NDF-RT is used to report drug class allergies. Note to use RxNorm for specific drugs -->
+								<code code=""N0000011281"" displayName=""penicillins"" codeSystem=""2.16.840.1.113883.3.26.1.5"" codeSystemName=""NDF-RT"">
+									<originalText>
+										<reference value=""#allergy3allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy3reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""2006""/>
+								<high nullFlavor=""NA""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""39579001"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Anaphylaxis""/>
+							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy3reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""24484000"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Severe""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-specific-drug-class-Penicillins/Allergy%20to%20specific%20drug-class-Penicillins(C-CDA2.1).xml,2016-10-20,2016-10-20
+8,1,No-Known-Allergies,,,,,,draft,"<section>
+    <!-- *** Allergies and Intolerances Section (entries required) (V3) *** -->
+    <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+    <templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
+    <code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC""/>
+    <title>ALLERGIES AND ADVERSE REACTIONS</title>
+    <text>No Known Allergies</text>
+    <entry typeCode=""DRIV"">
+        <!-- Allergy Concern Act -->
+        <act classCode=""ACT"" moodCode=""EVN"">
+            <templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+            <id root=""36e3e930-7b14-11db-9fe1-0800200c9a66""/>
+            <!-- SDWG supports 48765-2 or CONC in the code element -->
+            <code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+            <statusCode code=""active""/>
+            <!--currently tracked concerns are active concerns-->
+            <effectiveTime>
+                <low value=""20100103""/>
+                <!--show time when the concern first began being tracked-->
+            </effectiveTime>
+            <author>
+                <templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+                <time value=""20100103""/>
+                <assignedAuthor>
+                    <id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+                    <code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101""
+                        codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine""/>
+                    <telecom use=""WP"" value=""tel:555-555-1002""/>
+                    <assignedPerson>
+                        <name>
+                            <given>Henry</given>
+                            <family>Seven</family>
+                        </name>
+                    </assignedPerson>
+                </assignedAuthor>
+            </author>
+            <entryRelationship typeCode=""SUBJ"">
+                <!-- No Known Allergies -->
+                <!-- The negationInd = true negates the observation/value -->
+                <!-- The use of negationInd corresponds with the newer Observation.valueNegationInd -->
+                <observation classCode=""OBS"" moodCode=""EVN"" negationInd=""true"">
+                    <!-- allergy - intolerance observation template -->
+                    <templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+                    <id root=""4adc1020-7b14-11db-9fe1-0800200c9a66""/>
+                    <code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+                    <statusCode code=""completed""/>
+                    <!-- N/A - author/time records when this assertion was made -->
+                    <effectiveTime>
+                        <low nullFlavor=""NA""/>
+                    </effectiveTime>
+                    <value xsi:type=""CD"" code=""419199007""
+                        displayName=""Allergy to substance (disorder)""
+                        codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""/>
+                    <author>
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+                        <time value=""20100103""/>
+                        <assignedAuthor>
+                            <id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+                            <code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101""
+                                codeSystemName=""Health Care Provider Taxonomy""
+                                displayName=""Family Medicine""/>
+                            <telecom use=""WP"" value=""tel:555-555-1002""/>
+                            <assignedPerson>
+                                <name>
+                                    <given>Henry</given>
+                                    <family>Seven</family>
+                                </name>
+                            </assignedPerson>
+                        </assignedAuthor>
+                    </author>
+                    <!-- In C-CDA R2.1 the participant is required. -->
+                    <participant typeCode=""CSM"">
+                        <participantRole classCode=""MANU"">
+                            <playingEntity classCode=""MMAT"">
+                                <code nullFlavor=""NA""/>
+                            </playingEntity>
+                        </participantRole>
+                    </participant>
+                </observation>
+            </entryRelationship>
+        </act>
+    </entry>
+</section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Allergies/No-Known-Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml,2016-10-20,2016-10-20
+9,1,No-Known-Medication-Allergies,,,,,,draft,"<?xml version=""1.0"" encoding=""UTF-8""?>
+<section>
+    <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+    <!-- Allergies (entries required) section template -->
+    <code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+    <title>Allergies, Adverse Reactions and Alerts</title>
+    <text>No Known Drug Allergies</text>
+    <entry typeCode=""DRIV"">
+        <!-- Allergy Concern Act -->
+        <act classCode=""ACT"" moodCode=""EVN"">
+            <templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+            <id root=""36e3e930-7b14-11db-9fe1-0800200c9a66""/>
+            <!-- SDWG supports 48765-2 or CONC in the code element -->
+            <code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+            <statusCode code=""active""/>
+            <!--currently tracked concerns are active concerns-->
+            <effectiveTime>
+                <low value=""20140104""/>
+                <!--show time when the concern first began being tracked-->
+            </effectiveTime>
+            <author>
+                <templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+                <time value=""20140104""/>
+                <assignedAuthor>
+                    <id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+                    <code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+                    <telecom use=""WP"" value=""tel:555-555-1002""/>
+                    <assignedPerson>
+                        <name>
+                            <given>Henry</given>
+                            <family>Seven</family>
+                        </name>
+                    </assignedPerson>
+                </assignedAuthor>
+            </author>
+            <!-- In C-CDA R2.1 the participant is required. -->
+            <entryRelationship typeCode=""SUBJ"">
+                <!-- No Known Drug Allergies -->
+                <!-- The negationInd = true negates the observation/value -->
+                <!-- The use of negationInd corresponds with the newer Observation.valueNegationInd -->
+                <observation classCode=""OBS"" moodCode=""EVN"" negationInd=""true"">
+                    <!-- allergy - intolerance observation template -->
+                    <templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+                    <id root=""4adc1020-7b14-11db-9fe1-0800200c9a66""/>
+                    <code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+                    <statusCode code=""completed""/>
+                    <!-- N/A - author/time records when this assertion was made -->
+                    <effectiveTime nullFlavor=""NA""/>
+                    <value xsi:type=""CD"" code=""416098002"" displayName=""Drug allergy (disorder)""
+                        codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""/>
+                    <author>
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+                        <time value=""20100103""/>
+                        <assignedAuthor>
+                            <id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+                            <code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+                            <telecom use=""WP"" value=""tel:555-555-1002""/>
+                            <assignedPerson>
+                                <name>
+                                    <given>Henry</given>
+                                    <family>Seven</family>
+                                </name>
+                            </assignedPerson>
+                        </assignedAuthor>
+                    </author>
+                    <!-- In C-CDA R2.1 the participant is required. -->
+                    <participant typeCode=""CSM"">
+                        <participantRole classCode=""MANU"">
+                            <playingEntity classCode=""MMAT"">
+                                <code nullFlavor=""NA""/>
+                            </playingEntity>
+                        </participantRole>
+                    </participant>
+                </observation>
+            </entryRelationship>
+        </act>
+    </entry>
+</section>
+
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Medication-Allergies/No%20Known%20Medication%20Allergies(C-CDA2.1).xml,2016-10-20,2016-10-20
+10,3,Hospital Discharge Encounter with Billable Diagnoses,,,,,,draft,"<section> 
+	<!-- Created for discussion on SDWG CDA Example Task Force. -->
+	<!-- This is an example of a hospitalization as may be shown in encounters section. -->
+	<!-- This example demonstrates how billable diagnoses could be included, if they are available -->
+	<templateId root=""2.16.840.1.113883.10.20.22.2.22.1"" extension=""2015-08-01""/>
+	<id root=""6bc0419f-0398-4a56-8642-7054cbef448c""/>
+	<code code=""46240-8"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Encounters"" codeSystemName=""LOINC""/>
+	<title>Encounters</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Encounter Type</th>
+					<th>Provider</th>
+					<th>Primary Diagnosis</th>
+					<th>Other Diagnoses</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Location</th>
+					<th>Discharge Disposition</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td ID=""Enc1_Type"">Inpatient</td>
+					<td>James Getwell, DO</td>
+					<td ID=""Enc1_Dx1"">Congestive Heart Failure</td>
+					<td>
+						<content ID=""Enc1_Dx2"">Diabetes</content> 
+					</td>
+					<td>10/28/2014 12:22pm</td>
+					<td>10/31/2014 3:04pm</td>
+					<td>Good Day Hospital (878)378-0909 1002 Healthcare Dr., Portland, OR, 97005</td>
+					<td>Nursing Home</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry>
+		<encounter moodCode=""EVN"" classCode=""ENC"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.49"" extension=""2015-08-01""/>
+			<id root=""248b2c03-2013-e138-07d1-001A64958C30""/>
+			<!-- CPT code should be used for ambulatory visits, but for a hosptialization, another codeSystem is more appropriate-->
+			<code code=""99238"" displayName=""Discharge day management services"" codeSystem=""2.16.840.1.113883.6.12"">
+				<originalText>
+					<reference value=""#Enc1_Type""/>
+				</originalText>
+				<translation code=""IMP"" codeSystem=""2.16.840.1.113883.5.4"" displayName=""Inpatient"" codeSystemName=""Act Encounter Code - Act Code""/>
+			</code>
+			
+			<!-- for a hospitalization, the low and high effectiveTimes would logically be admission and discharge date/time. --> 
+			<effectiveTime xsi:type=""IVL_TS"">
+				<low value =""201410281222+0500"" />
+				<high value=""201410311504+0500"" /> 
+			</effectiveTime>
+			<!-- Note that sdtc extension is used to document dischargeDisposition in encounters -->
+			<sdtc:dischargeDispositionCode code=""04"" displayName=""Discharged/Transferred to a Facility that Provides Custodial or Supportive Care"" 
+				codeSystem=""2.16.840.1.113883.6.301.5"" codeSystemName=""NUBC UB-04 FL17"">
+			</sdtc:dischargeDispositionCode>
+			<performer typeCode=""PRF"">
+				<time>
+					<low value=""201410281222+0500"" />
+					<high value=""201410311504+0500"" />
+				</time>
+				<assignedEntity classCode=""ASSIGNED"">
+					<id root=""2.16.840.1.113883.4.6"" extension=""12345679""/>
+					<code code=""200000000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""ProviderCodes"" displayName=""Allopathic &amp; Osteopathic Physicians"" />
+					<addr use=""WP"">
+						<streetAddressLine>763 Horseshoe Rd</streetAddressLine>
+						<city>Gotham</city>
+						<state>OR</state>
+						<postalCode>98764</postalCode>
+					</addr>
+					<telecom use=""WP"" value=""tel:+1(814)788-8000""/>
+					<assignedPerson classCode=""PSN"" determinerCode=""INSTANCE"">
+						<name>
+							<given>James</given>
+							<family>Getwell</family>
+							<suffix>DO</suffix>
+						</name>
+					</assignedPerson>
+				</assignedEntity>
+			</performer>
+			<participant typeCode=""LOC"">
+				<!-- Service Delivery Location Template -->
+				<participantRole classCode=""SDLOC"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.32""/>
+					<code code=""1061-1"" codeSystem=""2.16.840.1.113883.6.259"" codeSystemName=""Healthcare Service Location"" displayName=""Inpatient medical ward"" />
+					<addr use=""WP"">
+						<streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+						<city>Portland</city>
+						<state>OR</state>
+						<postalCode>97005</postalCode>
+					</addr>
+					<telecom use=""WP"" value=""tel:+1(878)378-0909""/>
+					<playingEntity classCode=""PLC"" determinerCode=""INSTANCE"">
+						<name>Good Day Hospital</name>
+					</playingEntity>
+				</participantRole>
+			</participant>
+			<entryRelationship typeCode=""SUBJ"">
+				<!-- This is the primary diagnosis on the bill -->
+				<!-- Hospital discharge diagnosis act -->
+				<act moodCode=""EVN"" classCode=""ACT"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.33"" extension=""2015-08-01""/>
+					<id root=""1d7ff347-9dce-44db-8f66-fc17d8dc4aca""/>
+					<code code=""11535-2"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC"" displayName=""Hospital Discharge Diagnosis""/>
+					<statusCode code=""active""/>
+					<!-- This represents the time that the concern was authored. Since this is a hospital discharge diagnosis, this is when it was coded-->
+					<effectiveTime xsi:type=""IVL_TS"">
+						<low value=""20141102145806+0500"" />
+					</effectiveTime>
+					<entryRelationship typeCode=""SUBJ"" inversionInd=""false"">
+						<!-- Problem Observation -->
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<templateId root=""2.16.840.1.113883.10.20.22.4.4"" extension=""2015-08-01"" />
+							<id root=""20cdd1a0-6136-4939-802f-edfebe9320bc"" />
+							<!-- We'll use the type of diagnosis, since this is a coded diagnosis, not from problem list-->
+							<code codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" code=""282291009"" displayName=""Diagnosis"">
+								<translation code=""29308-4"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC"" displayName=""Diagnosis""/>
+							</code>
+							<text>
+								<reference value=""#Enc1_Dx1"" />
+							</text>
+							<statusCode code=""completed"" />
+							<effectiveTime>
+								<!-- This represents the date of biological onset. Since this is a coded diagnosis, this may not be documented.-->
+								<low nullFlavor=""UNK"" />
+							</effectiveTime>
+							<!-- This denotes that the diagnosis is the principal diagnosis. There is generally only a single diagnosis for coded bill.-->
+							<!-- This current modeling aligns with QRDA. Substantial discussion occurred on the task force regarding this method. --> 
+							<!-- Additional comments on this approach should be included in comments on the QRDA Implementation Guide. We will revisit if QRDA changes their standard approach.  --> 
+							<priorityCode code=""63161005"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Principal""/>
+							<!-- This is a hospital discharge diagnosis, so the ICD-9 (or ICD-10) diagnosis is in translation. -->
+							<!-- If a SNOMED is available for this, it could be included, but mapping back from ICD-9 may not always be possible. -->
+							<value xsi:type=""CD"" nullFlavor=""OTH"">
+								<originalText>
+									<reference value=""#Enc1_Dx1"" />
+								</originalText>
+								<translation xsi:type=""CD"" code=""428.0"" codeSystem=""2.16.840.1.113883.6.103"" codeSystemName=""ICD-9"" displayName=""Congestive heart failure, unspecified"" />
+							</value>
+							<author>
+								<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+								<time value=""20141031""/>
+								<assignedAuthor>
+									<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+									<code code=""204C00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Neuromusculoskeletal Medicine, Sports Medicine"" />
+									<telecom use=""WP"" value=""tel:555-555-1002""/>
+									<assignedPerson>
+										<name>
+											<given>Henry</given>
+											<family>Seven</family>
+										</name>
+									</assignedPerson>
+								</assignedAuthor>
+							</author>
+						</observation>
+					</entryRelationship>
+				</act>
+			</entryRelationship>
+			<entryRelationship typeCode=""SUBJ"">
+				<!-- Hospital discharge diagnosis act -->
+				<act moodCode=""EVN"" classCode=""ACT"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.33"" extension=""2015-08-01""/>
+					<id root=""f07886ea-7879-478e-8155-5c2cce5cba6a""/>
+					<code code=""11535-2"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC"" displayName=""Hospital Discharge Diagnosis""/>
+					<statusCode code=""active""/>
+					<!-- This represents the time that the concern was authored. Since this is a hospital discharge diagnosis, this is when it was coded-->
+					<effectiveTime xsi:type=""IVL_TS"">
+						<low value=""20141102145806+0500"" />
+					</effectiveTime>
+					<entryRelationship typeCode=""SUBJ"" inversionInd=""false"">
+						<!-- Problem Observation -->
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<templateId root=""2.16.840.1.113883.10.20.22.4.4"" extension=""2015-08-01"" />
+							<id root=""5f9b714d-a6ec-4f8f-95ae-ea75e5a54bac"" />
+							<!-- We'll use the type of diagnosis, since this is a coded diagnosis, not from problem list-->
+							<code codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" code=""282291009"" displayName=""Diagnosis"">
+								<translation code=""29308-4"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC"" displayName=""Diagnosis""/>
+							</code>
+							<text>
+								<reference value=""#Enc1_Dx2"" />
+							</text>
+							<statusCode code=""completed"" />
+							<effectiveTime>
+								<!-- This represents the date of biological onset. Since this is a coded diagnosis, this may not be documented.-->
+								<low nullFlavor=""UNK"" />
+							</effectiveTime>
+							<!-- This denotes that the diagnosis is a secondary diagnosis. There may be multiple secondary diagnoses on coded bills.-->
+							<!-- This current modeling aligns with QRDA. Substantial discussion occurred on the task force regarding this method. --> 
+							<!-- Additional comments on this approach should be included in comments on the QRDA Implementation Guide. We will revisit if QRDA changes their standard approach.  --> 
+							<priorityCode code=""2603003"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Secondary""/>
+							<!-- This is a hospital discharge diagnosis, so the ICD-9 (or ICD-10) diagnosis is in translation. -->
+							<!-- If a SNOMED is available for this, it could be included, but mapping back from ICD-9 may not always be possible. -->
+							<value xsi:type=""CD"" nullFlavor=""OTH"">
+								<originalText>
+									<reference value=""#Enc1_Dx2"" />
+								</originalText>
+								<translation xsi:type=""CD"" code=""250.00"" codeSystem=""2.16.840.1.113883.6.103"" codeSystemName=""ICD-9"" displayName=""Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled"" />
+							</value>
+							<author>
+								<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+								<time value=""20141031""/>
+								<assignedAuthor>
+									<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+									<code code=""204C00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Neuromusculoskeletal Medicine, Sports Medicine"" />
+									<telecom use=""WP"" value=""tel:555-555-1002""/>
+									<assignedPerson>
+										<name>
+											<given>Henry</given>
+											<family>Seven</family>
+										</name>
+									</assignedPerson>
+								</assignedAuthor>
+							</author>
+						</observation>
+					</entryRelationship>
+				</act>
+			</entryRelationship>
+		</encounter>
+	</entry>
+</section>
+
+",https://github.com/HL7/C-CDA-Examples/blob/master/Encounters/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses(C-CDA2.1).xml,2016-10-20,2016-10-20
+11,4,Family History-Generic,,,,,,draft,"<section>
+	<!-- C-CDAR2 Example Family History Section (Generic Family History)-->
+	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
+	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
+	<title>Family History</title>
+	<text>
+		<!-- Family history is intended to convery information about discrete family members' health conditions.
+			The best way to convey ""Family history of heart disease"" would be to identify which family members
+			actually HAD heart disease.
+			The best way to convey ""No family history of asthma"" would be to explicitly state:
+			The father did not have asthma.
+			The mother did not have asthma.
+			The grandfather did not have asthma.
+		    ...and so on.
+		
+			An alternative to using this section to convey generic family history would be to add
+			codes from the SNOMED 416471007: Family Medical History hierarchy to the patient's problem list.
+			
+			This example, however, shows how to convey generic family history in the Family History
+			section in the absence of any known discrete family relationships.
+		-->
+		
+		<paragraph>Patient has a family history of <content ID=""FHGeneric1prob"">heart disease</content>.</paragraph>
+		<paragraph>Patient has no known family history of <content ID=""FHGeneric2prob"">asthma</content>.</paragraph>
+	</text>
+	<!-- Generic family member's history -->
+	<entry>
+		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
+			<!-- Unique ID for the collection of observations about ""generic family member"" -->
+			<id root=""01faa204-3333-4610-864f-cb50b650d0fa"" />
+			<statusCode code=""completed""/>
+			<subject>
+				<relatedSubject classCode=""PRS"">
+					<!-- Identifies this subject as a generic 'Family Member' -->
+					<code code=""FAMMEMB"" codeSystem=""2.16.840.1.113883.5.111"" codeSystemName=""HL7 RoleCode"" displayName=""Family Member"" />
+					<!-- No additional subject information is necessary, since we are not talking about an individual person -->
+				</relatedSubject>
+			</subject>
+			<!-- Heart Disease observation -->
+			<component>
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
+					<!-- Unique ID for this individual observation -->
+					<id root=""02faa204-3333-4610-864f-cb50b650d0fa"" />
+					<code code=""64572001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Condition"" >
+						<translation code=""75315-2"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Condition Family Member"" />
+					</code>
+					<statusCode code=""completed""/>
+					<!-- Since no date is given, effectiveTime is UNKnown -->
+					<effectiveTime nullFlavor=""UNK"" />
+					<!-- SNOMED for Heart Disease
+						 Note: explicitly NOT using 266894000: FH Cardiovascular disease, since we are scoped by the ""family member""
+						 The family member has 'Heart Disease', not a 'Family History of Heart Disease'
+						-->
+					<value xsi:type=""CD"" code=""56265001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Heart Disease (Disorder)"">
+						<originalText>
+							<reference value=""#FHGeneric1prob""/>
+						</originalText>
+					</value>
+				</observation>
+			</component>
+			<!-- Asthma negative observation -->
+			<component>
+				<!-- Similar to Problem Observation, negationInd here represents Observation.ValueNegation,
+				     stating the relative does NOT have asthma-->
+				<observation classCode=""OBS"" moodCode=""EVN"" negationInd=""true"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
+					<!-- Unique ID for this individual observation -->
+					<id root=""04faa204-3333-4610-864f-cb50b650d0fa"" />
+					<code code=""64572001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Condition"" >
+						<translation code=""75315-2"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Condition Family Member"" />
+					</code>
+					<statusCode code=""completed""/>
+					<!-- Since no date is given, effectiveTime is UNKnown -->
+					<effectiveTime nullFlavor=""UNK"" />
+					<!-- SNOMED for Asthma 
+						Again, not using 160377001: Family History of Asthma. That code would be 
+					    appropriate for the patient's own problem list. -->
+					<value xsi:type=""CD"" code=""195967001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Asthma"">
+						<originalText>
+							<reference value=""#FHGeneric2prob""/>
+						</originalText>
+					</value>
+				</observation>
+			</component>
+		</organizer>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History-Generic/Family%20History-generic(C-CDA2.1).xml,2016-10-20,2016-10-20
+12,4,Family History-two individuals same relationship to the patient,,,,,,draft,"<section>
+	<!-- C-CDAR2 Example Family History Section for two siblings -->
+	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
+	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
+	<title>Family History</title>
+	<text>
+		<paragraph>James, <content ID=""FamHist1rel"">brother</content>, born 1982</paragraph>
+		<list>
+			<item ID=""FamHist1prob1"">High blood pressure</item>
+			<item ID=""FamHist1prob2"">Diabetes</item>
+		</list>
+		<paragraph>Gerald, <content ID=""FamHist2rel"">brother</content>, born 1985</paragraph>
+		<list>
+			<item ID=""FamHist2prob1"">Asthma</item>
+		</list>
+	</text>
+	<!-- James' history -->
+	<entry> 
+		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
+			<!-- Unique identifier for this family member's HISTORY (not the individual) -->
+			<id root=""01faa204-0000-4610-864f-cb50b650d0fa"" />
+			<statusCode code=""completed""/>
+			<subject>
+				<relatedSubject classCode=""PRS"">
+					<!-- Identifies relationship; though there are two brothers, the separation into 
+					     two different organizers with their own subject identifies these as two 
+					     distinct individuals. The subject/@sdtc:id can also futher identify the individuals.-->
+					<code code=""BRO"" codeSystem=""2.16.840.1.113883.5.111"" codeSystemName=""HL7 RoleCode"" displayName=""Brother"">
+						<originalText>
+							<reference value=""#FamHist1rel""/>
+						</originalText>
+					</code>
+					<subject>
+						<!-- Unique ID for the brother as an individual -->
+						<sdtc:id extension=""98765432-1"" root=""1.3.6.1.4.1.16517.1"" xmlns:sdtc=""urn:hl7-org:sdtc"" />
+						<name>James</name>
+						<administrativeGenderCode code=""M"" codeSystem=""2.16.840.1.113883.5.1""/>
+						<birthTime value=""1982"" />
+					</subject>
+				</relatedSubject>
+			</subject>
+			<!-- High Blood Pressure observation -->
+			<component>
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
+					<!-- Unique ID for this individual observation -->
+					<id root=""02faa204-0000-4610-864f-cb50b650d0fa"" />
+					<code code=""64572001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Condition"" >
+						<translation code=""75315-2"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Condition Family Member"" />
+					</code>
+					<statusCode code=""completed""/>
+					<!-- Since we do not know when the brother was diagnosed with High Blood pressure, the effective time is UNKown -->
+					<effectiveTime nullFlavor=""UNK"" />
+					<!-- SNOMED code for High Blood Pressure -->
+					<value xsi:type=""CD"" code=""59621000"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Essential Hypertension"">
+						<originalText>
+							<reference value=""#FamHist1prob1""/>
+						</originalText>
+					</value>
+				</observation>
+			</component>
+			<!-- Diabetes observation -->
+			<component>
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
+					<!-- Unique ID for this individual observation -->
+					<id root=""03faa204-0000-4610-864f-cb50b650d0fa"" />
+					<code code=""64572001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Condition"" >
+						<translation code=""75315-2"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Condition Family Member"" />
+					</code>
+					<statusCode code=""completed""/>
+					<!-- Since we do not know when the brother was diagnosed with Diabetes, the effective time is UNKown -->
+					<effectiveTime nullFlavor=""UNK"" />
+					<!-- SNOMED code for Diabetes -->
+					<value xsi:type=""CD"" code=""73211009"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Diabetes Mellitus"">
+						<originalText>
+							<reference value=""#FamHist1prob2""/>
+						</originalText>
+					</value>
+				</observation>
+			</component>
+		</organizer>
+	</entry>
+	<!-- Gerald's History-->
+	<entry>
+		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
+			<!-- Unique identifier for this family member's HISTORY (not the individual) -->
+			<id root=""01faa204-1111-4610-864f-cb50b650d0fa"" />
+			<statusCode code=""completed""/>
+			<subject>
+				<relatedSubject classCode=""PRS"">
+					<!-- Identifies relationship; though there are two brothers, the separation into 
+						two different organizers with their own subject identifies these as two 
+						distinct individuals. The subject/@sdtc:id can also futher identify the individuals.-->
+					<code code=""BRO"" codeSystem=""2.16.840.1.113883.5.111"" codeSystemName=""HL7 RoleCode"" displayName=""Brother"">
+						<originalText>
+							<reference value=""#FamHist2rel""/>
+						</originalText>
+					</code>
+					<subject>
+						<!-- Unique ID for the brother as an individual; note the extension is different from James's id -->
+						<sdtc:id extension=""98765432-2"" root=""1.3.6.1.4.1.16517.1"" xmlns:sdtc=""urn:hl7-org:sdtc"" />
+						<name>Gerald</name>
+						<administrativeGenderCode code=""M"" codeSystem=""2.16.840.1.113883.5.1"" />
+						<birthTime value=""1985"" />
+					</subject>
+				</relatedSubject>
+			</subject>
+			<!-- Asthma observation -->
+			<component>
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
+					<!-- Unique ID for this individual observation -->
+					<id root=""03faa204-1111-4610-864f-cb50b650d0fa"" />
+					<code code=""64572001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Condition"" >
+						<translation code=""75315-2"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Condition Family Member"" />
+					</code>
+					<statusCode code=""completed""/>
+					<!-- Since we do not know when the brother was diagnosed with asthma, the effective time is UNKown -->
+					<effectiveTime nullFlavor=""UNK"" />
+					<!-- SNOMED code for Asthma -->
+					<value xsi:type=""CD"" code=""195967001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Asthma (disorder)"">
+						<originalText>
+							<reference value=""#FamHist2prob1""/>
+						</originalText>
+					</value>
+				</observation>
+			</component>
+		</organizer>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History-two%20individuals%20same%20relationship%20to%20the%20patient/Family%20History-two%20individuals%20same%20relationship%20to%20the%20patient(C-CDA2.1).xml,2016-10-20,2016-10-20
+13,4,Normal Family History-Father deceased-Mother alive,,,,,,draft,"<section>
+	<!-- C-CDAR2 Example Family History Section -->
+	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
+	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
+	<title>Family History</title>
+	<text>
+		<!-- Narrative may be structured in any manner, but clear references between the narrative and discrete entries are encouraged -->
+		<table>
+			<thead>
+				<tr>
+					<th>Family Member</th>
+					<th>Relation</th>
+					<th>Problem</th>
+					<th>Age of Onset</th>
+					<th>Comments</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan=""2"">Lucas Valieri</td>
+					<td ID=""FH1rel"" rowspan=""2"">Dad</td>
+					<td ID=""FH1prob1"">Stroke</td>
+					<td ID=""FH1prob1age"">72</td>
+					<td ID=""FH1prob1comment"">Cause of death, January 2003</td>
+				</tr>
+				<tr>
+					<td ID=""FH1prob2"">High Blood Pressure</td>
+					<td/>
+					<td/>
+				</tr>
+				<tr>
+					<td>Mia Jones</td>
+					<td ID=""FH2rel"">Mom</td>
+					<td ID=""FH2prob"">No known problems</td>
+					<td/>
+					<td/>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<!-- Father died of a stroke -->
+	<entry>
+		<!-- Organizes the Father's medical history --> 
+		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
+			<!-- Unique identifier for this family member's HISTORY (not the individual) -->
+			<id root=""01faa204-db62-4610-864f-cb50b650d0fa"" />
+			<statusCode code=""completed""/>
+			<subject typeCode=""SBJ"">
+				<relatedSubject classCode=""PRS"">
+					<!-- Identifies subject's relationship to recordTarget (i.e. Patient) -->
+					<code code=""FTH"" codeSystem=""2.16.840.1.113883.5.111"" codeSystemName=""HL7 RoleCode"" displayName=""Natural Parent"">
+						<originalText>
+							<reference value=""#FH1rel""/>
+						</originalText>
+					</code>
+					<subject>
+						<!-- Unique ID for the father as an individual -->
+						<sdtc:id extension=""98765432-1"" root=""1.3.6.1.4.1.16517.1"" xmlns:sdtc=""urn:hl7-org:sdtc"" />
+						<!-- Father's name; could be sent formatted or as a string like this -->
+						<name>Lucas Valieri</name>
+						<administrativeGenderCode code=""M"" codeSystem=""2.16.840.1.113883.5.1""/>
+						<!-- Father's birth date/time, SHOULD be sent. In this example, we did not know the 
+						     father's birth date, so we assert that the birthTime is ""Unknown"" -->
+						<birthTime nullFlavor=""UNK"" />
+						<!-- Identifies the father's living status as deceased. -->
+						<sdtc:deceasedInd value=""true"" xmlns:sdtc=""urn:hl7-org:sdtc"" />
+						<!-- Date and optional time of death (only needed if deceasedInd=""true"") -->
+						<sdtc:deceasedTime value=""200301"" />
+					</subject>
+				</relatedSubject>
+			</subject>
+			<!-- Stroke observation -->
+			<component>
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
+					<!-- Unique ID for this individual observation -->
+					<id root=""02faa204-db62-4610-864f-cb50b650d0fa"" />
+					<code code=""64572001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Condition"" >
+						<translation code=""75315-2"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Condition Family Member"" />
+					</code>
+					<statusCode code=""completed""/>
+					<!-- Date of the stroke -->
+					<effectiveTime value=""200301"" />
+					<!-- The actual finding on the father. 
+						 Note: this is deliberately NOT set to 275104002-Family History of Stroke, 
+					     since we are saying the father had a ""stroke"" not a ""family history of stroke"".
+					     Family History of Stroke would be a valid code to add to the recordTarget's problem list.-->
+					<value xsi:type=""CD"" code=""230690007"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Stroke"">
+						<originalText>
+							<reference value=""#FH1prob1""/>
+						</originalText>
+					</value>
+					<!-- Age at the time of the event -->
+					<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<templateId root=""2.16.840.1.113883.10.20.22.4.31""/>
+							<code code=""445518008"" displayName=""Age at Onset"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" />
+							<text>
+								<reference value=""#FH1prob1age""/>
+							</text>
+							<statusCode code=""completed""/>
+							<!-- 'a' is UCUM for Years -->
+							<value xsi:type=""PQ"" unit=""a"" value=""72""/>
+						</observation>
+					</entryRelationship>
+					<!-- This finding was the cause of death -->
+					<entryRelationship typeCode=""CAUS"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<templateId root=""2.16.840.1.113883.10.20.22.4.47""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4"" />
+							<text>
+								<reference value=""#FH1prob1comment""/>
+							</text>
+							<statusCode code=""completed""/>
+							<value xsi:type=""CD"" code=""419099009"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Dead""/>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</component>
+			<!-- High Blood Pressure observation -->
+			<component>
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
+					<!-- Unique ID for this individual observation -->
+					<id root=""04faa204-db62-4610-864f-cb50b650d0fa"" />
+					<code code=""64572001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Condition"" >
+						<translation code=""75315-2"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Condition Family Member"" />
+					</code>
+					<statusCode code=""completed""/>
+					<!-- Date of blood pressure (unknown) -->
+					<effectiveTime nullFlavor=""UNK"" />
+					<!-- The actual finding on the father. 
+						Again, not using 160357008-Family History of Hypertension, since we're stating
+						the father HAD hypertension, not a family history of hypertension -->
+					<value xsi:type=""CD"" code=""59621000"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Essential Hypertension"">
+						<originalText>
+							<reference value=""#FH1prob2""/>
+						</originalText>
+					</value>
+				</observation>
+			</component>
+		</organizer>
+	</entry>
+	<!-- Mother living with no known problems -->
+	<entry>
+		<!-- Organizes the Mother's medical history --> 
+		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
+			<!-- Unique identifier for this family member's HISTORY (not the individual) -->
+			<id root=""03faa204-db62-4610-864f-cb50b650d0fa"" />
+			<statusCode code=""completed""/>
+			<subject>
+				<relatedSubject classCode=""PRS"">
+					<!-- Identifies subject's relationship to recordTarget (i.e. Patient) -->
+					<code code=""MTH"" codeSystem=""2.16.840.1.113883.5.111"" codeSystemName=""HL7 RoleCode"" displayName=""Natural Parent"">
+						<originalText>
+							<reference value=""#FH2rel""/>
+						</originalText>
+					</code>
+					<subject>
+						<!-- Unique ID for the mother as an individual 
+						     (note - different extension than father) -->
+						<sdtc:id extension=""98765432-2"" root=""1.3.6.1.4.1.16517.1"" xmlns:sdtc=""urn:hl7-org:sdtc"" />
+						<!-- Mother's name; could be sent formatted or as a string like this -->
+						<name>Mia Jones</name>
+						<administrativeGenderCode code=""F"" codeSystem=""2.16.840.1.113883.5.1""/>
+						<!-- Mother's birth time, SHOULD be sent -->
+						<birthTime nullFlavor=""UNK"" />
+						<!-- Identifies the mother's living status as living. -->
+						<sdtc:deceasedInd value=""false"" xmlns:sdtc=""urn:hl7-org:sdtc"" />
+					</subject>
+				</relatedSubject>
+			</subject>
+			<component>
+				<observation classCode=""OBS"" moodCode=""EVN"" negationInd=""true"">
+					<!-- Similar to no known problems or allergies,
+					     the use of negationInd corresponds with the newer Observation.ValueNegationInd 
+					     The negationInd = true negates the value element -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
+					<!-- Unique ID for this individual observation -->
+					<id root=""05faa204-db62-4610-864f-cb50b650d0fa"" />
+					<code code=""64572001"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Condition"" >
+						<translation code=""75315-2"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Condition Family Member"" />
+					</code>
+					<text>
+						<reference value=""#FH2prob""/>
+					</text>
+					<statusCode code=""completed""/>
+					<effectiveTime nullFlavor=""NI"" />
+					<!-- Generic problem; negationInd identifies the mother has having no active problems-->
+					<value xsi:type=""CD"" code=""55607006"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Problem"" />
+				</observation>
+			</component>
+		</organizer>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Normal%20Family%20History-Father%20deceased-Mother%20alive/Normal%20Family%20History-Father%20deceased-Mother%20alive(C-CDA2.1).xml,2016-10-20,2016-10-20
