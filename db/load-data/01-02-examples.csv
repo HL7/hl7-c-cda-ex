@@ -1,5 +1,5 @@
 id,section_id,name,comments,custodian,validation,keywords,full_sample,status,example,example_url,created_at,updated_at
-1,1,Allergy to specific drug-Codeine,,,,,,draft,"<!-- Allergies Section -->
+1,1,Allergy to specific drug-Codeine,* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Rob Hausam and John D'Amore and Russ Leftwich in coordination with Patient Care Committee. This sample replaces the Epinephrine sample which had less clinical accuracy/relevance. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<!-- Allergies Section -->
 <section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
@@ -260,8 +260,9 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Codeine/Allergy%20to%20specific%20drug-Codeine(C-CDA2.1).xml,2016-10-20,2016-10-20
-2,1,Allergy to specific drug-Epineprhine,,,,,,draft,"<section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Codeine/Allergy%20to%20specific%20drug-Codeine(C-CDA2.1).xml,2016-10-21,2016-10-21
+2,1,Allergy to specific drug-Epineprhine,"* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.
+* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,wthd,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -462,8 +463,10 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Epineprhine/Allergy%20to%20specific%20drug-Epineprhine(C-CDA2.1).xml,2016-10-20,2016-10-20
-3,1,Allergy to specific drug-Penicillin,,,,,,draft,"<section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Epineprhine/Allergy%20to%20specific%20drug-Epineprhine(C-CDA2.1).xml,2016-10-21,2016-10-21
+3,1,Allergy to specific drug-Penicillin,"
+* This is an example of an allergy to a specific drug (penicillin) using RxNorm as terminology with information on both allergic reaction and reaction severity. For drug allergies, this example illustrates a good practice of encoding the allergen at the ingredient level (penicillin) not administration level (10 mg tablet). 
+* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -592,8 +595,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Penicillin/Allergy%20to%20specific%20drug-Penicillin(C-CDA2.1).xml,2016-10-20,2016-10-20
-4,1,Allergy-to-cat-hair,,,,,,draft,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Penicillin/Allergy%20to%20specific%20drug-Penicillin(C-CDA2.1).xml,2016-10-21,2016-10-21
+4,1,Allergy-to-cat-hair,* This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,pend,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -744,8 +747,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-cat-hair/Allergy%20to%20specific%20substance-cat-hair(C-CDA2.1).xml,2016-10-20,2016-10-20
-5,1,Allergy-to-food-egg,,,,,,draft,"<section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-cat-hair/Allergy%20to%20specific%20substance-cat-hair(C-CDA2.1).xml,2016-10-21,2016-10-21
+5,1,Allergy-to-food-egg,* This is an example of a food allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -887,8 +890,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-food-egg/Allergy%20to%20food%20-%20egg(C-CDA2.1).xml,2016-10-20,2016-10-20
-6,1,Allergy-to-latex,,,,,,draft,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-food-egg/Allergy%20to%20food%20-%20egg(C-CDA2.1).xml,2016-10-21,2016-10-21
+6,1,Allergy-to-latex,* This is an example of a propensity to substance allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. ,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -1018,8 +1021,9 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-latex/Allergy%20to%20specific%20substance-latex(C-CDA2.1).xml,2016-10-20,2016-10-20
-7,1,Allergy-to-specific-drug-class-Penicillins,,,,,,draft,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-latex/Allergy%20to%20specific%20substance-latex(C-CDA2.1).xml,2016-10-21,2016-10-21
+7,1,Allergy-to-specific-drug-class-Penicillins,"
+* This is an example of an allergy to a drug class (penicillins) using NDF-RT as terminology with information on both allergic reaction and reaction severity. ",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -1146,8 +1150,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-specific-drug-class-Penicillins/Allergy%20to%20specific%20drug-class-Penicillins(C-CDA2.1).xml,2016-10-20,2016-10-20
-8,1,No-Known-Allergies,,,,,,draft,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-specific-drug-class-Penicillins/Allergy%20to%20specific%20drug-class-Penicillins(C-CDA2.1).xml,2016-10-21,2016-10-21
+8,1,No-Known-Allergies,* This is an example of how an author can record a patient has no known allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance allergies allergy,,app,"<section>
     <!-- *** Allergies and Intolerances Section (entries required) (V3) *** -->
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
@@ -1230,8 +1234,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </act>
     </entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Allergies/No-Known-Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml,2016-10-20,2016-10-20
-9,1,No-Known-Medication-Allergies,,,,,,draft,"<?xml version=""1.0"" encoding=""UTF-8""?>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Allergies/No-Known-Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml,2016-10-21,2016-10-21
+9,1,No-Known-Medication-Allergies,* This is an example of how an author can record a patient has no known medication allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance allergies allergy,,app,"<?xml version=""1.0"" encoding=""UTF-8""?>
 <section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
     <!-- Allergies (entries required) section template -->
@@ -1310,8 +1314,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
     </entry>
 </section>
 
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Medication-Allergies/No%20Known%20Medication%20Allergies(C-CDA2.1).xml,2016-10-20,2016-10-20
-10,3,Hospital Discharge Encounter with Billable Diagnoses,,,,,,draft,"<section> 
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Medication-Allergies/No%20Known%20Medication%20Allergies(C-CDA2.1).xml,2016-10-21,2016-10-21
+10,3,Hospital Discharge Encounter with Billable Diagnoses,"* This is an example of a hospitalization with discharge diagnoses. Meaningful Use requires a place to document encounter diagnoses, and this example attempts to satisfy. This example aligns with QRDA suggestion for encounter diagnosis.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Encounters,,app,"<section> 
 	<!-- Created for discussion on SDWG CDA Example Task Force. -->
 	<!-- This is an example of a hospitalization as may be shown in encounters section. -->
 	<!-- This example demonstrates how billable diagnoses could be included, if they are available -->
@@ -1534,8 +1538,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	</entry>
 </section>
 
-",https://github.com/HL7/C-CDA-Examples/blob/master/Encounters/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses(C-CDA2.1).xml,2016-10-20,2016-10-20
-11,4,Family History-Generic,,,,,,draft,"<section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Encounters/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses(C-CDA2.1).xml,2016-10-21,2016-10-21
+11,4,Family History-Generic,"* Example shows generic ""family history of x"" and ""no family history of x"" with commentary suggesting better options.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History,,app,"<section>
 	<!-- C-CDAR2 Example Family History Section (Generic Family History)-->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
 	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
@@ -1623,8 +1627,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History-Generic/Family%20History-generic(C-CDA2.1).xml,2016-10-20,2016-10-20
-12,4,Family History-two individuals same relationship to the patient,,,,,,draft,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History-Generic/Family%20History-generic(C-CDA2.1).xml,2016-10-21,2016-10-21
+12,4,Family History-two individuals same relationship to the patient,"* Example shows two brothers with multiple conditions. Though they have the same relationship to the patient, they can be identified by their separation into two family history organizers as well as by their subject ID's.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History,,app,"<section>
 	<!-- C-CDAR2 Example Family History Section for two siblings -->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
 	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
@@ -1756,8 +1760,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History-two%20individuals%20same%20relationship%20to%20the%20patient/Family%20History-two%20individuals%20same%20relationship%20to%20the%20patient(C-CDA2.1).xml,2016-10-20,2016-10-20
-13,4,Normal Family History-Father deceased-Mother alive,,,,,,draft,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History-two%20individuals%20same%20relationship%20to%20the%20patient/Family%20History-two%20individuals%20same%20relationship%20to%20the%20patient(C-CDA2.1).xml,2016-10-21,2016-10-21
+13,4,Normal Family History-Father deceased-Mother alive,"* Example shows multiple observations for one family member, identifying the cause of death, and a family member with no known problems.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History,,app,"<section>
 	<!-- C-CDAR2 Example Family History Section -->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
 	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
@@ -1953,4 +1957,4 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Normal%20Family%20History-Father%20deceased-Mother%20alive/Normal%20Family%20History-Father%20deceased-Mother%20alive(C-CDA2.1).xml,2016-10-20,2016-10-20
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Normal%20Family%20History-Father%20deceased-Mother%20alive/Normal%20Family%20History-Father%20deceased-Mother%20alive(C-CDA2.1).xml,2016-10-21,2016-10-21

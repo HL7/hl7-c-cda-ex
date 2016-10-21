@@ -5,7 +5,7 @@ require 'base64'
 require 'csv'
 
 namespace :data do
-  task :generate do
+  task :generate => [:environment] do
     server = 'https://api.github.com/repos/HL7/C-CDA-Examples/'
     usr = ask('-->enter username: ') { |q| q.echo = '@'}
     pw = ask('-->enter password: ') { |q| q.echo = '@'}
@@ -30,12 +30,7 @@ namespace :data do
           JSON.parse(dir_resp).each do |dir_entry|
             if dir_entry['type'] == 'dir'
               ex_no += 1
-              comments = nil
-              custodian = nil
-              validation = nil
-              keywords = nil
-              full_sample = nil
-              status = 'draft'
+              metadata = ExampleMetadata.new
               example_contents = nil
               git_url = nil
               puts "   Found a directory named: #{dir_entry['name']}"
@@ -43,6 +38,8 @@ namespace :data do
               JSON.parse(ex_dir_resp).each do |ex_dir_entry|
                 if ex_dir_entry['type'] == 'file'
                   if ex_dir_entry['name'] =~ /readme.md/i
+                    metadata = MetadataParser.parse(RestClient.get(ex_dir_entry['download_url']))
+                    puts metadata
                   elsif ex_dir_entry['name'] =~ /c-cda2.1..xml/i
                     git_url = ex_dir_entry['html_url']
                     example_contents = RestClient.get ex_dir_entry['download_url']
@@ -50,8 +47,10 @@ namespace :data do
                 end
                 puts '          - ' + ex_dir_entry['type'] + '::' + ex_dir_entry['name']
               end
-              examples_csv << [ex_no, sect_no, dir_entry['name'], comments, custodian,
-                               validation, keywords, full_sample, status, example_contents,
+              examples_csv << [ex_no, sect_no, dir_entry['name'], metadata[:comment],
+                               metadata[:custodian], metadata[:validation],
+                               metadata[:keywords], metadata[:full_sample],
+                               metadata[:status], example_contents,
                                git_url, date, date]
             elsif dir_entry['type'] == 'file' && dir_entry['name'] =~ /readme.md/i
               puts '   Found a ' + dir_entry['type'] + ' named ' + dir_entry['name']
