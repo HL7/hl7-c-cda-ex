@@ -1,5 +1,5 @@
 id,section_id,name,comments,custodian,validation,keywords,full_sample,status,example,example_url,created_at,updated_at
-1,1,Allergy to cat hair,* This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,pend,"<section>
+1,1,Allergy to cat hair,* This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,pend,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
@@ -157,7 +157,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	</entry>
 </section>
 ",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20cat%20hair/Allergy%20to%20specific%20substance%20cat%20hair(C-CDA2.1).xml,2016-10-24,2016-10-24
-2,1,Allergy to food egg,* This is an example of a food allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<section>
+2,1,Allergy to food egg,* This is an example of a food allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
@@ -306,7 +306,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20food%20egg/Allergy%20to%20food%20egg(C-CDA2.1).xml,2016-10-24,2016-10-24
-3,1,Allergy to latex,* This is an example of a propensity to substance allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. ,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<section>
+3,1,Allergy to latex,* This is an example of a propensity to substance allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. ,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
@@ -443,7 +443,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20latex/Allergy%20to%20specific%20substance%20latex(C-CDA2.1).xml,2016-10-24,2016-10-24
-4,1,Allergy to specific drug Codeine,* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Rob Hausam and John D'Amore and Russ Leftwich in coordination with Patient Care Committee. This sample replaces the Epinephrine sample which had less clinical accuracy/relevance. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<!-- Allergies Section -->
+4,1,Allergy to specific drug Codeine,* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Rob Hausam and John D'Amore and Russ Leftwich in coordination with Patient Care Committee. This sample replaces the Epinephrine sample which had less clinical accuracy/relevance. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<!-- Allergies Section -->
 <section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
@@ -713,7 +713,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 </section>
 ",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Codeine/Allergy%20to%20specific%20drug%20Codeine(C-CDA2.1).xml,2016-10-24,2016-10-24
 5,1,Allergy to specific drug Epinephrine,"* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.
-* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,wthd,"<section>
+* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,wthd,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
@@ -924,7 +924,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 ",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Epinephrine/Allergy%20to%20specific%20drug%20Epinephrine(C-CDA2.1).xml,2016-10-24,2016-10-24
 6,1,Allergy to specific drug Penicillin,"
 * This is an example of an allergy to a specific drug (penicillin) using RxNorm as terminology with information on both allergic reaction and reaction severity. For drug allergies, this example illustrates a good practice of encoding the allergen at the ingredient level (penicillin) not administration level (10 mg tablet). 
-* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<section>
+* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
@@ -1061,7 +1061,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	</entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Penicillin/Allergy%20to%20specific%20drug%20Penicillin(C-CDA2.1).xml,2016-10-24,2016-10-24
 7,1,Allergy to specific drug class Penicillins,"
-* This is an example of an allergy to a drug class (penicillins) using NDF-RT as terminology with information on both allergic reaction and reaction severity. ",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<section>
+* This is an example of an allergy to a drug class (penicillins) using NDF-RT as terminology with information on both allergic reaction and reaction severity. ",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
@@ -1194,7 +1194,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20class%20Penicillins/Allergy%20to%20specific%20drug%20class%20Penicillins(C-CDA2.1).xml,2016-10-24,2016-10-24
-8,1,No Known Allergies,* This is an example of how an author can record a patient has no known allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance allergies allergy, Allergies in empty CCD,app,"<section>
+8,1,No Known Allergies,* This is an example of how an author can record a patient has no known allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
     <!-- *** Allergies and Intolerances Section (entries required) (V3) *** -->
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
@@ -1280,7 +1280,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
     </entry>
 </section>
 ",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No%20Known%20Allergies/No%20Known%20Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml,2016-10-24,2016-10-24
-9,1,No Known Medication Allergies,* This is an example of how an author can record a patient has no known medication allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance allergies allergy, Allergies in empty CCD,app,"<?xml version=""1.0"" encoding=""UTF-8""?>
+9,1,No Known Medication Allergies,* This is an example of how an author can record a patient has no known medication allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<?xml version=""1.0"" encoding=""UTF-8""?>
 <section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
@@ -1363,7 +1363,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 </section>
 
 ",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No%20Known%20Medication%20Allergies/No%20Known%20Medication%20Allergies(C-CDA2.1).xml,2016-10-24,2016-10-24
-10,3,Hospital Discharge Encounter with Billable Diagnoses,"* This is an example of a hospitalization with discharge diagnoses. Meaningful Use requires a place to document encounter diagnoses, and this example attempts to satisfy. This example aligns with QRDA suggestion for encounter diagnosis.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Encounters, Encounter in empty CCD,app,"<section> 
+10,3,Hospital Discharge Encounter with Billable Diagnoses,"* This is an example of a hospitalization with discharge diagnoses. Meaningful Use requires a place to document encounter diagnoses, and this example attempts to satisfy. This example aligns with QRDA suggestion for encounter diagnosis.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Encounters, Encounter in empty CCD,app,"<section> 
 	<!-- Created for discussion on SDWG CDA Example Task Force. -->
 	<!-- This is an example of a hospitalization as may be shown in encounters section. -->
 	<!-- This example demonstrates how billable diagnoses could be included, if they are available -->
@@ -1593,7 +1593,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 </section>
 
 ",https://github.com/HL7/C-CDA-Examples/blob/master/Encounters/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses(C-CDA2.1).xml,2016-10-24,2016-10-24
-11,4,Family History Generic,"* Example shows generic ""family history of x"" and ""no family history of x"" with commentary suggesting better options.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History, Family history in empty CCD,app,"<section>
+11,4,Family History Generic,"* Example shows generic ""family history of x"" and ""no family history of x"" with commentary suggesting better options.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section (Generic Family History)-->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
@@ -1686,7 +1686,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History%20Generic/Family%20History%20generic(C-CDA2.1).xml,2016-10-24,2016-10-24
-12,4,Family History two individuals same relationship to the patient,"* Example shows two brothers with multiple conditions. Though they have the same relationship to the patient, they can be identified by their separation into two family history organizers as well as by their subject ID's.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History, Family history in empty CCD,app,"<section>
+12,4,Family History two individuals same relationship to the patient,"* Example shows two brothers with multiple conditions. Though they have the same relationship to the patient, they can be identified by their separation into two family history organizers as well as by their subject ID's.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section for two siblings -->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
@@ -1825,7 +1825,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History%20two%20individuals%20same%20relationship%20to%20the%20patient/Family%20History%20two%20individuals%20same%20relationship%20to%20the%20patient(C-CDA2.1).xml,2016-10-24,2016-10-24
-13,4,Normal Family History Father deceased-Mother alive,"* Example shows multiple observations for one family member, identifying the cause of death, and a family member with no known problems.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History, Family history in empty CCD,app,"<section>
+13,4,Normal Family History Father deceased-Mother alive,"* Example shows multiple observations for one family member, identifying the cause of death, and a family member with no known problems.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section -->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
@@ -2028,7 +2028,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Normal%20Family%20History%20Father%20deceased-Mother%20alive/Normal%20Family%20History%20Father%20deceased%20Mother%20alive(C-CDA2.1).xml,2016-10-24,2016-10-24
-14,5,Immunization not given Patient refused,* This is an example of how an author can record a patient refused an immunization.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance immunzation, Immunizations in empty CCD,app,"<component>
+14,5,Immunization not given Patient refused,* This is an example of how an author can record a patient refused an immunization.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance immunzation, Immunizations in empty CCD,app,"<component>
     <section>
         <!-- conforms to Immunizations section with entries optional -->
         <templateId root=""2.16.840.1.113883.10.20.22.2.2""/>
@@ -2093,7 +2093,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </entry>
     </section>        
 </component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Immunization%20not%20given%20Patient%20refused/Immunization%20not%20given%20Patient%20refused(C-CDA2.1).xml,2016-10-24,2016-10-24
-15,5,Influenza Vaccination,* This example illustrates how to structure Immunizations for the 170.314(b)(2) Transitions of care - J) Immunizations.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance immunzation, Immunizations in empty CCD,app,"<component>
+15,5,Influenza Vaccination,* This example illustrates how to structure Immunizations for the 170.314(b)(2) Transitions of care - J) Immunizations.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance immunzation, Immunizations in empty CCD,app,"<component>
     <section>
         <!-- conforms to Immunizations section with entries optional -->
         <templateId root=""2.16.840.1.113883.10.20.22.2.2""/>
@@ -2199,7 +2199,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </entry>
     </section>
 </component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Influenza%20Vaccination/Influenza%20Vaccination(C-CDA2.1).xml,2016-10-24,2016-10-24
-16,5,Unknown Immunization Status,* This is an example of how an author can record they do now know whether the patient has received any vaccinations.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance immunzation, Immunizations in empty CCD,app,"<component>
+16,5,Unknown Immunization Status,* This is an example of how an author can record they do now know whether the patient has received any vaccinations.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance immunzation, Immunizations in empty CCD,app,"<component>
     <section>
         <!-- conforms to Immunizations section with entries optional -->
         <templateId root=""2.16.840.1.113883.10.20.22.2.2"" extension=""2015-08-01""/>
@@ -2264,7 +2264,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
     </section>
 </component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Unknown%20Immunization%20Status/Unknown%20Immunization%20Status(C-CDA2.1).xml,2016-10-24,2016-10-24
 17,6,Anitbiotics with varied dosing,"* This is an example of a medication with dosing that varies over time.
-* This is an example of a common pattern for antibiotic administration which is complex (double dose on day 1, commonly known as Z-PAK). SDWG reviewed this example with the Pharmacy working group in February 2014. This dosing regimen may be characterized as a loading dose, but a similar approach could be used for a tapered dose as well. At the May 2014 Working Group the committee discussed whether this example would be better with just a free text sig. The committee could not agree on the most appropriate location for the free text so this issue remains open. Use this example with caution until a free text sig is available and included.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications Pre-coordinated medication code dose frequency tapered dose loading dose, Medications in empty CCD,app,"<section>
+* This is an example of a common pattern for antibiotic administration which is complex (double dose on day 1, commonly known as Z-PAK). SDWG reviewed this example with the Pharmacy working group in February 2014. This dosing regimen may be characterized as a loading dose, but a similar approach could be used for a tapered dose as well. At the May 2014 Working Group the committee discussed whether this example would be better with just a free text sig. The committee could not agree on the most appropriate location for the free text so this issue remains open. Use this example with caution until a free text sig is available and included.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications Pre-coordinated medication code dose frequency tapered dose loading dose, Medications in empty CCD,app,"<section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1"" extension=""2014-06-09""/>
     <!-- Medication Section (entries required) -->
@@ -2403,7 +2403,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </organizer>
     </entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Anitbiotics%20with%20varied%20dosing/Antibiotics%20with%20varied%20dosing(CCDA2.1).xml,2016-10-24,2016-10-24
-18,6,CCD Transition No Known Medications,* This is an example of a CCD Transition of ambulatory care with no known medications,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications, Medications in empty CCD,pend,"<component>
+18,6,CCD Transition No Known Medications,* This is an example of a CCD Transition of ambulatory care with no known medications,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,pend,"<component>
     <section>
         <!-- conforms to Medications section with entries optional -->
         <templateId root=""2.16.840.1.113883.10.20.22.2.1""/>
@@ -2465,7 +2465,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </entry>
     </section>
 </component>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/CCD%20Transition%20No%20Known%20Medications/CCD%20Transition%20No%20Medications(CCDA2.1).xml,2016-10-24,2016-10-24
-19,6,Med every 4-6 hours,"* This is an example of a medication (Sudafed) which to be administered every 4-6 hours, a common dosing pattern. Representing the range of potential of hours is done through a low and high child element of the period within effectiveTime of PIVL_TS.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications Dose frequency pre-coordinated medication, Medications in empty CCD,app,"<section>
+19,6,Med every 4-6 hours,"* This is an example of a medication (Sudafed) which to be administered every 4-6 hours, a common dosing pattern. Representing the range of potential of hours is done through a low and high child element of the period within effectiveTime of PIVL_TS.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications Dose frequency pre-coordinated medication, Medications in empty CCD,app,"<section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1"" extension=""2014-06-09""/>
     <!-- Medication Section (entries required) -->
@@ -2579,7 +2579,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 ** Summary of examples:
 *** PRN with a coded precondition - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours PRN for joint pain
 *** Instructions; similar to above but NOT a PRN - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours as Directed
-*** Indication; again, NOT a PRN - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours for joint pain",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications Precondition Pre-coordinated medication code dose frequency, Medications in empty CCD,app,"<section>
+*** Indication; again, NOT a PRN - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours for joint pain",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications Precondition Pre-coordinated medication code dose frequency, Medications in empty CCD,app,"<section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1"" extension=""2014-06-09""/>
     <!-- Medication Section (entries required) -->
@@ -2696,7 +2696,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </substanceAdministration>
     </entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Med%20oral%20QID%20with%20PRN/Med%20oral%20QID%20with%20PRN(CCDA2.1).xml,2016-10-24,2016-10-24
-21,6,Med oral with indications,* This is an example of a medication administered orally with indications.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications, Medications in empty CCD,pend,"<!-- 
+21,6,Med oral with indications,* This is an example of a medication administered orally with indications.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,pend,"<!-- 
 		Summary of example:
 		Indication (NOT a PRN) - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours for joint pain
 			
@@ -2823,7 +2823,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </substanceAdministration>
     </entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Med%20oral%20with%20indications/Med%20oral%20with%20indications(CCDA2.1).xml,2016-10-24,2016-10-24
-22,6,No Medications,* This is an example of no medications,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications, Medications in empty CCD,app,"<component>
+22,6,No Medications,* This is an example of no medications,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,app,"<component>
     <section>
         <!-- conforms to Medications section with entries optional -->
         <templateId root=""2.16.840.1.113883.10.20.22.2.1""/>
@@ -2887,7 +2887,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
     </section>
 </component>
 ",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/No%20Medications/No%20Medications(CCDA2.1).xml,2016-10-24,2016-10-24
-23,6,Patient reported oral medication,"* Patients often report medications that they are taking, either self-prescribed or by another provider, and know the drug name but do not know any specific brand or dose. This is an example of how to record an herbal supplement (echinicea) that a patient has reported taking using the informant to denote that this is patient reported.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications, Medications in empty CCD,draft,"<section>
+23,6,Patient reported oral medication,"* Patients often report medications that they are taking, either self-prescribed or by another provider, and know the drug name but do not know any specific brand or dose. This is an example of how to record an herbal supplement (echinicea) that a patient has reported taking using the informant to denote that this is patient reported.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,draft,"<section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1"" extension=""2014-06-09""/>
     <!-- Medication Section (entries required) -->
@@ -3015,7 +3015,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </substanceAdministration>
     </entry>
 </section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Patient%20reported%20oral%20medication/Patient%20reported%20oral%20medication%20no%20brand(CCDA2.1).xml,2016-10-24,2016-10-24
-24,6,Single administration of medication,"* This is an example of two baby aspirin being administered at a single point in time. At the January 2014 San Antonio meeting of HL7, this approach was decided as appropriate for medication timing of a point in time. Subsequent to that meeting, the TTT validator was adjusted to accept this format for medication times.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications Pre-coordinated medication code single administration point in time, Medications in empty CCD,app,"<component>
+24,6,Single administration of medication,"* This is an example of two baby aspirin being administered at a single point in time. At the January 2014 San Antonio meeting of HL7, this approach was decided as appropriate for medication timing of a point in time. Subsequent to that meeting, the TTT validator was adjusted to accept this format for medication times.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications Pre-coordinated medication code single administration point in time, Medications in empty CCD,app,"<component>
     <section>
         <!-- Medications section with entries required -->
         <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>

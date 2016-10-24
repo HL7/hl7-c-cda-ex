@@ -71,9 +71,18 @@ class MetadataParser
   end
 
   def self.parse_validation(chunk)
+    validation_link = nil
     content = chunk.split("\n").drop(1).delete_if { |element| element.nil? || element.empty? }
-
-    nil
+    validation = (content.select { |line| line =~ /^\* /})
+    if validation.size > 0
+      site_line = validation[0].tr('*', '').strip
+      link_regex = /\[site\]\((http(s)?:\/\/.*)\)/i
+      link_regex.match(site_line) do |m|
+        # puts " ~~~~~~~~~~~~~~~~~  found link: #{m[1]}  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        validation_link = m[1]
+      end
+    end
+    validation_link
   end
 
   def self.parse_full_sample(chunk)
