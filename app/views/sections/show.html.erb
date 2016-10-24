@@ -23,10 +23,14 @@
       <tr>
         <td>
           <p class="list-title"><%= example.name %></p>
-          <p class="list-detail"><%= example.comments %></p>
+          <div class="list-detail">
+            <%= raw markdown.render(truncate_md(example.comments)) %>
+          </div>
         </td>
         <td><%= CodeValue.find_by(code_table: 'appr-stat', code: example.status).print_name %></td>
-        <td><%= link_to 'download', example_path(example, format: :xml) %> <%= link_to 'details', example %></td>
+        <td>
+          <%= link_to 'details', example %> <%= link_to 'download', example_path(example, format: :xml) %>
+        </td>
       </tr>
   <% end %>
   </tbody>

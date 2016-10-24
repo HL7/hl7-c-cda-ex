@@ -22,17 +22,19 @@
       <tr>
         <td>
           <p class="list-title"><%= example.name %></p>
-          <p class="list-detail"><%= example.comments %></p>
+          <div class="list-detail">
+            <%= raw markdown.render(truncate_md(example.comments)) %>
+          </div>
         </td>
         <td><%= example.section.name %></td>
         <td><%= CodeValue.find_by(code_table: 'appr-stat', code: example.status).print_name %></td>
         <td>
-          <%= link_to example_path(example, format: :xml) do %>
-              <span class="list-link-text">Download</span><span class="link-pointer">D</span>
-          <% end %>
-          <br/>
           <%= link_to example do %>
               <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+          <% end %>
+          <br/>
+          <%= link_to example_path(example, format: :xml) do %>
+              <span class="list-link-text">Download</span><span class="link-pointer">D</span>
           <% end %>
         </td>
       </tr>

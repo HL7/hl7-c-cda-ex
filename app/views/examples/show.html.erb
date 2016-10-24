@@ -22,7 +22,7 @@
 
 <p id="example-comments">
   <strong>Comments:</strong>
-  <%= @example.comments %>
+  <%= raw markdown.render(@example.comments) %>
 </p>
 
 <p id="example-custodian">
