@@ -59,10 +59,10 @@ class MetadataParser
           if temp_string =~ /\W?\d?\d\/\d?\d\/\d\d\d\d/
             date = Date.strptime(temp_string.strip, '%m/%d/%Y')
             approvals << [work_group, date]
-            puts '+++    found approval ' + work_group + ' on ' + date.to_s
+            # puts '+++    found approval ' + work_group + ' on ' + date.to_s
           else
             approvals << [work_group, temp_string]
-            puts '---    approval note ' + work_group + ' comment: ' + temp_string
+            # puts '---    approval note ' + work_group + ' comment: ' + temp_string
           end
         end
       end

@@ -30,23 +30,23 @@
 </div>
 <% end -%>
 
-<p id="example-validation">
+<p>
 <% if @example.validation -%>
-    <%= link_to 'Validation site', @example.validation %>
+    <%= link_to 'Validation site', @example.validation, id: 'example-validation' %>
 <% else -%>
-    No validation URL supplied
+    <span id="example-validation">No validation URL supplied</span>
 <% end -%>
 </p>
 
-<p id="example-comments"  class="detail-with-list">
-  <strong>Comments:</strong>
+<p class="detail-with-list">
+  <strong id="example-comments">Comments:</strong>
 </p>
 <div class="large-10 large-offset-1 columns">
   <%= raw markdown.render(@example.comments) %>
 </div>
 
-<p id="example-custodian">
-  <strong>Custodian:</strong>
+<p>
+  <strong id="example-custodian">Custodian:</strong>
   <%= @example.custodian %>
 </p>
 
@@ -57,11 +57,17 @@
 
 <p>
   <strong id="example-example">Example:</strong>
+  <% if @example.example.nil? -%>
+  no example provided
+  <% else -%>
   <%= link_to 'download example', example_path(@example, format: :xml), class: 'button tiny', id: 'example-download' %>
   <%= link_to 'view on GitHub', @example.example_url, class: 'button tiny', id: 'example-github' %>
+  <% end -%>
 </p>
 
+<% if @example.example -%>
 <%= raw syntax_highlight(@example.example) %>
+<% end -%>
 
 <%= render 'tour_show' %>
 
