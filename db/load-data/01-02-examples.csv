@@ -1,6 +1,451 @@
 id,section_id,name,comments,custodian,validation,keywords,full_sample,status,example,example_url,created_at,updated_at
-1,1,Allergy to specific drug-Codeine,* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Rob Hausam and John D'Amore and Russ Leftwich in coordination with Patient Care Committee. This sample replaces the Epinephrine sample which had less clinical accuracy/relevance. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<!-- Allergies Section -->
+1,1,Allergy to cat hair,* This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,pend,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy1"">
+					<td ID=""allergy1allergen"">Cat hair</td>
+					<td ID=""allergy1reaction"">Rash</td>
+					<td ID=""allergy1reactionseverity"">Moderate</td>
+					<td>Jan 4 2014</td>
+					<td>1998</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<!-- If the statusCode=""completed"", the effective time shall contain a high value. -->
+			<effectiveTime>
+				<low value=""20140104123506+0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20100103""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101""
+                          codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine""/>
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<!-- In C-CDA R2.1 the participant is required. -->
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- Just the year is shown since a specific month and date was not reported -->
+					<effectiveTime>
+						<low value=""1998""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is to a substance (cat hair) in contrast to other allergies (drug) -->
+					<value xsi:type=""CD"" code=""419199007"" displayName=""allergy to substance""
+						codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""/>
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20100103""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<!-- In C-CDA R2.1 the participant is required. -->
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<!-- The agent responsible for an allergy or adverse reaction is not always a manufactured material (for example, food allergies), 
+													nor is it necessarily consumed. The following constraints reflect limitations in the base CDA R2 specification, 
+													and should be used to represent any type of responsible agent, i.e., use playingEntity classCode = ""MMAT"" for all agents, 
+													manufactured or not. -->
+							<!-- 
+													... the expectation for use is that the chosen concept identifier for a substance should be appropriately specific and 
+													drawn from the available code systems in the following priority order: NDFRT, then RXNORM, then UNII, then SNOMED CT. 
+													This overarching grouping value set is intended to support identification of drug classes, individual medication 
+													ingredients, foods, general substances and environmental entities. Value set intensionally defined as a GROUPING made 
+													up of: Value Set: Medication Drug Class (2.16.840.1.113883.3.88.12.80.18) (NDFRT drug class codes); 
+													Value Set: Clinical Drug Ingredient (2.16.840.1.113762.1.4.1010.7) (RxNORM ingredient codes); 
+													Value Set: Unique Ingredient Identifier - Complete Set (2.16.840.1.113883.3.88.12.80.20) (UNII ingredient codes); 
+													Value Set: Substance Other Than Clinical Drug (2.16.840.1.113762.1.4.1010.9) (SNOMED CT substance codes).
+												
+												-->
+							<playingEntity classCode=""MMAT"">
+								<code code=""1564HD0N96"" displayName=""Cat hair""
+									codeSystem=""2.16.840.1.113883.4.9"" codeSystemName=""UNII"">
+									<originalText>
+										<reference value=""#allergy1allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy1reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""1998""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""64144002"" codeSystem=""2.16.840.1.113883.6.96""
+								codeSystemName=""SNOMED CT"" displayName=""Rash""/>
+							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
+										extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
+										codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy1reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""6736007""
+										codeSystem=""2.16.840.1.113883.6.96""
+										codeSystemName=""SNOMED CT"" displayName=""moderate""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20cat%20hair/Allergy%20to%20specific%20substance%20cat%20hair(C-CDA2.1).xml,2016-10-24,2016-10-24
+2,1,Allergy to food egg,* This is an example of a food allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy5"">
+					<td ID=""allergy5allergen"">Egg</td>
+					<td ID=""allergy5reaction"">Hives</td>
+					<td ID=""allergy5reactionseverity"">Moderate</td>
+					<td>Jan 4 2014</td>
+					<td>1998</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""0fffb34f-c1e0-47c2-92af-c414a3ff21ec""/>
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<effectiveTime>
+				<low value=""20140104123506-0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140104""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""0fffb34f-c1e0-47c2-92af-c414a3ff21ec""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- Just the year is shown since a specific month and date was not reported -->
+					<effectiveTime>
+						<low value=""1998""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is to a food in contrast to other allergies (drug) -->
+					<value xsi:type=""CD"" code=""414285001"" displayName=""Food allergy (disorder)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""></value>
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20140104""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<!-- In C-CDA R2.1 the participant is required. -->
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<playingEntity classCode=""MMAT"">
+								<!-- The agent responsible for an allergy or adverse reaction is not always a manufactured material (for example, food allergies), 
+													nor is it necessarily consumed. The following constraints reflect limitations in the base CDA R2 specification, 
+													and should be used to represent any type of responsible agent, i.e., use playingEntity classCode = ""MMAT"" for all agents, 
+													manufactured or not. -->
+								<!-- 
+													... the expectation for use is that the chosen concept identifier for a substance should be appropriately specific and 
+													drawn from the available code systems in the following priority order: NDFRT, then RXNORM, then UNII, then SNOMED CT. 
+													This overarching grouping value set is intended to support identification of drug classes, individual medication 
+													ingredients, foods, general substances and environmental entities. Value set intensionally defined as a GROUPING made 
+													up of: Value Set: Medication Drug Class (2.16.840.1.113883.3.88.12.80.18) (NDFRT drug class codes); 
+													Value Set: Clinical Drug Ingredient (2.16.840.1.113762.1.4.1010.7) (RxNORM ingredient codes); 
+													Value Set: Unique Ingredient Identifier - Complete Set (2.16.840.1.113883.3.88.12.80.20) (UNII ingredient codes); 
+													Value Set: Substance Other Than Clinical Drug (2.16.840.1.113762.1.4.1010.9) (SNOMED CT substance codes).
+												
+												-->
+								<code code=""102263004"" displayName=""Eggs (edible)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"">
+									<originalText>
+										<reference value=""#allergy5allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""d89ce431-e0f1-4f8d-a81f-489b6ed91f09""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy5reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""1998""/>
+								<high nullFlavor=""NA""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""247472004"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Hives""/>
+							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
+ extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy5reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""6736007"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""moderate""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20food%20egg/Allergy%20to%20food%20egg(C-CDA2.1).xml,2016-10-24,2016-10-24
+3,1,Allergy to latex,* This is an example of a propensity to substance allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. ,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
+	<!-- Allergies (entries required) section template -->
+	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
+	<title>Allergies, Adverse Reactions and Alerts</title>
+	<text>
+		<table>
+			<thead>
+				<tr>
+					<th>Allergen</th>
+					<th>Reaction</th>
+					<th>Reaction Severity</th>
+					<th>Documentation Date</th>
+					<th>Start Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ID=""allergy4"">
+					<td ID=""allergy4allergen"">Latex</td>
+					<td ID=""allergy4reaction"">Anaphylaxis</td>
+					<td ID=""allergy4reactionseverity"">Severe</td>
+					<td>Jan 4 2014</td>
+					<td>Jan 3 2014</td>
+				</tr>
+			</tbody>
+		</table>
+	</text>
+	<entry typeCode=""DRIV"">
+		<act classCode=""ACT"" moodCode=""EVN"">
+			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
+			<statusCode code=""active""/>
+			<!-- This is the time stamp for when the allergy was first documented as a concern-->
+			<effectiveTime>
+				<low value=""20140104123506+0500""/>
+			</effectiveTime>
+			<author>
+				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+				<time value=""20140104""/>
+				<assignedAuthor>
+					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+					<telecom use=""WP"" value=""tel:555-555-1002""/>
+					<assignedPerson>
+						<name>
+							<given>Henry</given>
+							<family>Seven</family>
+						</name>
+					</assignedPerson>
+				</assignedAuthor>
+			</author>
+			<entryRelationship typeCode=""SUBJ"">
+				<observation classCode=""OBS"" moodCode=""EVN"">
+					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
+					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
+					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+					<statusCode code=""completed""/>
+					<!-- This is the time stamp for the biological onset of the allergy. -->
+					<!-- This documents that the allergy began at given year month and day, although hour and minute not specified-->
+					<effectiveTime>
+						<low value=""20140103""/>
+					</effectiveTime>
+					<!-- This specifies that the allergy is a propensity to adverse reactions to substance -->
+					<value xsi:type=""CD"" code=""418038007"" displayName=""Propensity to adverse reactions to substance (disorder)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" />
+					<author>
+						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+						<time value=""20140104""/>
+						<assignedAuthor>
+							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+							<telecom use=""WP"" value=""tel:555-555-1002""/>
+							<assignedPerson>
+								<name>
+									<given>Henry</given>
+									<family>Seven</family>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<participant typeCode=""CSM"">
+						<participantRole classCode=""MANU"">
+							<playingEntity classCode=""MMAT"">
+								<!-- SNOMED or UNII may be used for allergies in both C-CDA 1.1 and 2.0 -->
+								<!-- SNOMED was added to C-CDA 1.1 by DSTU  381 and illustrated below -->
+								<!-- Note that the SNOMED code for 'latex allergy' is not appropriate since the allergy is conveyed elsewhere in the observation -->
+								<code code=""111088007"" displayName=""Latex"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"">
+									<originalText>
+										<reference value=""#allergy4allergen""/>
+									</originalText>
+								</code>
+							</playingEntity>
+						</participantRole>
+					</participant>
+					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
+						<observation classCode=""OBS"" moodCode=""EVN"">
+							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
+							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
+							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
+							<text>
+								<reference value=""#allergy2reaction""/>
+							</text>
+							<statusCode code=""completed""/>
+							<effectiveTime>
+								<low value=""20140103""/>
+								<high nullFlavor=""NA""/>
+							</effectiveTime>
+							<value xsi:type=""CD"" code=""39579001"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Anaphylaxis""/>
+                        	<!-- The Severity observation is no longer recommended, use criticality observation in future exchanges -->							
+                            <entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
+								<observation classCode=""OBS"" moodCode=""EVN"">
+									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
+ extension=""2014-06-09""/>
+									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
+									<text>
+										<reference value=""#allergy2reactionseverity""/>
+									</text>
+									<statusCode code=""completed""/>
+									<value xsi:type=""CD"" code=""24484000"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Severe""/>
+								</observation>
+							</entryRelationship>
+						</observation>
+					</entryRelationship>
+				</observation>
+			</entryRelationship>
+		</act>
+	</entry>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20latex/Allergy%20to%20specific%20substance%20latex(C-CDA2.1).xml,2016-10-24,2016-10-24
+4,1,Allergy to specific drug Codeine,* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Rob Hausam and John D'Amore and Russ Leftwich in coordination with Patient Care Committee. This sample replaces the Epinephrine sample which had less clinical accuracy/relevance. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<!-- Allergies Section -->
 <section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -73,6 +518,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<entry typeCode=""DRIV"">
 		<act classCode=""ACT"" moodCode=""EVN"">
 			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
 			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
 			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""
@@ -113,6 +559,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<entryRelationship typeCode=""SUBJ"">
 				<observation classCode=""OBS"" moodCode=""EVN"">
 					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
 					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
 					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -184,6 +631,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
 						<observation classCode=""OBS"" moodCode=""EVN"">
 							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
 							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
 							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
 							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -202,6 +650,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
 								<observation classCode=""OBS"" moodCode=""EVN"">
 									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
 									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
 										extension=""2014-06-09""/>
 									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
@@ -224,6 +673,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<entryRelationship typeCode=""MFST"" inversionInd=""true"">
 				<observation classCode=""OBS"" moodCode=""EVN"">
 					<!-- Reaction Observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
 					<id root=""fea0b775-f3fe-4e0a-9c4f-4a5c235c2af0""/>
 					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -243,6 +693,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
 						<observation classCode=""OBS"" moodCode=""EVN"">
 							<!-- Severity Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
 							<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
 							<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
 								codeSystemName=""ActCode""/>
@@ -260,9 +711,10 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Codeine/Allergy%20to%20specific%20drug-Codeine(C-CDA2.1).xml,2016-10-21,2016-10-21
-2,1,Allergy to specific drug-Epineprhine,"* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.
-* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,wthd,"<section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Codeine/Allergy%20to%20specific%20drug%20Codeine(C-CDA2.1).xml,2016-10-24,2016-10-24
+5,1,Allergy to specific drug Epinephrine,"* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.
+* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,wthd,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -300,6 +752,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<entry typeCode=""DRIV"">
 		<act classCode=""ACT"" moodCode=""EVN"">
 			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
 			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
 			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
@@ -327,6 +780,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<entryRelationship typeCode=""SUBJ"">
 				<observation classCode=""OBS"" moodCode=""EVN"">
 					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
 					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
 					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -394,6 +848,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
 						<observation classCode=""OBS"" moodCode=""EVN"">
 							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
 							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
 							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
 							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -410,6 +865,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
 								<observation classCode=""OBS"" moodCode=""EVN"">
 									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
 									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
 										extension=""2014-06-09""/>
 									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
@@ -431,6 +887,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<entryRelationship typeCode=""MFST"" inversionInd=""true"">
 				<observation classCode=""OBS"" moodCode=""EVN"">
 					<!-- Reaction Observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
 					<id root=""fea0b775-f3fe-4e0a-9c4f-4a5c235c2af0""/>
 					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -447,6 +904,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
 						<observation classCode=""OBS"" moodCode=""EVN"">
 							<!-- Severity Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
 							<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
 							<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
 								codeSystemName=""ActCode""/>
@@ -463,10 +921,11 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Epineprhine/Allergy%20to%20specific%20drug-Epineprhine(C-CDA2.1).xml,2016-10-21,2016-10-21
-3,1,Allergy to specific drug-Penicillin,"
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Epinephrine/Allergy%20to%20specific%20drug%20Epinephrine(C-CDA2.1).xml,2016-10-24,2016-10-24
+6,1,Allergy to specific drug Penicillin,"
 * This is an example of an allergy to a specific drug (penicillin) using RxNorm as terminology with information on both allergic reaction and reaction severity. For drug allergies, this example illustrates a good practice of encoding the allergen at the ingredient level (penicillin) not administration level (10 mg tablet). 
-* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<section>
+* Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -496,8 +955,9 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<entry typeCode=""DRIV"">
 		<act classCode=""ACT"" moodCode=""EVN"">
 			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
-			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974"" />
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
 			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
 			<statusCode code=""active""/>
 			<!-- This is the time stamp for when the allergy was first documented as a concern-->
@@ -522,6 +982,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<entryRelationship typeCode=""SUBJ"">
 				<observation classCode=""OBS"" moodCode=""EVN"">
 					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
 					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
 					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -564,6 +1025,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
 						<observation classCode=""OBS"" moodCode=""EVN"">
 							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
 							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
 							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
 							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -580,433 +1042,9 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
 								<observation classCode=""OBS"" moodCode=""EVN"">
 									<!-- Severity Observation template -->
-									<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
-									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
-									<text>
-										<reference value=""#allergy2reactionseverity""/>
-									</text>
-									<statusCode code=""completed""/>
-									<value xsi:type=""CD"" code=""24484000"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Severe""/>
-								</observation>
-							</entryRelationship>
-						</observation>
-					</entryRelationship>
-				</observation>
-			</entryRelationship>
-		</act>
-	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug-Penicillin/Allergy%20to%20specific%20drug-Penicillin(C-CDA2.1).xml,2016-10-21,2016-10-21
-4,1,Allergy-to-cat-hair,* This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,pend,"<section>
-	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
-	<!-- Allergies (entries required) section template -->
-	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
-	<title>Allergies, Adverse Reactions and Alerts</title>
-	<text>
-		<table>
-			<thead>
-				<tr>
-					<th>Allergen</th>
-					<th>Reaction</th>
-					<th>Reaction Severity</th>
-					<th>Documentation Date</th>
-					<th>Start Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ID=""allergy1"">
-					<td ID=""allergy1allergen"">Cat hair</td>
-					<td ID=""allergy1reaction"">Rash</td>
-					<td ID=""allergy1reactionseverity"">Moderate</td>
-					<td>Jan 4 2014</td>
-					<td>1998</td>
-				</tr>
-			</tbody>
-		</table>
-	</text>
-	<entry typeCode=""DRIV"">
-		<act classCode=""ACT"" moodCode=""EVN"">
-			<!-- ** Allergy problem act ** -->
-			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
-			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
-			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
-			<statusCode code=""active""/>
-			<!-- This is the time stamp for when the allergy was first documented as a concern-->
-			<!-- If the statusCode=""completed"", the effective time shall contain a high value. -->
-			<effectiveTime>
-				<low value=""20140104123506+0500""/>
-			</effectiveTime>
-			<author>
-				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
-				<time value=""20100103""/>
-				<assignedAuthor>
-					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
-					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
-					<telecom use=""WP"" value=""tel:555-555-1002""/>
-					<assignedPerson>
-						<name>
-							<given>Henry</given>
-							<family>Seven</family>
-						</name>
-					</assignedPerson>
-				</assignedAuthor>
-			</author>
-			<!-- In C-CDA R2.1 the participant is required. -->
-			<entryRelationship typeCode=""SUBJ"">
-				<observation classCode=""OBS"" moodCode=""EVN"">
-					<!-- allergy observation template -->
-					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
-					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
-					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
-					<statusCode code=""completed""/>
-					<!-- This is the time stamp for the biological onset of the allergy. -->
-					<!-- Just the year is shown since a specific month and date was not reported -->
-					<effectiveTime>
-						<low value=""1998""/>
-					</effectiveTime>
-					<!-- This specifies that the allergy is to a substance (cat hair) in contrast to other allergies (drug) -->
-					<value xsi:type=""CD"" code=""419199007"" displayName=""allergy to substance""
-						codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""/>
-					<author>
-						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
-						<time value=""20100103""/>
-						<assignedAuthor>
-							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
-							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
-							<telecom use=""WP"" value=""tel:555-555-1002""/>
-							<assignedPerson>
-								<name>
-									<given>Henry</given>
-									<family>Seven</family>
-								</name>
-							</assignedPerson>
-						</assignedAuthor>
-					</author>
-					<!-- In C-CDA R2.1 the participant is required. -->
-					<participant typeCode=""CSM"">
-						<participantRole classCode=""MANU"">
-							<!-- The agent responsible for an allergy or adverse reaction is not always a manufactured material (for example, food allergies), 
-													nor is it necessarily consumed. The following constraints reflect limitations in the base CDA R2 specification, 
-													and should be used to represent any type of responsible agent, i.e., use playingEntity classCode = ""MMAT"" for all agents, 
-													manufactured or not. -->
-							<!-- 
-													... the expectation for use is that the chosen concept identifier for a substance should be appropriately specific and 
-													drawn from the available code systems in the following priority order: NDFRT, then RXNORM, then UNII, then SNOMED CT. 
-													This overarching grouping value set is intended to support identification of drug classes, individual medication 
-													ingredients, foods, general substances and environmental entities. Value set intensionally defined as a GROUPING made 
-													up of: Value Set: Medication Drug Class (2.16.840.1.113883.3.88.12.80.18) (NDFRT drug class codes); 
-													Value Set: Clinical Drug Ingredient (2.16.840.1.113762.1.4.1010.7) (RxNORM ingredient codes); 
-													Value Set: Unique Ingredient Identifier - Complete Set (2.16.840.1.113883.3.88.12.80.20) (UNII ingredient codes); 
-													Value Set: Substance Other Than Clinical Drug (2.16.840.1.113762.1.4.1010.9) (SNOMED CT substance codes).
-												
-												-->
-							<playingEntity classCode=""MMAT"">
-								<code code=""1564HD0N96"" displayName=""Cat hair""
-									codeSystem=""2.16.840.1.113883.4.9"" codeSystemName=""UNII"">
-									<originalText>
-										<reference value=""#allergy1allergen""/>
-									</originalText>
-								</code>
-							</playingEntity>
-						</participantRole>
-					</participant>
-					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
-						<observation classCode=""OBS"" moodCode=""EVN"">
-							<!-- Reaction Observation template -->
-							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
-							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
-							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
-							<text>
-								<reference value=""#allergy1reaction""/>
-							</text>
-							<statusCode code=""completed""/>
-							<effectiveTime>
-								<low value=""1998""/>
-							</effectiveTime>
-							<value xsi:type=""CD"" code=""64144002"" codeSystem=""2.16.840.1.113883.6.96""
-								codeSystemName=""SNOMED CT"" displayName=""Rash""/>
-							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
-								<observation classCode=""OBS"" moodCode=""EVN"">
-									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
 									<templateId root=""2.16.840.1.113883.10.20.22.4.8""
-										extension=""2014-06-09""/>
-									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4""
-										codeSystemName=""ActCode""/>
-									<text>
-										<reference value=""#allergy1reactionseverity""/>
-									</text>
-									<statusCode code=""completed""/>
-									<value xsi:type=""CD"" code=""6736007""
-										codeSystem=""2.16.840.1.113883.6.96""
-										codeSystemName=""SNOMED CT"" displayName=""moderate""/>
-								</observation>
-							</entryRelationship>
-						</observation>
-					</entryRelationship>
-				</observation>
-			</entryRelationship>
-		</act>
-	</entry>
-</section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-cat-hair/Allergy%20to%20specific%20substance-cat-hair(C-CDA2.1).xml,2016-10-21,2016-10-21
-5,1,Allergy-to-food-egg,* This is an example of a food allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<section>
-	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
-	<!-- Allergies (entries required) section template -->
-	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
-	<title>Allergies, Adverse Reactions and Alerts</title>
-	<text>
-		<table>
-			<thead>
-				<tr>
-					<th>Allergen</th>
-					<th>Reaction</th>
-					<th>Reaction Severity</th>
-					<th>Documentation Date</th>
-					<th>Start Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ID=""allergy5"">
-					<td ID=""allergy5allergen"">Egg</td>
-					<td ID=""allergy5reaction"">Hives</td>
-					<td ID=""allergy5reactionseverity"">Moderate</td>
-					<td>Jan 4 2014</td>
-					<td>1998</td>
-				</tr>
-			</tbody>
-		</table>
-	</text>
-	<entry typeCode=""DRIV"">
-		<act classCode=""ACT"" moodCode=""EVN"">
-			<!-- ** Allergy problem act ** -->
-			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
-			<id root=""0fffb34f-c1e0-47c2-92af-c414a3ff21ec"" />
-			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
-			<statusCode code=""active""/>
-			<!-- This is the time stamp for when the allergy was first documented as a concern-->
-			<effectiveTime>
-				<low value=""20140104123506-0500""/>
-			</effectiveTime>
-			<author>
-				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
-				<time value=""20140104""/>
-				<assignedAuthor>
-					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
-					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
-					<telecom use=""WP"" value=""tel:555-555-1002""/>
-					<assignedPerson>
-						<name>
-							<given>Henry</given>
-							<family>Seven</family>
-						</name>
-					</assignedPerson>
-				</assignedAuthor>
-			</author>
-			<entryRelationship typeCode=""SUBJ"">
-				<observation classCode=""OBS"" moodCode=""EVN"">
-					<!-- allergy observation template -->
-					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
-					<id root=""0fffb34f-c1e0-47c2-92af-c414a3ff21ec""/>
-					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
-					<statusCode code=""completed""/>
-					<!-- This is the time stamp for the biological onset of the allergy. -->
-					<!-- Just the year is shown since a specific month and date was not reported -->
-					<effectiveTime>
-						<low value=""1998""/>
-					</effectiveTime>
-					<!-- This specifies that the allergy is to a food in contrast to other allergies (drug) -->
-					<value xsi:type=""CD"" code=""414285001"" displayName=""Food allergy (disorder)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT""></value>
-					<author>
-						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
-						<time value=""20140104""/>
-						<assignedAuthor>
-							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
-							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
-							<telecom use=""WP"" value=""tel:555-555-1002""/>
-							<assignedPerson>
-								<name>
-									<given>Henry</given>
-									<family>Seven</family>
-								</name>
-							</assignedPerson>
-						</assignedAuthor>
-					</author>
-					<!-- In C-CDA R2.1 the participant is required. -->
-					<participant typeCode=""CSM"">
-						<participantRole classCode=""MANU"">
-							<playingEntity classCode=""MMAT"">
-								<!-- The agent responsible for an allergy or adverse reaction is not always a manufactured material (for example, food allergies), 
-													nor is it necessarily consumed. The following constraints reflect limitations in the base CDA R2 specification, 
-													and should be used to represent any type of responsible agent, i.e., use playingEntity classCode = ""MMAT"" for all agents, 
-													manufactured or not. -->
-								<!-- 
-													... the expectation for use is that the chosen concept identifier for a substance should be appropriately specific and 
-													drawn from the available code systems in the following priority order: NDFRT, then RXNORM, then UNII, then SNOMED CT. 
-													This overarching grouping value set is intended to support identification of drug classes, individual medication 
-													ingredients, foods, general substances and environmental entities. Value set intensionally defined as a GROUPING made 
-													up of: Value Set: Medication Drug Class (2.16.840.1.113883.3.88.12.80.18) (NDFRT drug class codes); 
-													Value Set: Clinical Drug Ingredient (2.16.840.1.113762.1.4.1010.7) (RxNORM ingredient codes); 
-													Value Set: Unique Ingredient Identifier - Complete Set (2.16.840.1.113883.3.88.12.80.20) (UNII ingredient codes); 
-													Value Set: Substance Other Than Clinical Drug (2.16.840.1.113762.1.4.1010.9) (SNOMED CT substance codes).
-												
-												-->
-								<code code=""102263004"" displayName=""Eggs (edible)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"">
-									<originalText>
-										<reference value=""#allergy5allergen""/>
-									</originalText>
-								</code>
-							</playingEntity>
-						</participantRole>
-					</participant>
-					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
-						<observation classCode=""OBS"" moodCode=""EVN"">
-							<!-- Reaction Observation template -->
-							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
-							<id root=""d89ce431-e0f1-4f8d-a81f-489b6ed91f09""/>
-							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
-							<text>
-								<reference value=""#allergy5reaction""/>
-							</text>
-							<statusCode code=""completed""/>
-							<effectiveTime>
-								<low value=""1998""/>
-								<high nullFlavor=""NA""/>
-							</effectiveTime>
-							<value xsi:type=""CD"" code=""247472004"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Hives""/>
-							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
-								<observation classCode=""OBS"" moodCode=""EVN"">
-									<!-- Severity Observation template -->
-									<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
-									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
-									<text>
-										<reference value=""#allergy5reactionseverity""/>
-									</text>
-									<statusCode code=""completed""/>
-									<value xsi:type=""CD"" code=""6736007"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""moderate""/>
-								</observation>
-							</entryRelationship>
-						</observation>
-					</entryRelationship>
-				</observation>
-			</entryRelationship>
-		</act>
-	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-food-egg/Allergy%20to%20food%20-%20egg(C-CDA2.1).xml,2016-10-21,2016-10-21
-6,1,Allergy-to-latex,* This is an example of a propensity to substance allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. ,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<section>
-	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
-	<!-- Allergies (entries required) section template -->
-	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
-	<title>Allergies, Adverse Reactions and Alerts</title>
-	<text>
-		<table>
-			<thead>
-				<tr>
-					<th>Allergen</th>
-					<th>Reaction</th>
-					<th>Reaction Severity</th>
-					<th>Documentation Date</th>
-					<th>Start Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ID=""allergy4"">
-					<td ID=""allergy4allergen"">Latex</td>
-					<td ID=""allergy4reaction"">Anaphylaxis</td>
-					<td ID=""allergy4reactionseverity"">Severe</td>
-					<td>Jan 4 2014</td>
-					<td>Jan 3 2014</td>
-				</tr>
-			</tbody>
-		</table>
-	</text>
-	<entry typeCode=""DRIV"">
-		<act classCode=""ACT"" moodCode=""EVN"">
-			<!-- ** Allergy problem act ** -->
-			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
-			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974"" />
-			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
-			<statusCode code=""active""/>
-			<!-- This is the time stamp for when the allergy was first documented as a concern-->
-			<effectiveTime>
-				<low value=""20140104123506+0500""/>
-			</effectiveTime>
-			<author>
-				<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
-				<time value=""20140104""/>
-				<assignedAuthor>
-					<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
-					<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
-					<telecom use=""WP"" value=""tel:555-555-1002""/>
-					<assignedPerson>
-						<name>
-							<given>Henry</given>
-							<family>Seven</family>
-						</name>
-					</assignedPerson>
-				</assignedAuthor>
-			</author>
-			<entryRelationship typeCode=""SUBJ"">
-				<observation classCode=""OBS"" moodCode=""EVN"">
-					<!-- allergy observation template -->
-					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
-					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
-					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
-					<statusCode code=""completed""/>
-					<!-- This is the time stamp for the biological onset of the allergy. -->
-					<!-- This documents that the allergy began at given year month and day, although hour and minute not specified-->
-					<effectiveTime>
-						<low value=""20140103""/>
-					</effectiveTime>
-					<!-- This specifies that the allergy is a propensity to adverse reactions to substance -->
-					<value xsi:type=""CD"" code=""418038007"" displayName=""Propensity to adverse reactions to substance (disorder)"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" />
-					<author>
-						<templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
-						<time value=""20140104""/>
-						<assignedAuthor>
-							<id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
-							<code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
-							<telecom use=""WP"" value=""tel:555-555-1002""/>
-							<assignedPerson>
-								<name>
-									<given>Henry</given>
-									<family>Seven</family>
-								</name>
-							</assignedPerson>
-						</assignedAuthor>
-					</author>
-					<participant typeCode=""CSM"">
-						<participantRole classCode=""MANU"">
-							<playingEntity classCode=""MMAT"">
-								<!-- SNOMED or UNII may be used for allergies in both C-CDA 1.1 and 2.0 -->
-								<!-- SNOMED was added to C-CDA 1.1 by DSTU  381 and illustrated below -->
-								<!-- Note that the SNOMED code for 'latex allergy' is not appropriate since the allergy is conveyed elsewhere in the observation -->
-								<code code=""111088007"" displayName=""Latex"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"">
-									<originalText>
-										<reference value=""#allergy4allergen""/>
-									</originalText>
-								</code>
-							</playingEntity>
-						</participantRole>
-					</participant>
-					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
-						<observation classCode=""OBS"" moodCode=""EVN"">
-							<!-- Reaction Observation template -->
-							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
-							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
-							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
-							<text>
-								<reference value=""#allergy2reaction""/>
-							</text>
-							<statusCode code=""completed""/>
-							<effectiveTime>
-								<low value=""20140103""/>
-								<high nullFlavor=""NA""/>
-							</effectiveTime>
-							<value xsi:type=""CD"" code=""39579001"" codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" displayName=""Anaphylaxis""/>
-                        	<!-- The Severity observation is no longer recommended, use criticality observation in future exchanges -->							
-                            <entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
-								<observation classCode=""OBS"" moodCode=""EVN"">
-									<!-- Severity Observation template -->
-									<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
+ extension=""2014-06-09""/>
 									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
 									<text>
 										<reference value=""#allergy2reactionseverity""/>
@@ -1021,9 +1059,10 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-latex/Allergy%20to%20specific%20substance-latex(C-CDA2.1).xml,2016-10-21,2016-10-21
-7,1,Allergy-to-specific-drug-class-Penicillins,"
-* This is an example of an allergy to a drug class (penicillins) using NDF-RT as terminology with information on both allergic reaction and reaction severity. ",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy,,app,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Penicillin/Allergy%20to%20specific%20drug%20Penicillin(C-CDA2.1).xml,2016-10-24,2016-10-24
+7,1,Allergy to specific drug class Penicillins,"
+* This is an example of an allergy to a drug class (penicillins) using NDF-RT as terminology with information on both allergic reaction and reaction severity. ",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance allergies allergy, Allergies in empty CCD,app,"<section>
+	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
 	<code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -1053,8 +1092,9 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<entry typeCode=""DRIV"">
 		<act classCode=""ACT"" moodCode=""EVN"">
 			<!-- ** Allergy problem act ** -->
+			<templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
-			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974"" />
+			<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
 			<code code=""CONC"" codeSystem=""2.16.840.1.113883.5.6""/>
 			<statusCode code=""active""/>
 			<!-- This is the time stamp for when the allergy was first documented as a concern-->
@@ -1079,6 +1119,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<entryRelationship typeCode=""SUBJ"">
 				<observation classCode=""OBS"" moodCode=""EVN"">
 					<!-- allergy observation template -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
 					<id root=""4a2ac5fc-0c85-4223-baee-c2e254803974""/>
 					<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -1120,6 +1161,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<entryRelationship typeCode=""MFST"" inversionInd=""true"">
 						<observation classCode=""OBS"" moodCode=""EVN"">
 							<!-- Reaction Observation template -->
+							<templateId root=""2.16.840.1.113883.10.20.22.4.9""/>
 							<templateId root=""2.16.840.1.113883.10.20.22.4.9"" extension=""2014-06-09""/>
 							<id root=""0506c036-adfb-4e6e-b9e1-eea76177ead5""/>
 							<code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -1135,6 +1177,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 							<entryRelationship typeCode=""SUBJ"" inversionInd=""true"">
 								<observation classCode=""OBS"" moodCode=""EVN"">
 									<!-- Severity Observation template -->
+									<templateId root=""2.16.840.1.113883.10.20.22.4.8""/>
 									<templateId root=""2.16.840.1.113883.10.20.22.4.8"" extension=""2014-06-09""/>
 									<code code=""SEV"" codeSystem=""2.16.840.1.113883.5.4"" codeSystemName=""ActCode""/>
 									<text>
@@ -1150,17 +1193,18 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy-to-specific-drug-class-Penicillins/Allergy%20to%20specific%20drug-class-Penicillins(C-CDA2.1).xml,2016-10-21,2016-10-21
-8,1,No-Known-Allergies,* This is an example of how an author can record a patient has no known allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance allergies allergy,,app,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20class%20Penicillins/Allergy%20to%20specific%20drug%20class%20Penicillins(C-CDA2.1).xml,2016-10-24,2016-10-24
+8,1,No Known Allergies,* This is an example of how an author can record a patient has no known allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance allergies allergy, Allergies in empty CCD,app,"<section>
     <!-- *** Allergies and Intolerances Section (entries required) (V3) *** -->
-    <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
+    <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
     <code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC""/>
     <title>ALLERGIES AND ADVERSE REACTIONS</title>
     <text>No Known Allergies</text>
     <entry typeCode=""DRIV"">
         <!-- Allergy Concern Act -->
         <act classCode=""ACT"" moodCode=""EVN"">
+            <templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
             <templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
             <id root=""36e3e930-7b14-11db-9fe1-0800200c9a66""/>
             <!-- SDWG supports 48765-2 or CONC in the code element -->
@@ -1193,6 +1237,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
                 <!-- The use of negationInd corresponds with the newer Observation.valueNegationInd -->
                 <observation classCode=""OBS"" moodCode=""EVN"" negationInd=""true"">
                     <!-- allergy - intolerance observation template -->
+                    <templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
                     <templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
                     <id root=""4adc1020-7b14-11db-9fe1-0800200c9a66""/>
                     <code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -1234,9 +1279,10 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </act>
     </entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Allergies/No-Known-Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml,2016-10-21,2016-10-21
-9,1,No-Known-Medication-Allergies,* This is an example of how an author can record a patient has no known medication allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance allergies allergy,,app,"<?xml version=""1.0"" encoding=""UTF-8""?>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No%20Known%20Allergies/No%20Known%20Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml,2016-10-24,2016-10-24
+9,1,No Known Medication Allergies,* This is an example of how an author can record a patient has no known medication allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance allergies allergy, Allergies in empty CCD,app,"<?xml version=""1.0"" encoding=""UTF-8""?>
 <section>
+    <templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
     <!-- Allergies (entries required) section template -->
     <code code=""48765-2"" codeSystem=""2.16.840.1.113883.6.1""/>
@@ -1245,6 +1291,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
     <entry typeCode=""DRIV"">
         <!-- Allergy Concern Act -->
         <act classCode=""ACT"" moodCode=""EVN"">
+            <templateId root=""2.16.840.1.113883.10.20.22.4.30""/>
             <templateId root=""2.16.840.1.113883.10.20.22.4.30"" extension=""2015-08-01""/>
             <id root=""36e3e930-7b14-11db-9fe1-0800200c9a66""/>
             <!-- SDWG supports 48765-2 or CONC in the code element -->
@@ -1277,6 +1324,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
                 <!-- The use of negationInd corresponds with the newer Observation.valueNegationInd -->
                 <observation classCode=""OBS"" moodCode=""EVN"" negationInd=""true"">
                     <!-- allergy - intolerance observation template -->
+                    <templateId root=""2.16.840.1.113883.10.20.22.4.7""/>
                     <templateId root=""2.16.840.1.113883.10.20.22.4.7"" extension=""2014-06-09""/>
                     <id root=""4adc1020-7b14-11db-9fe1-0800200c9a66""/>
                     <code code=""ASSERTION"" codeSystem=""2.16.840.1.113883.5.4""/>
@@ -1314,11 +1362,12 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
     </entry>
 </section>
 
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No-Known-Medication-Allergies/No%20Known%20Medication%20Allergies(C-CDA2.1).xml,2016-10-21,2016-10-21
-10,3,Hospital Discharge Encounter with Billable Diagnoses,"* This is an example of a hospitalization with discharge diagnoses. Meaningful Use requires a place to document encounter diagnoses, and this example attempts to satisfy. This example aligns with QRDA suggestion for encounter diagnosis.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Encounters,,app,"<section> 
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No%20Known%20Medication%20Allergies/No%20Known%20Medication%20Allergies(C-CDA2.1).xml,2016-10-24,2016-10-24
+10,3,Hospital Discharge Encounter with Billable Diagnoses,"* This is an example of a hospitalization with discharge diagnoses. Meaningful Use requires a place to document encounter diagnoses, and this example attempts to satisfy. This example aligns with QRDA suggestion for encounter diagnosis.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Encounters, Encounter in empty CCD,app,"<section> 
 	<!-- Created for discussion on SDWG CDA Example Task Force. -->
 	<!-- This is an example of a hospitalization as may be shown in encounters section. -->
 	<!-- This example demonstrates how billable diagnoses could be included, if they are available -->
+	<templateId root=""2.16.840.1.113883.10.20.22.2.22.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.22.1"" extension=""2015-08-01""/>
 	<id root=""6bc0419f-0398-4a56-8642-7054cbef448c""/>
 	<code code=""46240-8"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Encounters"" codeSystemName=""LOINC""/>
@@ -1355,6 +1404,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	</text>
 	<entry>
 		<encounter moodCode=""EVN"" classCode=""ENC"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.49""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.49"" extension=""2015-08-01""/>
 			<id root=""248b2c03-2013-e138-07d1-001A64958C30""/>
 			<!-- CPT code should be used for ambulatory visits, but for a hosptialization, another codeSystem is more appropriate-->
@@ -1419,6 +1469,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 				<!-- This is the primary diagnosis on the bill -->
 				<!-- Hospital discharge diagnosis act -->
 				<act moodCode=""EVN"" classCode=""ACT"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.33""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.33"" extension=""2015-08-01""/>
 					<id root=""1d7ff347-9dce-44db-8f66-fc17d8dc4aca""/>
 					<code code=""11535-2"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC"" displayName=""Hospital Discharge Diagnosis""/>
@@ -1430,8 +1481,9 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<entryRelationship typeCode=""SUBJ"" inversionInd=""false"">
 						<!-- Problem Observation -->
 						<observation classCode=""OBS"" moodCode=""EVN"">
-							<templateId root=""2.16.840.1.113883.10.20.22.4.4"" extension=""2015-08-01"" />
-							<id root=""20cdd1a0-6136-4939-802f-edfebe9320bc"" />
+							<templateId root=""2.16.840.1.113883.10.20.22.4.4""/>
+							<templateId root=""2.16.840.1.113883.10.20.22.4.4"" extension=""2015-08-01""/>
+							<id root=""20cdd1a0-6136-4939-802f-edfebe9320bc""/>
 							<!-- We'll use the type of diagnosis, since this is a coded diagnosis, not from problem list-->
 							<code codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" code=""282291009"" displayName=""Diagnosis"">
 								<translation code=""29308-4"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC"" displayName=""Diagnosis""/>
@@ -1478,6 +1530,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<entryRelationship typeCode=""SUBJ"">
 				<!-- Hospital discharge diagnosis act -->
 				<act moodCode=""EVN"" classCode=""ACT"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.33""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.33"" extension=""2015-08-01""/>
 					<id root=""f07886ea-7879-478e-8155-5c2cce5cba6a""/>
 					<code code=""11535-2"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC"" displayName=""Hospital Discharge Diagnosis""/>
@@ -1489,8 +1542,9 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<entryRelationship typeCode=""SUBJ"" inversionInd=""false"">
 						<!-- Problem Observation -->
 						<observation classCode=""OBS"" moodCode=""EVN"">
-							<templateId root=""2.16.840.1.113883.10.20.22.4.4"" extension=""2015-08-01"" />
-							<id root=""5f9b714d-a6ec-4f8f-95ae-ea75e5a54bac"" />
+							<templateId root=""2.16.840.1.113883.10.20.22.4.4""/>
+							<templateId root=""2.16.840.1.113883.10.20.22.4.4"" extension=""2015-08-01""/>
+							<id root=""5f9b714d-a6ec-4f8f-95ae-ea75e5a54bac""/>
 							<!-- We'll use the type of diagnosis, since this is a coded diagnosis, not from problem list-->
 							<code codeSystem=""2.16.840.1.113883.6.96"" codeSystemName=""SNOMED CT"" code=""282291009"" displayName=""Diagnosis"">
 								<translation code=""29308-4"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC"" displayName=""Diagnosis""/>
@@ -1538,9 +1592,10 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	</entry>
 </section>
 
-",https://github.com/HL7/C-CDA-Examples/blob/master/Encounters/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses(C-CDA2.1).xml,2016-10-21,2016-10-21
-11,4,Family History-Generic,"* Example shows generic ""family history of x"" and ""no family history of x"" with commentary suggesting better options.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History,,app,"<section>
+",https://github.com/HL7/C-CDA-Examples/blob/master/Encounters/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses(C-CDA2.1).xml,2016-10-24,2016-10-24
+11,4,Family History Generic,"* Example shows generic ""family history of x"" and ""no family history of x"" with commentary suggesting better options.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section (Generic Family History)-->
+	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
 	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
 	<title>Family History</title>
@@ -1567,6 +1622,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<!-- Generic family member's history -->
 	<entry>
 		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
 			<!-- Unique ID for the collection of observations about ""generic family member"" -->
 			<id root=""01faa204-3333-4610-864f-cb50b650d0fa"" />
@@ -1581,6 +1637,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<!-- Heart Disease observation -->
 			<component>
 				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
 					<!-- Unique ID for this individual observation -->
 					<id root=""02faa204-3333-4610-864f-cb50b650d0fa"" />
@@ -1606,6 +1663,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 				<!-- Similar to Problem Observation, negationInd here represents Observation.ValueNegation,
 				     stating the relative does NOT have asthma-->
 				<observation classCode=""OBS"" moodCode=""EVN"" negationInd=""true"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
 					<!-- Unique ID for this individual observation -->
 					<id root=""04faa204-3333-4610-864f-cb50b650d0fa"" />
@@ -1627,9 +1685,10 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History-Generic/Family%20History-generic(C-CDA2.1).xml,2016-10-21,2016-10-21
-12,4,Family History-two individuals same relationship to the patient,"* Example shows two brothers with multiple conditions. Though they have the same relationship to the patient, they can be identified by their separation into two family history organizers as well as by their subject ID's.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History,,app,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History%20Generic/Family%20History%20generic(C-CDA2.1).xml,2016-10-24,2016-10-24
+12,4,Family History two individuals same relationship to the patient,"* Example shows two brothers with multiple conditions. Though they have the same relationship to the patient, they can be identified by their separation into two family history organizers as well as by their subject ID's.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section for two siblings -->
+	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
 	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
 	<title>Family History</title>
@@ -1647,6 +1706,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<!-- James' history -->
 	<entry> 
 		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
 			<!-- Unique identifier for this family member's HISTORY (not the individual) -->
 			<id root=""01faa204-0000-4610-864f-cb50b650d0fa"" />
@@ -1673,6 +1733,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<!-- High Blood Pressure observation -->
 			<component>
 				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
 					<!-- Unique ID for this individual observation -->
 					<id root=""02faa204-0000-4610-864f-cb50b650d0fa"" />
@@ -1693,6 +1754,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<!-- Diabetes observation -->
 			<component>
 				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
 					<!-- Unique ID for this individual observation -->
 					<id root=""03faa204-0000-4610-864f-cb50b650d0fa"" />
@@ -1715,6 +1777,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<!-- Gerald's History-->
 	<entry>
 		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
 			<!-- Unique identifier for this family member's HISTORY (not the individual) -->
 			<id root=""01faa204-1111-4610-864f-cb50b650d0fa"" />
@@ -1741,6 +1804,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<!-- Asthma observation -->
 			<component>
 				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
 					<!-- Unique ID for this individual observation -->
 					<id root=""03faa204-1111-4610-864f-cb50b650d0fa"" />
@@ -1760,9 +1824,10 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History-two%20individuals%20same%20relationship%20to%20the%20patient/Family%20History-two%20individuals%20same%20relationship%20to%20the%20patient(C-CDA2.1).xml,2016-10-21,2016-10-21
-13,4,Normal Family History-Father deceased-Mother alive,"* Example shows multiple observations for one family member, identifying the cause of death, and a family member with no known problems.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History,,app,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History%20two%20individuals%20same%20relationship%20to%20the%20patient/Family%20History%20two%20individuals%20same%20relationship%20to%20the%20patient(C-CDA2.1).xml,2016-10-24,2016-10-24
+13,4,Normal Family History Father deceased-Mother alive,"* Example shows multiple observations for one family member, identifying the cause of death, and a family member with no known problems.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section -->
+	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15"" extension=""2015-08-01""/>
 	<code code=""10157-6"" codeSystem=""2.16.840.1.113883.6.1"" displayName=""Family History""/>
 	<title>Family History</title>
@@ -1805,6 +1870,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<entry>
 		<!-- Organizes the Father's medical history --> 
 		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
 			<!-- Unique identifier for this family member's HISTORY (not the individual) -->
 			<id root=""01faa204-db62-4610-864f-cb50b650d0fa"" />
@@ -1836,6 +1902,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<!-- Stroke observation -->
 			<component>
 				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
 					<!-- Unique ID for this individual observation -->
 					<id root=""02faa204-db62-4610-864f-cb50b650d0fa"" />
@@ -1884,6 +1951,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<!-- High Blood Pressure observation -->
 			<component>
 				<observation classCode=""OBS"" moodCode=""EVN"">
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
 					<!-- Unique ID for this individual observation -->
 					<id root=""04faa204-db62-4610-864f-cb50b650d0fa"" />
@@ -1909,6 +1977,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	<entry>
 		<!-- Organizes the Mother's medical history --> 
 		<organizer classCode=""CLUSTER"" moodCode=""EVN"">
+			<templateId root=""2.16.840.1.113883.10.20.22.4.45""/>
 			<templateId root=""2.16.840.1.113883.10.20.22.4.45"" extension=""2015-08-01""/>
 			<!-- Unique identifier for this family member's HISTORY (not the individual) -->
 			<id root=""03faa204-db62-4610-864f-cb50b650d0fa"" />
@@ -1940,6 +2009,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 					<!-- Similar to no known problems or allergies,
 					     the use of negationInd corresponds with the newer Observation.ValueNegationInd 
 					     The negationInd = true negates the value element -->
+					<templateId root=""2.16.840.1.113883.10.20.22.4.46""/>
 					<templateId root=""2.16.840.1.113883.10.20.22.4.46"" extension=""2015-08-01""/>
 					<!-- Unique ID for this individual observation -->
 					<id root=""05faa204-db62-4610-864f-cb50b650d0fa"" />
@@ -1957,4 +2027,254 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Normal%20Family%20History-Father%20deceased-Mother%20alive/Normal%20Family%20History-Father%20deceased-Mother%20alive(C-CDA2.1).xml,2016-10-21,2016-10-21
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Normal%20Family%20History%20Father%20deceased-Mother%20alive/Normal%20Family%20History%20Father%20deceased%20Mother%20alive(C-CDA2.1).xml,2016-10-24,2016-10-24
+14,5,Immunization not given Patient refused,* This is an example of how an author can record a patient refused an immunization.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance immunzation, Immunizations in empty CCD,app,"<component>
+    <section>
+        <!-- conforms to Immunizations section with entries optional -->
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2""/>
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2"" extension=""2015-08-01""/>
+        <!-- Immunizations section with entries required -->
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2.1""/>
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2.1"" extension=""2015-08-01""/>
+        <code code=""11369-6"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC""
+            displayName=""History of Immunizations""/>
+        <title>Immunizations</title>
+        <text><paragraph ID=""immun1"">Patient objected to <content ID=""ImmunizationProduct_1"">influenza, intradermal, quadrivalent</content> on 11/15/2015</paragraph></text>
+        <entry typeCode=""COMP"">
+            <!-- negationInd=true indicates substance was NOT given at this date-->
+            <substanceAdministration classCode=""SBADM"" moodCode=""EVN""
+                negationInd=""true"">
+                <!-- ** Immunization activity ** -->
+                <templateId root=""2.16.840.1.113883.10.20.22.4.52""/>
+                <templateId root=""2.16.840.1.113883.10.20.22.4.52"" extension=""2015-08-01""/>
+                <id root=""e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92""/>
+                <text>
+                    <reference value=""#immun1""/>
+                </text>
+                <!-- Indicates the status of the substanceAdministartion -->
+                <statusCode code=""completed""/>
+                <effectiveTime value=""20151115""/>
+                <consumable>
+                    <manufacturedProduct classCode=""MANU"">
+                        <!-- ** Immunization medication information ** -->
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.54""/>
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.54"" extension=""2014-06-09""/>
+                        <manufacturedMaterial>
+                            <code code=""166"" codeSystem=""2.16.840.1.113883.12.292""
+                                displayName=""influenza, intradermal, quadrivalent, preservative free""
+                                codeSystemName=""CVX"">
+                                <originalText>
+                                    <reference value=""#ImmunizationProduct_1""/>
+                                </originalText>
+                            </code>
+                            <!-- DSTU comment relaxing lotNumber requirement -->
+                            <!-- http://www.hl7.org/dstucomments/showdetail_comment.cfm?commentid=995 -->
+                            <!-- <lotNumberText>1</lotNumberText> -->
+                        </manufacturedMaterial>
+                        
+                    	<!-- Optional manufacturerOrganization
+                    				<manufacturerOrganization>
+                     				   <name>Health LS - Immuno Inc.</name>
+                   					 </manufacturerOrganization>-->
+                    </manufacturedProduct>
+                </consumable>
+                <entryRelationship typeCode=""RSON"">
+                    <observation classCode=""OBS"" moodCode=""EVN"">
+                        <!-- Immunization Refusal Reason  -->
+                        <!-- Included the reason since it may be relevant to a future clinician or quality measurement -->
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.53""/>
+                        <id root=""c1296315-9a6d-45a2-aac0-ee225d375409""/>
+                        <code displayName=""Patient Objection"" code=""PATOBJ""
+                            codeSystemName=""HL7 ActNoImmunizationReason"" codeSystem=""2.16.840.1.113883.5.8""/>
+                        <statusCode code=""completed""/>
+                    </observation>								
+                </entryRelationship>
+            </substanceAdministration>
+        </entry>
+    </section>        
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Immunization%20not%20given%20Patient%20refused/Immunization%20not%20given%20Patient%20refused(C-CDA2.1).xml,2016-10-24,2016-10-24
+15,5,Influenza Vaccination,* This example illustrates how to structure Immunizations for the 170.314(b)(2) Transitions of care - J) Immunizations.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",, substance immunzation, Immunizations in empty CCD,app,"<component>
+    <section>
+        <!-- conforms to Immunizations section with entries optional -->
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2""/>
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2"" extension=""2015-08-01""/>
+        <!-- Immunizations section with entries required -->
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2.1""/>
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2.1"" extension=""2015-08-01""/>
+        <code code=""11369-6"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC""
+            displayName=""History of immunizations""/>
+        <title>IMMUNIZATIONS</title>
+        <text>
+            <content ID=""immunSect""/>
+            <table border=""1"" width=""100%"">
+                <thead>
+                    <tr>
+                        <th>Vaccine</th>
+                        <th>Lot Number</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ID=""immun1"">
+                        <td>Influenza Virus Vaccine</td>
+                        <td>1</td>
+                        <td>8/15/2010</td>
+                        <td>Completed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </text>
+        <entry typeCode=""DRIV"">
+            <substanceAdministration classCode=""SBADM"" moodCode=""EVN"" negationInd=""false"">
+                <!-- ** Immunization activity ** -->
+                <templateId root=""2.16.840.1.113883.10.20.22.4.52""/>
+                <templateId root=""2.16.840.1.113883.10.20.22.4.52"" extension=""2015-08-01""/>
+                <id root=""e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92""/>
+                <text>
+                    <reference value=""#immun1""/>
+                </text>
+                <!-- Indicates the status of the substanceAdministartion -->
+                <statusCode code=""completed""/>
+                <effectiveTime value=""20100815""/>
+                <consumable>
+                    <manufacturedProduct classCode=""MANU"">
+                        <!-- ** Immunization medication information ** -->
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.54""/>
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.54"" extension=""2014-06-09""/>
+                        <manufacturedMaterial>
+                            <code code=""88"" codeSystem=""2.16.840.1.113883.12.292""
+                                displayName=""Influenza virus vaccine"" codeSystemName=""CVX""/>                                           
+                            <lotNumberText>1</lotNumberText>
+                        </manufacturedMaterial>
+                    <!-- Optional manufacturerOrganization
+                    <manufacturerOrganization>
+                        <name>Health LS - Immuno Inc.</name>
+                    </manufacturerOrganization>-->
+                    </manufacturedProduct>  
+                </consumable>
+                  <!-- Optional Performer -->
+            <performer>
+                <assignedEntity>
+                    <id root=""2.16.840.1.113883.19.5.9999.456"" extension=""2981824""/>
+                    <addr>
+                        <streetAddressLine>1021 Health Drive</streetAddressLine>
+                        <city>Ann Arbor</city>
+                        <state>MI</state>
+                        <postalCode>99099</postalCode>
+                        <country>US</country>
+                    </addr>
+                    <telecom nullFlavor=""UNK""/>
+                    <assignedPerson>
+                        <name>
+                            <given>Amanda</given>
+                            <family>Assigned</family>
+                        </name>
+                    </assignedPerson>
+                    <representedOrganization>
+                        <id root=""2.16.840.1.113883.19.5.9999.1394""/>
+                        <name>Good Health Clinic</name>
+                        <telecom nullFlavor=""UNK""/>
+                        <addr nullFlavor=""UNK""/>
+                    </representedOrganization>
+                </assignedEntity>
+            </performer> 
+              <!-- Optional Author -->
+                <author>
+                    <templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+                    <time value=""20100815""/>
+                    <assignedAuthor>
+                        <id extension=""99999999"" root=""2.16.840.1.113883.4.6""/>
+                        <code code=""207Q00000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""Health Care Provider Taxonomy"" displayName=""Family Medicine"" />
+                        <telecom use=""WP"" value=""tel:555-555-1002""/>
+                        <assignedPerson>
+                            <name>
+                                <given>Henry</given>
+                                <family>Seven</family>
+                            </name>
+                        </assignedPerson>
+                    </assignedAuthor>
+                </author>
+            </substanceAdministration>
+        </entry>
+    </section>
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Influenza%20Vaccination/Influenza%20Vaccination(C-CDA2.1).xml,2016-10-24,2016-10-24
+16,5,Unknown Immunization Status,* This is an example of how an author can record they do now know whether the patient has received any vaccinations.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, substance immunzation, Immunizations in empty CCD,app,"<component>
+    <section>
+        <!-- conforms to Immunizations section with entries optional -->
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2"" extension=""2015-08-01""/>
+        <!-- Immunizations section with entries required -->
+        <templateId root=""2.16.840.1.113883.10.20.22.2.2.1"" extension=""2015-08-01""/>
+        <code code=""11369-6"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC""
+            displayName=""History of immunizations""/>
+        <title>IMMUNIZATIONS</title>
+        <text>
+            <content ID=""immunSect""/>
+            <table border=""1"" width=""100%"">
+                <thead>
+                    <tr>
+                        <th>Vaccine</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ID=""immun1"">
+                        <td> Unknown Immunization  Status</td>
+                        <td>Nov 1999</td>
+                        <td>Completed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </text>
+        <entry>
+            <substanceAdministration moodCode=""EVN"" classCode=""SBADM"" negationInd=""false"" nullFlavor=""NI"">
+                <!--  We selected NI for this example, C-CDA R2 may describe other appropriate nullFlavors -->
+                <templateId root=""2.16.840.1.113883.10.20.22.4.52""/>
+                <templateId root=""2.16.840.1.113883.10.20.22.4.52"" extension=""2015-08-01""/>
+                <!--  ****   Immunization activity template    **** -->
+                <id root=""e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f88""/>
+                <!-- No information on whether the patient received a vaccination -->
+                <text>
+                    <reference value=""#immun1""/>
+                </text>
+                <!-- Link to narrative stating no information on whether the patient received a vaccination -->
+                <statusCode code=""completed""/>
+                <effectiveTime value=""199911""/>
+                <!-- Date which you do not know whether or not patient received a vaccination -->
+                <consumable>
+                    <manufacturedProduct classCode=""MANU"">
+                        <!-- ** Immunization medication information ** -->
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.54""/>
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.54"" extension=""2014-06-09""/>
+                        <manufacturedMaterial>
+                            <!-- Needed to use nullFlavor of OTH since templates requires CVX in code element-->
+                            <code nullFlavor=""OTH"">
+                                <!-- Optional original text -->
+                                <originalText>Vaccination</originalText>
+                                <translation code=""71181003"" displayName=""vaccine""
+                                    codeSystem=""2.16.840.1.113883.6.96""
+                                    codeSystemName=""SNOMED CT""/>
+                            </code>
+                        </manufacturedMaterial>
+                    </manufacturedProduct>
+                </consumable>
+            </substanceAdministration>
+        </entry>
+    </section>
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Unknown%20Immunization%20Status/Unknown%20Immunization%20Status(C-CDA2.1).xml,2016-10-24,2016-10-24
+17,6,Anitbiotics with varied dosing,"* This is an example of a medication with dosing that varies over time.
+* This is an example of a common pattern for antibiotic administration which is complex (double dose on day 1, commonly known as Z-PAK). SDWG reviewed this example with the Pharmacy working group in February 2014. This dosing regimen may be characterized as a loading dose, but a similar approach could be used for a tapered dose as well. At the May 2014 Working Group the committee discussed whether this example would be better with just a free text sig. The committee could not agree on the most appropriate location for the free text so this issue remains open. Use this example with caution until a free text sig is available and included.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications Pre-coordinated medication code dose frequency tapered dose loading dose, Medications in empty CCD,app,,,2016-10-24,2016-10-24
+18,6,CCD Transition No Known Medications,* This is an example of a CCD Transition of ambulatory care with no known medications,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications, Medications in empty CCD,pend,,,2016-10-24,2016-10-24
+19,6,Med every 4-6 hours,"* This is an example of a medication (Sudafed) which to be administered every 4-6 hours, a common dosing pattern. Representing the range of potential of hours is done through a low and high child element of the period within effectiveTime of PIVL_TS.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications Dose frequency pre-coordinated medication, Medications in empty CCD,app,,,2016-10-24,2016-10-24
+20,6,Med oral QID with PRN,"* This is an example of a medication which is QID and PRN (as needed) but with no precondition specified. It was generated based on SDWG list-serv discussion in December 2013. It also demonstrated a pre-coordinated generic medication coded at the SDC level (generic 600mg Oral Tablet) in RxNorm hierarchy.
+* Additional content - the following file illustrates 5 different medication entries. These examples are meant to illustrate the coding of a medication precondition or indication.
+** Patient prescribed oral medication for pain
+** Summary of examples:
+*** PRN with a coded precondition - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours PRN for joint pain
+*** Instructions; similar to above but NOT a PRN - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours as Directed
+*** Indication; again, NOT a PRN - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours for joint pain",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications Precondition Pre-coordinated medication code dose frequency, Medications in empty CCD,app,,,2016-10-24,2016-10-24
+21,6,Med oral with indications,* This is an example of a medication administered orally with indications.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications, Medications in empty CCD,pend,,,2016-10-24,2016-10-24
+22,6,No Medications,* This is an example of no medications,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications, Medications in empty CCD,app,,,2016-10-24,2016-10-24
+23,6,Patient reported oral medication,"* Patients often report medications that they are taking, either self-prescribed or by another provider, and know the drug name but do not know any specific brand or dose. This is an example of how to record an herbal supplement (echinicea) that a patient has reported taking using the informant to denote that this is patient reported.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications, Medications in empty CCD,draft,,,2016-10-24,2016-10-24
+24,6,Single administration of medication,"* This is an example of two baby aspirin being administered at a single point in time. At the January 2014 San Antonio meeting of HL7, this approach was decided as appropriate for medication timing of a point in time. Subsequent to that meeting, the TTT validator was adjusted to accept this format for medication times.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),, medications Pre-coordinated medication code single administration point in time, Medications in empty CCD,app,,,2016-10-24,2016-10-24

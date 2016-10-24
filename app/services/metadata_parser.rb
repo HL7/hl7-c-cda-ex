@@ -7,7 +7,7 @@ class MetadataParser
       if group.length > 0
         case group
           when /^approval/i
-            example_meta[:status], approvals = parse_approvals(group)
+            example_meta[:status], example_meta[:approvals] = parse_approvals(group)
           when /^comments/i
             example_meta[:comment] = parse_comments(group)
           when /^custodian/i
@@ -58,10 +58,10 @@ class MetadataParser
           work_group, temp_string = line.slice(2..-1).split(':')
           if temp_string =~ /\W?\d?\d\/\d?\d\/\d\d\d\d/
             date = Date.strptime(temp_string.strip, '%m/%d/%Y')
-            approvals << {work_group => date}
+            approvals << [work_group, date]
             puts '+++    found approval ' + work_group + ' on ' + date.to_s
           else
-            approvals << {work_group => temp_string}
+            approvals << [work_group, temp_string]
             puts '---    approval note ' + work_group + ' comment: ' + temp_string
           end
         end
@@ -78,7 +78,7 @@ class MetadataParser
 
   def self.parse_full_sample(chunk)
     content = chunk.split("\n").drop(1).delete_if { |element| element.nil? || element.empty? }
-    nil
+    (content.select { |line| line =~ /^\* /}).join(' ').tr('*', '')
   end
 
   def self.parse_keywords(chunk)
