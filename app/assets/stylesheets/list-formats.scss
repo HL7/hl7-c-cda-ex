@@ -8,12 +8,14 @@
 }
 
 .list-detail {
-  font-variant: small-caps;
+  //font-variant: small-caps;
   //font-style: italic;
-  font-size: .8em;
+  font-weight: 200;
+  font-size: .6em;
   margin-bottom: .2rem;
 
   ul {
     margin-bottom: .1rem;
+    list-style: none;
   }
 }
