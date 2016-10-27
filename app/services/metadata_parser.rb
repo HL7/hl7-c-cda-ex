@@ -42,6 +42,7 @@ class MetadataParser
   def self.parse_approvals(chunk)
     status = 'draft'
     approvals = []
+    date_regex = /\W?(\d?\d\/\d?\d\/\d\d\d\d)/
     content = chunk.split("\n").drop(1).delete_if { |element| element.nil? || element.empty? }
     content.each do |line|
       if line =~ /^\* /
@@ -56,10 +57,12 @@ class MetadataParser
           end
         else
           work_group, temp_string = line.slice(2..-1).split(':')
-          if temp_string =~ /\W?\d?\d\/\d?\d\/\d\d\d\d/
-            date = Date.strptime(temp_string.strip, '%m/%d/%Y')
-            approvals << [work_group, date]
-            # puts '+++    found approval ' + work_group + ' on ' + date.to_s
+          if temp_string =~ date_regex
+            date_regex.match(temp_string) do |m|
+              date = Date.strptime(m[1].strip, '%m/%d/%Y')
+              approvals << [work_group, date]
+              # puts '+++    found approval ' + work_group + ' on ' + date.to_s
+            end
           else
             approvals << [work_group, temp_string]
             # puts '---    approval note ' + work_group + ' comment: ' + temp_string
