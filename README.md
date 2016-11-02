@@ -21,10 +21,10 @@ log the various approval details parsed from the metadata. These details include
 ### Query
 The query mechanism is based on three axes, text search, section membership and status. The text search uses the PostgreSQL text search engine across an index built from the example title, example description and example keywords. The text search engine is described in more detail [here](http://rachbelaid.com/postgres-full-text-search-is-good-enough/).
  
- ## Operation
+## Operation
  The application runs as a standard Rails web application. The current installed on Heroku. The standard deployment to Heroku described [in the developer documentation](https://devcenter.heroku.com/articles/getting-started-with-rails4) is the best description of the process.
  
- ### Data Generate and Load
+### Data Generate and Load
 The database that supports the web application can be recreated at any time from the current C-CDA Examples repository. The commands to create the load files for the full example repository search are contained as part of the current projects and embedded as rake tasks. Running the data generate will replace the files located in db/load-data with the current state of the C-CDA Example repository.
 
 To run the data generate task, you will need to have a GitHub user id and have access to the GitHub C-CDA Example repository with your GitHub Id. If you are more comfortable generating a personal access token rather than sending your password to generate the load, please use the GitHub interface.
