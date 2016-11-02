@@ -29,5 +29,14 @@ The database that supports the web application can be recreated at any time from
 
 To run the data generate task, you will need to have a GitHub user id and have access to the GitHub C-CDA Example repository with your GitHub Id. If you are more comfortable generating a personal access token rather than sending your password to generate the load, please use the GitHub interface.
 
+```bash
+$ cd hl7-c-cda-ex
+$ rake data:generate
+-->enter username: @@@@@@@@@@@
+-->enter password: @@@@@@@@@@@@@@@@@@@@@
+```
+
+In the example above, username is your GitHub user Id and password is either your password for GitHub access or a personal access token that has been generated on GitHub. The input of username and password/token is masked to prevent security leakage.
 
 ### Unattended Data Update
+The unattended data update feature is intended to watch for updates occurring in the C-CDA Examples repository and apply those updates to the current repository without the need for human intervention. The unattended update will not detect restructuring of the C-CDA Example repository (directory renaming or deletion) or the removal of examples.
