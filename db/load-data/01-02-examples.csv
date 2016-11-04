@@ -1,5 +1,5 @@
 id,section_id,name,comments,custodian,validation,keywords,full_sample,status,example,example_url,created_at,updated_at
-1,1,Allergy to cat hair,* This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,pend,"<section>
+1,1,Allergy to cat hair,* This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,wthd,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
 	<!-- Allergies (entries required) section template -->
@@ -156,7 +156,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20cat%20hair/Allergy%20to%20specific%20substance%20cat%20hair(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20cat%20hair/Allergy%20to%20specific%20substance%20cat%20hair(C-CDA2.1).xml,2016-11-03,2016-11-03
 2,1,Allergy to food egg,* This is an example of a food allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
@@ -305,7 +305,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20food%20egg/Allergy%20to%20food%20egg(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20food%20egg/Allergy%20to%20food%20egg(C-CDA2.1).xml,2016-11-03,2016-11-03
 3,1,Allergy to latex,* This is an example of a propensity to substance allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1"" extension=""2015-08-01""/>
@@ -442,7 +442,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20latex/Allergy%20to%20specific%20substance%20latex(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20latex/Allergy%20to%20specific%20substance%20latex(C-CDA2.1).xml,2016-11-03,2016-11-03
 4,1,Allergy to specific drug Codeine,* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Rob Hausam and John D'Amore and Russ Leftwich in coordination with Patient Care Committee. This sample replaces the Epinephrine sample which had less clinical accuracy/relevance. See DSTU 219 for update regarding act/code.,Lisa R. Nelson LisaRNelson@cox.net (GitHub: lisarnelson),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<!-- Allergies Section -->
 <section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
@@ -711,7 +711,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Codeine/Allergy%20to%20specific%20drug%20Codeine(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Codeine/Allergy%20to%20specific%20drug%20Codeine(C-CDA2.1).xml,2016-11-03,2016-11-03
 5,1,Allergy to specific drug Epinephrine,"* This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with Patient Care Committee. See DSTU 219 for update regarding act/code.
 * Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,wthd,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
@@ -921,7 +921,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Epinephrine/Allergy%20to%20specific%20drug%20Epinephrine(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Epinephrine/Allergy%20to%20specific%20drug%20Epinephrine(C-CDA2.1).xml,2016-11-03,2016-11-03
 6,1,Allergy to specific drug Penicillin,"
 * This is an example of an allergy to a specific drug (penicillin) using RxNorm as terminology with information on both allergic reaction and reaction severity. For drug allergies, this example illustrates a good practice of encoding the allergen at the ingredient level (penicillin) not administration level (10 mg tablet). See DSTU 219 for update regarding act/code. 
 * Multiple reactions are listed in some examples",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
@@ -1059,7 +1059,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Penicillin/Allergy%20to%20specific%20drug%20Penicillin(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20Penicillin/Allergy%20to%20specific%20drug%20Penicillin(C-CDA2.1).xml,2016-11-03,2016-11-03
 7,1,Allergy to specific drug class Penicillins,"
 * This is an example of an allergy to a drug class (penicillins) using NDF-RT as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding act/code",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
@@ -1193,7 +1193,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</entryRelationship>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20class%20Penicillins/Allergy%20to%20specific%20drug%20class%20Penicillins(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20specific%20drug%20class%20Penicillins/Allergy%20to%20specific%20drug%20class%20Penicillins(C-CDA2.1).xml,2016-11-03,2016-11-03
 8,1,No Known Allergies,* This is an example of how an author can record a patient has no known allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<section>
     <!-- *** Allergies and Intolerances Section (entries required) (V3) *** -->
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
@@ -1279,7 +1279,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </act>
     </entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No%20Known%20Allergies/No%20Known%20Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No%20Known%20Allergies/No%20Known%20Allergies%20with%20Author%20Timestamp(C-CDA2.1).xml,2016-11-03,2016-11-03
 9,1,No Known Medication Allergies,* This is an example of how an author can record a patient has no known medication allergies.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance allergies allergy, Allergies in empty CCD,app,"<?xml version=""1.0"" encoding=""UTF-8""?>
 <section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.6.1""/>
@@ -1362,7 +1362,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
     </entry>
 </section>
 
-",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No%20Known%20Medication%20Allergies/No%20Known%20Medication%20Allergies(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Allergies/No%20Known%20Medication%20Allergies/No%20Known%20Medication%20Allergies(C-CDA2.1).xml,2016-11-03,2016-11-03
 10,3,Hospital Discharge Encounter with Billable Diagnoses,"* This is an example of a hospitalization with discharge diagnoses. Meaningful Use requires a place to document encounter diagnoses, and this example attempts to satisfy. This example aligns with QRDA suggestion for encounter diagnosis.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Hospital Encounter Discharge Diagnoses participant performer, Encounter in empty CCD,app,"<section> 
 	<!-- Created for discussion on SDWG CDA Example Task Force. -->
 	<!-- This is an example of a hospitalization as may be shown in encounters section. -->
@@ -1387,7 +1387,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr ID=""Encounter1"">
 					<td ID=""Enc1_Type"">Inpatient</td>
 					<td>James Getwell, DO</td>
 					<td ID=""Enc1_Dx1"">Congestive Heart Failure</td>
@@ -1414,7 +1414,9 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 				</originalText>
 				<translation code=""IMP"" codeSystem=""2.16.840.1.113883.5.4"" displayName=""Inpatient"" codeSystemName=""Act Encounter Code - Act Code""/>
 			</code>
-			
+			<text>
+				<reference value=""#Encounter1"" />
+			</text>
 			<!-- for a hospitalization, the low and high effectiveTimes would logically be admission and discharge date/time. --> 
 			<effectiveTime xsi:type=""IVL_TS"">
 				<low value =""201410281222+0500"" />
@@ -1592,7 +1594,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 	</entry>
 </section>
 
-",https://github.com/HL7/C-CDA-Examples/blob/master/Encounters/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Encounters/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses/Hospital%20Discharge%20Encounter%20with%20Billable%20Diagnoses(C-CDA2.1).xml,2016-11-03,2016-11-03
 11,4,Family History Generic,"* Example shows generic ""family history of x"" and ""no family history of x"" with commentary suggesting better options.","Benjamin Flessner, benjamin@epic.com (GitHub: benjaminflessner)",https://sitenv.org/c-cda-validator, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section (Generic Family History)-->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
@@ -1685,7 +1687,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History%20Generic/Family%20History%20generic(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History%20Generic/Family%20History%20generic(C-CDA2.1).xml,2016-11-03,2016-11-03
 12,4,Family History two individuals same relationship to the patient,"* Example shows two brothers with multiple conditions. Though they have the same relationship to the patient, they can be identified by their separation into two family history organizers as well as by their subject ID's.","Benjamin Flessner, benjamin@epic.com (GitHub: benjaminflessner)",https://sitenv.org/c-cda-validator, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section for two siblings -->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
@@ -1824,7 +1826,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History%20two%20individuals%20same%20relationship%20to%20the%20patient/Family%20History%20two%20individuals%20same%20relationship%20to%20the%20patient(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Family%20History%20two%20individuals%20same%20relationship%20to%20the%20patient/Family%20History%20two%20individuals%20same%20relationship%20to%20the%20patient(C-CDA2.1).xml,2016-11-03,2016-11-03
 13,4,Normal Family History Father deceased-Mother alive,"* Example shows multiple observations for one family member, identifying the cause of death, and a family member with no known problems.","Benjamin Flessner, benjamin@epic.com (GitHub: benjaminflessner)",https://sitenv.org/c-cda-validator, Family History, Family history in empty CCD,app,"<section>
 	<!-- C-CDAR2 Example Family History Section -->
 	<templateId root=""2.16.840.1.113883.10.20.22.2.15""/>
@@ -2027,7 +2029,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</component>
 		</organizer>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Normal%20Family%20History%20Father%20deceased-Mother%20alive/Normal%20Family%20History%20Father%20deceased%20Mother%20alive(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Family%20History/Normal%20Family%20History%20Father%20deceased-Mother%20alive/Normal%20Family%20History%20Father%20deceased%20Mother%20alive(C-CDA2.1).xml,2016-11-03,2016-11-03
 14,5,No Section Information Problems,* This is an example of no information available for problems.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, null section no information section, Problems in empty CCD,app,"<!-- ************************* PROBLEM LIST ****************************** -->
 <component>
     <!-- nullFlavor of NI indicates No Information.-->
@@ -2044,7 +2046,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         <title>PROBLEMS</title>
         <text>No Information</text>
     </section>
-</component>",https://github.com/HL7/C-CDA-Examples/blob/master/General/No%20Section%20Information%20Problems/No%20Information%20Problems(C-CDA2.1).xml,2016-10-26,2016-10-26
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/General/No%20Section%20Information%20Problems/No%20Information%20Problems(C-CDA2.1).xml,2016-11-03,2016-11-03
 15,6,Immunization not given Patient refused,* This is an example of how an author can record a patient refused an immunization.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance immunzation , Immunizations in empty CCD,app,"<component>
     <section>
         <!-- conforms to Immunizations section with entries optional -->
@@ -2109,7 +2111,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </substanceAdministration>
         </entry>
     </section>        
-</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Immunization%20not%20given%20Patient%20refused/Immunization%20not%20given%20Patient%20refused(C-CDA2.1).xml,2016-10-26,2016-10-26
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Immunization%20not%20given%20Patient%20refused/Immunization%20not%20given%20Patient%20refused(C-CDA2.1).xml,2016-11-03,2016-11-03
 16,6,Influenza Vaccination,* This example illustrates how to structure Immunizations for the 170.314(b)(2) Transitions of care - J) Immunizations.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance immunzation , Immunizations in empty CCD,app,"<component>
     <section>
         <!-- conforms to Immunizations section with entries optional -->
@@ -2215,7 +2217,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </substanceAdministration>
         </entry>
     </section>
-</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Influenza%20Vaccination/Influenza%20Vaccination(C-CDA2.1).xml,2016-10-26,2016-10-26
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Influenza%20Vaccination/Influenza%20Vaccination(C-CDA2.1).xml,2016-11-03,2016-11-03
 17,6,Unknown Immunization Status,* This is an example of how an author can record they do now know whether the patient has received any vaccinations.,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, substance immunzation , Immunizations in empty CCD,app,"<component>
     <section>
         <!-- conforms to Immunizations section with entries optional -->
@@ -2281,7 +2283,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </substanceAdministration>
         </entry>
     </section>
-</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Unknown%20Immunization%20Status/Unknown%20Immunization%20Status(C-CDA2.1).xml,2016-10-26,2016-10-26
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Immunizations/Unknown%20Immunization%20Status/Unknown%20Immunization%20Status(C-CDA2.1).xml,2016-11-03,2016-11-03
 18,7,Anitbiotics with varied dosing,"* This is an example of a medication with dosing that varies over time.
 * This is an example of a common pattern for antibiotic administration which is complex (double dose on day 1, commonly known as Z-PAK). SDWG reviewed this example with the Pharmacy working group in February 2014. This dosing regimen may be characterized as a loading dose, but a similar approach could be used for a tapered dose as well. At the May 2014 Working Group the committee discussed whether this example would be better with just a free text sig. The committee could not agree on the most appropriate location for the free text so this issue remains open. Use this example with caution until a free text sig is available and included.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications Pre-coordinated medication code dose frequency tapered dose loading dose, Medications in empty CCD,app,"<section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
@@ -2421,70 +2423,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </component>
         </organizer>
     </entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Anitbiotics%20with%20varied%20dosing/Antibiotics%20with%20varied%20dosing(C-CDA2.1).xml,2016-10-26,2016-10-26
-19,7,CCD Transition No Known Medications,* This is an example of a CCD Transition of ambulatory care with no known medications,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,pend,"<component>
-    <section>
-        <!-- conforms to Medications section with entries optional -->
-        <templateId root=""2.16.840.1.113883.10.20.22.2.1""/>
-        <templateId root=""2.16.840.1.113883.10.20.22.2.1"" extension=""2014-06-09""/>
-        <!-- Medications section with entries required -->
-        <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
-        <templateId root=""2.16.840.1.113883.10.20.22.2.1.1"" extension=""2014-06-09""/>
-        <code code=""10160-0"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC""
-            displayName=""HISTORY OF MEDICATION USE""/>
-        <title>MEDICATIONS</title>
-        <text>No Medications</text>
-        <entry>
-            <!-- Act.actionNegationInd -->
-            <substanceAdministration moodCode=""EVN"" classCode=""SBADM"" negationInd=""true"">
-                <templateId root=""2.16.840.1.113883.10.20.22.4.16""/>
-                <templateId root=""2.16.840.1.113883.10.20.22.4.16"" extension=""2014-06-09""/>
-                <!-- ** MEDICATION ACTIVITY -->
-                <id root=""cdbd33f0-6cde-11db-9fe1-0800200c9a66""/>
-                <statusCode code=""active""/>
-                <!-- This effectiveTime SHALL contain either a low or a @value but not both. -->
-                <effectiveTime nullFlavor=""NA""/>
-                <doseQuantity nullFlavor=""NA""/>
-                <consumable>
-                    <manufacturedProduct classCode=""MANU"">
-                        <templateId root=""2.16.840.1.113883.10.20.22.4.23"" extension=""2014-06-09""/>
-                        <manufacturedMaterial>
-                            <code nullFlavor=""OTH"" codeSystem=""2.16.840.1.113883.6.88""> 
-                                <translation code=""410942007"" displayName=""drug or medication""
-                                    codeSystem=""2.16.840.1.113883.6.96""            
-                                    codeSystemName=""SNOMED CT""/>
-                            </code>
-                        </manufacturedMaterial>
-                    </manufacturedProduct>
-                </consumable>
-                <author>
-                    <templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
-                    <!-- Time the author noted that patient is on no medications -->
-                    <time value=""20130607160506+0500""/>
-                    <assignedAuthor>
-                        <id extension=""66666"" root=""2.16.840.1.113883.4.6""/>
-                        <code code=""207RC0000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""NUCC""
-                            displayName=""Cardiovascular Disease""/>
-                        <addr>
-                            <streetAddressLine>6666 StreetName St.</streetAddressLine>
-                            <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
-                            <country>US</country>
-                        </addr>
-                        <telecom value=""tel:+1(301)666-6666"" use=""WP""/>
-                        <assignedPerson>
-                            <name>
-                                <given>Heartly</given>
-                                <family>Sixer</family>
-                                <suffix>MD</suffix>
-                            </name>
-                        </assignedPerson>
-                    </assignedAuthor>
-                </author>
-            </substanceAdministration>
-        </entry>
-    </section>
-</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/CCD%20Transition%20No%20Known%20Medications/CCD%20Transition%20No%20Medications(C-CDA2.1).xml,2016-10-26,2016-10-26
-20,7,Med every 4-6 hours,"* This is an example of a medication (Sudafed) which to be administered every 4-6 hours, a common dosing pattern. Representing the range of potential of hours is done through a low and high child element of the period within effectiveTime of PIVL_TS.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications Dose frequency pre-coordinated medication, Medications in empty CCD,app,"<section>
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Anitbiotics%20with%20varied%20dosing/Antibiotics%20with%20varied%20dosing(C-CDA2.1).xml,2016-11-03,2016-11-03
+19,7,Med every 4-6 hours,"* This is an example of a medication (Sudafed) which to be administered every 4-6 hours, a common dosing pattern. Representing the range of potential of hours is done through a low and high child element of the period within effectiveTime of PIVL_TS.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications Dose frequency pre-coordinated medication, Medications in empty CCD,app,"<section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1"" extension=""2014-06-09""/>
     <!-- Medication Section (entries required) -->
@@ -2591,8 +2531,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </author>
         </substanceAdministration>
     </entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Med%20every%204-6%20hours/Med%20every%204-6%20hours(C-CDA2.1).xml,2016-10-26,2016-10-26
-21,7,Med oral QID with PRN,"* This is an example of a medication which is QID and PRN (as needed) but with no precondition specified. It was generated based on SDWG list-serv discussion in December 2013. It also demonstrated a pre-coordinated generic medication coded at the SDC level (generic 600mg Oral Tablet) in RxNorm hierarchy.
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Med%20every%204-6%20hours/Med%20every%204-6%20hours(C-CDA2.1).xml,2016-11-03,2016-11-03
+20,7,Med oral QID with PRN,"* This is an example of a medication which is QID and PRN (as needed) but with no precondition specified. It was generated based on SDWG list-serv discussion in December 2013. It also demonstrated a pre-coordinated generic medication coded at the SDC level (generic 600mg Oral Tablet) in RxNorm hierarchy.
 * Additional content - the following file illustrates 5 different medication entries. These examples are meant to illustrate the coding of a medication precondition or indication.
 ** Patient prescribed oral medication for pain
 ** Summary of examples:
@@ -2714,8 +2654,8 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </precondition>
         </substanceAdministration>
     </entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Med%20oral%20QID%20with%20PRN/Med%20oral%20QID%20with%20PRN(C-CDA2.1).xml,2016-10-26,2016-10-26
-22,7,Med oral with indications,* This is an example of a medication administered orally with indications.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,pend,"<!-- 
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Med%20oral%20QID%20with%20PRN/Med%20oral%20QID%20with%20PRN(C-CDA2.1).xml,2016-11-03,2016-11-03
+21,7,Med oral with indications,* This is an example of a medication administered orally with indications.,George Cole,https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,pend,"<!-- 
 		Summary of example:
 		Indication (NOT a PRN) - Ibuprofen 600mg Oral Tablet, 1 tablet Every 6 Hours for joint pain
 			
@@ -2841,7 +2781,69 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </entryRelationship>
         </substanceAdministration>
     </entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Med%20oral%20with%20indications/Med%20oral%20with%20indications(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Med%20oral%20with%20indications/Med%20oral%20with%20indications(C-CDA2.1).xml,2016-11-03,2016-11-03
+22,7,No Known Medications,* This is an example of no known medications,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,pend,"<component>
+    <section>
+        <!-- conforms to Medications section with entries optional -->
+        <templateId root=""2.16.840.1.113883.10.20.22.2.1""/>
+        <templateId root=""2.16.840.1.113883.10.20.22.2.1"" extension=""2014-06-09""/>
+        <!-- Medications section with entries required -->
+        <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
+        <templateId root=""2.16.840.1.113883.10.20.22.2.1.1"" extension=""2014-06-09""/>
+        <code code=""10160-0"" codeSystem=""2.16.840.1.113883.6.1"" codeSystemName=""LOINC""
+            displayName=""HISTORY OF MEDICATION USE""/>
+        <title>MEDICATIONS</title>
+        <text>No Medications</text>
+        <entry>
+            <!-- Act.actionNegationInd -->
+            <substanceAdministration moodCode=""EVN"" classCode=""SBADM"" negationInd=""true"">
+                <templateId root=""2.16.840.1.113883.10.20.22.4.16""/>
+                <templateId root=""2.16.840.1.113883.10.20.22.4.16"" extension=""2014-06-09""/>
+                <!-- ** MEDICATION ACTIVITY -->
+                <id root=""cdbd33f0-6cde-11db-9fe1-0800200c9a66""/>
+                <statusCode code=""active""/>
+                <!-- This effectiveTime SHALL contain either a low or a @value but not both. -->
+                <effectiveTime nullFlavor=""NA""/>
+                <doseQuantity nullFlavor=""NA""/>
+                <consumable>
+                    <manufacturedProduct classCode=""MANU"">
+                        <templateId root=""2.16.840.1.113883.10.20.22.4.23"" extension=""2014-06-09""/>
+                        <manufacturedMaterial>
+                            <code nullFlavor=""OTH"" codeSystem=""2.16.840.1.113883.6.88""> 
+                                <translation code=""410942007"" displayName=""drug or medication""
+                                    codeSystem=""2.16.840.1.113883.6.96""            
+                                    codeSystemName=""SNOMED CT""/>
+                            </code>
+                        </manufacturedMaterial>
+                    </manufacturedProduct>
+                </consumable>
+                <author>
+                    <templateId root=""2.16.840.1.113883.10.20.22.4.119""/>
+                    <!-- Time the author noted that patient is on no medications -->
+                    <time value=""20130607160506+0500""/>
+                    <assignedAuthor>
+                        <id extension=""66666"" root=""2.16.840.1.113883.4.6""/>
+                        <code code=""207RC0000X"" codeSystem=""2.16.840.1.113883.6.101"" codeSystemName=""NUCC""
+                            displayName=""Cardiovascular Disease""/>
+                        <addr>
+                            <streetAddressLine>6666 StreetName St.</streetAddressLine>
+                            <city>Silver Spring</city><state>MD</state><postalCode>20901</postalCode>
+                            <country>US</country>
+                        </addr>
+                        <telecom value=""tel:+1(301)666-6666"" use=""WP""/>
+                        <assignedPerson>
+                            <name>
+                                <given>Heartly</given>
+                                <family>Sixer</family>
+                                <suffix>MD</suffix>
+                            </name>
+                        </assignedPerson>
+                    </assignedAuthor>
+                </author>
+            </substanceAdministration>
+        </entry>
+    </section>
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/No%20Known%20Medications/No%20Known%20Medications(C-CDA2.1).xml,2016-11-03,2016-11-03
 23,7,No Medications,* This is an example of no medications,"Brett Marquard, brett@riverrockassociates.com (GitHub: brettmarquard)",https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,app,"<component>
     <section>
         <!-- conforms to Medications section with entries optional -->
@@ -2905,7 +2907,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </entry>
     </section>
 </component>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/No%20Medications/No%20Medications(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/No%20Medications/No%20Medications(C-CDA2.1).xml,2016-11-03,2016-11-03
 24,7,Patient reported oral medication,"* Patients often report medications that they are taking, either self-prescribed or by another provider, and know the drug name but do not know any specific brand or dose. This is an example of how to record an herbal supplement (echinicea) that a patient has reported taking using the informant to denote that this is patient reported.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications, Medications in empty CCD,draft,"<section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1""/>
     <templateId root=""2.16.840.1.113883.10.20.22.2.1.1"" extension=""2014-06-09""/>
@@ -3033,7 +3035,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </informant>
         </substanceAdministration>
     </entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Patient%20reported%20oral%20medication/Patient%20reported%20oral%20medication%20no%20brand(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Patient%20reported%20oral%20medication/Patient%20reported%20oral%20medication%20no%20brand(C-CDA2.1).xml,2016-11-03,2016-11-03
 25,7,Single administration of medication,"* This is an example of two baby aspirin being administered at a single point in time. At the January 2014 San Antonio meeting of HL7, this approach was decided as appropriate for medication timing of a point in time. Subsequent to that meeting, the TTT validator was adjusted to accept this format for medication times.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, medications Pre-coordinated medication code single administration point in time, Medications in empty CCD,app,"<component>
     <section>
         <!-- Medications section with entries required -->
@@ -3126,7 +3128,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
             </substanceAdministration>
         </entry>
     </section>
-</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Single%20administration%20of%20medication/Single%20administration%20of%20medication%20at%20single%20point%20in%20time(C-CDA2.1).xml,2016-10-26,2016-10-26
+</component>",https://github.com/HL7/C-CDA-Examples/blob/master/Medications/Single%20administration%20of%20medication/Single%20administration%20of%20medication%20at%20single%20point%20in%20time(C-CDA2.1).xml,2016-11-03,2016-11-03
 26,8,Active Problem,* This example illustrates how to structure an active problem.,Brett Marquard brett@riverrockassociates.com (GitHub: brettmarquard),https://sitenv.org/c-cda-validator, problems, Problems in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.5.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.5.1"" extension=""2015-08-01""/>
@@ -3215,7 +3217,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Problems/Active%20Problem/Active%20Problem(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Problems/Active%20Problem/Active%20Problem(C-CDA2.1).xml,2016-11-03,2016-11-03
 27,8,Complete or Resolved Problem,"* This example illustrates how to structure a resolved problem, both by having a biological resolution date and a completed status of the concern.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, problems, Problems in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.5.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.5.1"" extension=""2015-08-01""/>
@@ -3317,7 +3319,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</act>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Problems/Complete%20or%20Resolved%20Problem/Resolved%20Problem(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Problems/Complete%20or%20Resolved%20Problem/Resolved%20Problem(C-CDA2.1).xml,2016-11-03,2016-11-03
 28,8,No Known Problems,* This is an example of no known problems.,Brett Marquard brett@riverrockassociates.com (GitHub: brettmarquard),https://sitenv.org/c-cda-validator, negation, Problems in empty CCD,app,"<section>
     <templateId root=""2.16.840.1.113883.10.20.22.2.5.1""/>
     <!-- Problem Section with Coded Entries Required -->
@@ -3415,7 +3417,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
         </act>
     </entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Problems/No%20Known%20Problems/No%20Known%20Problems(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Problems/No%20Known%20Problems/No%20Known%20Problems(C-CDA2.1).xml,2016-11-03,2016-11-03
 29,9,Procedures Section Act Entry,"* This example illustrates how a procedure which ""alters the physical state"" of the patient and should be classified as a procedure.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, problems, Problems in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.7.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.7.1"" extension=""2014-06-09""/>
@@ -3462,7 +3464,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<effectiveTime value=""20140329104513+0500""/>
 		</act>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Procedures/Procedures%20Section%20Act%20Entry/Procedures%20Section%20Act(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Procedures/Procedures%20Section%20Act%20Entry/Procedures%20Section%20Act(C-CDA2.1).xml,2016-11-03,2016-11-03
 30,9,Procedures Section Observation Entry,* This example illustrates how an observation within a procedure section.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, problems, Procedure in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.7.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.7.1"" extension=""2014-06-09""/>
@@ -3510,7 +3512,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			<value xsi:type=""CD"" code=""251135002"" codeSystem=""2.16.840.1.113883.6.96"" displayName=""Borderline normal ECG"" codeSystemName=""SNOMED-CT"" />
 		</observation>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Procedures/Procedures%20Section%20Observation%20Entry/Procedures%20Section%20Observation(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Procedures/Procedures%20Section%20Observation%20Entry/Procedures%20Section%20Observation(C-CDA2.1).xml,2016-11-03,2016-11-03
 31,9,Procedures Section Procedure Entry,* This example illustrates an act within a procedure section.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, problems, Problems in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.7.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.7.1"" extension=""2014-06-09""/>
@@ -3572,7 +3574,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</procedure>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Procedures/Procedures%20Section%20Procedure%20Entry/Procedures%20Section%20Procedure(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Procedures/Procedures%20Section%20Procedure%20Entry/Procedures%20Section%20Procedure(C-CDA2.1).xml,2016-11-03,2016-11-03
 32,10,Result panel with two ordinal values of negative-positive,"* This is an example of how to encode positive and negative, which are common data types returned form lab equipment. While some technologies may represent this as a type of ST (string), it is logical and easily possible to encode this information using SNOMED-CT. This would allow structured examination of this information downstream as well as comparison to a structured reference range, as shown in the example.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Results, Results in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1"" extension=""2015-08-01""/>
@@ -3694,7 +3696,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Result%20panel%20with%20two%20ordinal%20values%20of%20negative-positive/Result%20panel%20with%20two%20ordinal%20values%20of%20negative-positive(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Result%20panel%20with%20two%20ordinal%20values%20of%20negative-positive/Result%20panel%20with%20two%20ordinal%20values%20of%20negative-positive(C-CDA2.1).xml,2016-11-03,2016-11-03
 33,10,Result with an unstructured string as value (urine color),* This is an example of a value from a lab result that may not be structured.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Results, Results in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1"" extension=""2015-08-01""/>
@@ -3763,7 +3765,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Result%20with%20an%20unstructured%20string%20as%20value%20(urine%20color)/Result%20with%20an%20unstructured%20string%20as%20value%20urine%20color%20(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Result%20with%20an%20unstructured%20string%20as%20value%20(urine%20color)/Result%20with%20an%20unstructured%20string%20as%20value%20urine%20color%20(C-CDA2.1).xml,2016-11-03,2016-11-03
 34,10,Result with greater than a specified value,"* This is an example of how to encode ""greater than"" (but not equal to) a specific range when returned from lab equipment. The example is for a point-of-care glucometer, which measures blood sugar for diabetics. Often these devices may have an upper bound, 500 mg/dL is shown in this example. An inclusive tag of false is shown to demonstrate a non-inclusive range. The upper bound of the interval is positive infinity in this example. This example also includes two structured reference ranges for normal and high.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Results, Results in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1"" extension=""2015-08-01""/>
@@ -3857,7 +3859,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Result%20with%20greater%20than%20a%20specified%20value/Result%20with%20greater%20than%20a%20specified%20value(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Result%20with%20greater%20than%20a%20specified%20value/Result%20with%20greater%20than%20a%20specified%20value(C-CDA2.1).xml,2016-11-03,2016-11-03
 35,10,Result with non-numeric physical quantity and unit,"* This is an example of a value from a lab with a discrete unit, but whose value is not a number, so the PQ datatype, the only type with a unit attribute, cannot be used.","Benjamin Flessner, benjamin@epic.com (GitHub:benjaminflessner)",https://sitenv.org/c-cda-validator, results, Results in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1"" extension=""2015-08-01""/>
@@ -3960,7 +3962,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Result%20with%20non-numeric%20physical%20quantity%20and%20unit/Result%20with%20non-numeric%20physical%20quantity%20and%20unit(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Result%20with%20non-numeric%20physical%20quantity%20and%20unit/Result%20with%20non-numeric%20physical%20quantity%20and%20unit(C-CDA2.1).xml,2016-11-03,2016-11-03
 36,10,Results Unit Non-UCUM,* This is an example of a value from a lab which requires a translation for its unit. All units for physical quantities should be represent in UCUM.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, results, Results in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1"" extension=""2015-08-01""/>
@@ -4061,7 +4063,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Results%20Unit%20Non-UCUM/Results%20Unit%20Non-UCUM(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Results%20Unit%20Non-UCUM/Results%20Unit%20Non-UCUM(C-CDA2.1).xml,2016-11-03,2016-11-03
 37,10,Results panel with pending component,* This is an example of a results panel with pending component.,"Ed Donaldson, ed.donaldson@greenwayhealth.com (GitHub: donaldson-ed)",https://sitenv.org/c-cda-validator, Results, Results in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.3.1"" extension=""2015-08-01""/>
@@ -4129,7 +4131,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 		</organizer>
 	</entry>
 </section>
-",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Results%20panel%20with%20pending%20component/Results%20panel%20with%20pending%20component(C-CDA2.1).xml,2016-10-26,2016-10-26
+",https://github.com/HL7/C-CDA-Examples/blob/master/Results/Results%20panel%20with%20pending%20component/Results%20panel%20with%20pending%20component(C-CDA2.1).xml,2016-11-03,2016-11-03
 38,11,Current Smoking Status,"* This is an example of current smoking status. This example also includes a coordinating social history observation to convey the amount of smoking using a SNOMED code. This SNOMED code in the accompanying observation is not acceptable since smoking status, which is constrained by HL7 and Meaningful Use value set requirements. Each social history section shall only include a single smoking status.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Social History Smoking, Social history in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.17""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.17"" extension=""2015-08-01""/>
@@ -4213,7 +4215,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</author>
 		</observation>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Social%20History/Current%20Smoking%20Status/Current%20Smoking%20Status(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Social%20History/Current%20Smoking%20Status/Current%20Smoking%20Status(C-CDA2.1).xml,2016-11-03,2016-11-03
 39,11,Former Smoking Status,"* This is an example of a former smoker in smoking status. There is a variation in how effectiveTime/high is used since this represents when the patient stopped smoking, not when they stopped being a former smoker. C-CDA explicitly guides to this usage of effectiveTime. A best practice to avoid confusion is for each social history section to only include a single smoking status.",John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Social History Smoking, Social history in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.17""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.17"" extension=""2015-08-01""/>
@@ -4298,7 +4300,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</author>
 		</observation>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Social%20History/Former%20Smoking%20Status/Former%20Smoking%20Status(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Social%20History/Former%20Smoking%20Status/Former%20Smoking%20Status(C-CDA2.1).xml,2016-11-03,2016-11-03
 40,11,Never Smoking Status,* This is an example of a never smoker in smoking status. A best practice to avoid confusion is for each social history section to only include a single smoking status.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Social History, Social history in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.17""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.17"" extension=""2015-08-01""/>
@@ -4350,7 +4352,7 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</author>
 		</observation>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Social%20History/Never%20Smoking%20Status/Never%20Smoking%20Status(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Social%20History/Never%20Smoking%20Status/Never%20Smoking%20Status(C-CDA2.1).xml,2016-11-03,2016-11-03
 41,11,Unknown Smoking Status,* This is an example of unknown smoking status. There is a major variation in how no information is managed for smoking status. C-CDA explicitly guides to not utilize a nullFlavor for this information. Instead a SNOMED code should be used as demonstrated in the example. A best practice to avoid confusion is for each social history section to only include a single smoking status.,John D'Amore jdamore@diameterhealth.com (GitHub: jddamore),https://sitenv.org/c-cda-validator, Social History Smoking, Social history in empty CCD,app,"<section>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.17""/>
 	<templateId root=""2.16.840.1.113883.10.20.22.2.17"" extension=""2015-08-01""/>
@@ -4401,4 +4403,4 @@ id,section_id,name,comments,custodian,validation,keywords,full_sample,status,exa
 			</author>
 		</observation>
 	</entry>
-</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Social%20History/Unknown%20Smoking%20Status/Unknown%20Smoking%20Status(C-CDA2.1).xml,2016-10-26,2016-10-26
+</section>",https://github.com/HL7/C-CDA-Examples/blob/master/Social%20History/Unknown%20Smoking%20Status/Unknown%20Smoking%20Status(C-CDA2.1).xml,2016-11-03,2016-11-03

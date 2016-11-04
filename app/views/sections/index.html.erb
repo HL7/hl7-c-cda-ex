@@ -16,7 +16,7 @@
         <td>
           <div class="large-10 small-9 columns">
             <p class="list-title"><%= section.name %></p>
-            <p class="list-detail"><%= maruku_string(section.narrative) %></p>
+            <div class="list-detail"><%= raw markdown.render(section.narrative) %></div>
           </div>
           <div class="large-2 small-3 columns">
             <%= link_to section do %>

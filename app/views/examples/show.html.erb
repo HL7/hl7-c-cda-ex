@@ -20,7 +20,7 @@
         <li>
           <span><%= approval.committee %></span>:
           <% if approval.approved -%>
-              <span><%= approval.date %></span>
+              <span><%= approval.date.strftime('%-d-%-m-%Y') %></span>
           <% else -%>
               <span><%= approval.comment %></span>
           <% end -%>
