@@ -15,7 +15,7 @@
       <tr>
         <td>
           <div class="large-10 small-9 columns">
-            <p class="list-title"><%= section.name %></p>
+            <p class="list-title"><%= link_to(section.name, section) %></p>
             <div class="list-detail"><%= raw markdown.render(section.narrative) %></div>
           </div>
           <div class="large-2 small-3 columns">

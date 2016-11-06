@@ -9,6 +9,7 @@ class CreateExamples < ActiveRecord::Migration
       t.string     :keywords
       t.string     :full_sample
       t.string     :status, limit: 20, null: false
+      t.string     :oids, array: true
       t.text       :example
       t.string     :example_url
 

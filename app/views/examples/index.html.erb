@@ -32,10 +32,12 @@
           <%= link_to example do %>
               <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
           <% end %>
+          <% unless example.example.nil? -%>
           <br/>
           <%= link_to example_path(example, format: :xml) do %>
               <span class="list-link-text">Download</span><span class="link-pointer">d</span>
           <% end %>
+          <% end -%>
         </td>
       </tr>
     <% end %>

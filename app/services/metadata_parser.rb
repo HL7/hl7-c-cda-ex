@@ -18,6 +18,8 @@ class MetadataParser
             example_meta[:keywords] = parse_keywords(group)
           when /^validation location/i
             example_meta[:validation] = parse_validation(group)
+          when /^c-cda 2.1 example/i
+            example_meta[:oids] = parse_oids(group)
           else
             puts '-------- unknown group'
             puts group
@@ -96,5 +98,9 @@ class MetadataParser
   def self.parse_keywords(chunk)
     content = chunk.split("\n").drop(1).delete_if { |element| element.nil? || element.empty? }
     (content.select { |line| line =~ /^\* /}).join(' ').tr('*,', '')
+  end
+
+  def self.parse_oids(chunk)
+    nil
   end
 end

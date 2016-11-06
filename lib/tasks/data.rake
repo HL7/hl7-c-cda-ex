@@ -19,7 +19,7 @@ namespace :data do
       sections_csv << %w(id name section_type narrative created_at updated_at)
       examples_csv = CSV.open(Rails.root + 'db/load-data/01-02-examples.csv', 'w')
       ex_no = 0
-      examples_csv << %w(id section_id name comments custodian validation keywords full_sample status example example_url created_at updated_at)
+      examples_csv << %w(id section_id name comments custodian validation keywords full_sample status oids example example_url created_at updated_at)
       approvals_csv = CSV.open(Rails.root + 'db/load-data/01-03-approvals.csv', 'w')
       approval_no = 0
       approvals_csv << %w(id example_id committee approved date comment)
@@ -52,7 +52,7 @@ namespace :data do
               examples_csv << [ex_no, sect_no, dir_entry['name'], metadata[:comment],
                                metadata[:custodian], metadata[:validation],
                                metadata[:keywords], metadata[:full_sample],
-                               metadata[:status], example_contents,
+                               metadata[:status], metadata[:oids], example_contents,
                                git_url, date, date]
               if metadata.approvals
                 metadata.approvals.each do |approval|
