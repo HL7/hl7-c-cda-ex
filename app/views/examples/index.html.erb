@@ -21,7 +21,7 @@
     <% @examples.each do |example| %>
       <tr>
         <td>
-          <p class="list-title"><%= example.name %></p>
+          <p class="list-title"><%= link_to(example.name, example) %></p>
           <div class="list-detail">
             <%= raw markdown.render(truncate_md(example.comments)) %>
           </div>
