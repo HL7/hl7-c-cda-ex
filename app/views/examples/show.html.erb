@@ -8,6 +8,9 @@
 <%= link_to 'return to Main screen', sections_path, class: 'button small', id: 'main-page-link' %>
 
 <%= link_to 'return to result list', examples_path, class: 'button small', id: 'search-list-link' %>
+
+<p class="detail-note">Example metadata last updated <%= @example.updated_at %></p>
+
 <p class="detail-with-list">
   <strong id="example-status">Approval Status:</strong>
   <%= CodeValue.find_by(code_table: 'appr-stat', code: @example.status).print_name %>
