@@ -25,7 +25,7 @@ class Example < ActiveRecord::Base
     unless search_params.search_text.empty?
       text_list = search_params.search_text.split
       tsvector = Arel::Nodes::SqlLiteral.new("to_tsvector('english'," +
-                                                 " name || ' ' || comments || ' ' || keywords)")
+                                                 " name || ' ' || comments || ' ' || keywords || ' ' || custodian)")
       tsquery  = Arel::Nodes::SqlLiteral.new("to_tsquery('#{text_list.join(' | ')}')")
       where_filter = and_where(where_filter,
                                Arel::Nodes::InfixOperation.new('@@', tsvector, tsquery))
