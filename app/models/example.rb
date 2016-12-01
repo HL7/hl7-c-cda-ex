@@ -23,6 +23,7 @@ class Example < ActiveRecord::Base
     where_filter = nil
 
     unless search_params.search_text.empty?
+      # TODO: add single quote escape: "d'amore".gsub(/'/, "'" => "''")
       text_list = search_params.search_text.split
       tsvector = Arel::Nodes::SqlLiteral.new("to_tsvector('english'," +
                                                  " name || ' ' || comments || ' ' || keywords || ' ' || custodian)")

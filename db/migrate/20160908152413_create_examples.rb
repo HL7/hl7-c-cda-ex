@@ -2,13 +2,13 @@ class CreateExamples < ActiveRecord::Migration
   def change
     create_table :examples do |t|
       t.references :section, null: false, index: true
-      t.string     :name, limit: 120
+      t.string     :name, limit: 120, null: false
       t.string     :comments
       t.string     :custodian
       t.string     :validation
       t.string     :keywords
       t.string     :full_sample
-      t.string     :status, limit: 20, null: false
+      t.string     :status, limit: 20, null: false, default: 'draft'
       t.string     :oids, array: true
       t.text       :example
       t.string     :example_url

@@ -49,7 +49,7 @@ namespace :data do
                   end
                 end
               end
-              examples_csv << [ex_no, sect_no, dir_entry['name'], metadata[:comment],
+              examples_csv << [ex_no, sect_no, dir_entry['name'], metadata[:comments],
                                metadata[:custodian], metadata[:validation],
                                metadata[:keywords], metadata[:full_sample],
                                metadata[:status], metadata[:oids], example_contents,

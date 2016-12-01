@@ -1,7 +1,7 @@
 class MetadataParser
   STATUS_TRANSLATE = {Approved: 'app', Draft: 'draft', Pending: 'pend', Withdrawn: 'wthd'}
   def self.parse(metadata)
-    example_meta = ExampleMetadata.new
+    example_meta = ExampleMetadata.new('draft')
 
     metadata.split('#').each do |group|
       if group.length > 0
@@ -9,7 +9,7 @@ class MetadataParser
           when /^approval/i
             example_meta[:status], example_meta[:approvals] = parse_approvals(group)
           when /^comments/i
-            example_meta[:comment] = parse_comments(group)
+            example_meta[:comments] = parse_comments(group)
           when /^custodian/i
             example_meta[:custodian] = parse_custodian(group)
           when /^reference.*full.*sample/i
