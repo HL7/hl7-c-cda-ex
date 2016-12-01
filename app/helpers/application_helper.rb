@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def truncate_words(text, length=50, trailing=nil)
-    if text.length < length
+    if text.nil? || text.length < length
       text
     else
       full_words = ''
@@ -35,7 +35,7 @@ module ApplicationHelper
   end
 
   def truncate_md(content, length=190, trailing='...')
-    if content.length < length
+    if content.nil? || content.length < length
       content
     else
       offset = 0

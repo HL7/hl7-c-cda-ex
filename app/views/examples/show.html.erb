@@ -45,7 +45,7 @@
   <strong id="example-comments">Comments:</strong>
 </p>
 <div class="large-10 large-offset-1 columns">
-  <%= raw markdown.render(@example.comments) %>
+  <%= @example.comments ? raw(markdown.render(@example.comments)) : 'none provided' %>
 </div>
 
 <p>

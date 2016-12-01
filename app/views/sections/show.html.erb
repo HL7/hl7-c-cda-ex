@@ -2,7 +2,7 @@
 <% content_for :title, @section.name +  ' ' +
     CodeValue.find_by(code_table: 'sect-type', code: @section.section_type).print_name %>
 <div id="section-title">
-  <%=raw markdown.render(@section.narrative) %>
+  <%= @section.narrative ? raw(markdown.render(@section.narrative)) : '' %>
 </div>
 
 
@@ -24,7 +24,7 @@
         <td>
           <p class="list-title"><%= link_to(example.name, example) %></p>
           <div class="list-detail">
-            <%= raw markdown.render(truncate_md(example.comments)) %>
+            <%= example.comments ? raw(markdown.render(truncate_md(example.comments))) : '' %>
           </div>
         </td>
         <td><%= CodeValue.find_by(code_table: 'appr-stat', code: example.status).print_name %></td>
