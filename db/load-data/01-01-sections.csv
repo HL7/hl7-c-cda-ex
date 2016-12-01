@@ -1,21 +1,23 @@
 id,name,section_type,narrative,created_at,updated_at
 1,Allergies,sect,"##Allergies and Intolerances Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 2,Encounters,sect,"##Encounter Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 3,Family History,sect,"##Family History Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 4,General,sect,"##General Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 5,Immunizations,sect,"##Immunization Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 6,Medications,sect,"##Medication Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 7,Problems,sect,"##Problem Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 8,Procedures,sect,"##Procedure Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 9,Results,sect,"##Result Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
 10,Social History,sect,"##Social History Section Examples from C-CDA 
-",2016-11-11,2016-11-11
+",2016-12-01,2016-12-01
+11,Vital Signs,sect,"##Vital Sign Section Examples from C-CDA 
+",2016-12-01,2016-12-01
