@@ -1,5 +1,7 @@
 class RepoMessage < ActiveRecord::Base
 
+  validates :status, presence: true
+
   def self.build_from_commit_message(action, status, head_commit, source)
     add_list = pull_list(head_commit, 'added')
     add_list_status = init_statuses(add_list)

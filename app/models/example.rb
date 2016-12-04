@@ -3,6 +3,10 @@ class Example < ActiveRecord::Base
 
   has_many :approvals
 
+  validates :name, presence: true
+  validates :section, presence: true
+  validates :status, presence: true
+
   def self.query(search_params)
     the_arel = self.arel_table
     query = the_arel.project(the_arel[Arel.star])
@@ -22,7 +26,7 @@ class Example < ActiveRecord::Base
     the_arel = self.arel_table
     where_filter = nil
 
-    unless search_params.search_text.empty?
+    unless search_params.search_text.blank?
       text_list = search_params.search_text.split.collect { |x| x.gsub(/'/, "'" => "''") }
       tsvector = Arel::Nodes::SqlLiteral.new("to_tsvector('english'," +
                                                  " name || ' ' || comments || ' ' || keywords || ' ' || custodian)")
@@ -31,19 +35,15 @@ class Example < ActiveRecord::Base
                                Arel::Nodes::InfixOperation.new('@@', tsvector, tsquery))
     end
 
-    if search_params.section_ids.count > 0
+    if search_params.section_ids && search_params.section_ids.count > 0
       where_filter = and_where(where_filter,
                                the_arel[:section_id].in(search_params.section_ids))
     end
 
-    if search_params.status.count > 0
+    if search_params.status && search_params.status.count > 0
       where_filter = and_where(where_filter,
                                the_arel[:status].in(search_params.status))
     end
-    # if search_params.area.count > 0
-    #   where_filter = and_where(where_filter,
-    #                            the_arel[:functional_area].overlap(search_params.area))
-    # end
 
     where_filter
   end

@@ -9,7 +9,5 @@ RSpec.describe 'examples/index', type: :view do
   it 'renders a list of examples' do
     render
     assert_select 'tr>td>p', :text => 'The-Example'.to_s, :count => 2
-    assert_select 'tr>td>p', :text => 'Comment-comment'.to_s, :count => 2
-    assert_select 'tr>td', :text => 'download details'.to_s, :count => 2
   end
 end

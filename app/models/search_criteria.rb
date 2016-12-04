@@ -18,6 +18,6 @@ class SearchCriteria
   end
 
   def present?
-    !search_text.empty? || section_ids.count > 0 || status.count > 0
+    !search_text.blank? || (section_ids && section_ids.count > 0) || (status && status.count > 0)
   end
 end
