@@ -5,6 +5,7 @@
   <%= @section.narrative ? raw(markdown.render(@section.narrative)) : '' %>
 </div>
 
+<%= render 'common/search' %>
 
 <p class="large-9 columns"  id="query-count"> This section has <%= pluralize(@section.examples.count, 'example') %></p>
 <p class="return-link large-3 columns"><%= link_to 'return to Main Search', sections_path, id: 'main-page-link' %></p>
@@ -54,6 +55,7 @@
   <li data-id="section-title" data-button="Next" data-prev-text="Prev" data-options="tip_location:bottom;tip_animation:fade">
     <p>The description of the <%= CodeValue.find_by(code_table: 'sect-type', code: @section.section_type).print_name %>.</p>
   </li>
+  <%= render 'common/tour_search' %>
   <li data-id="query-count" data-button="Next" data-prev-text="Prev" data-options="tip_location:bottom;tip_animation:fade">
     <p>The number of examples found within this <%= CodeValue.find_by(code_table: 'sect-type', code: @section.section_type).print_name %>.</p>
   </li>
