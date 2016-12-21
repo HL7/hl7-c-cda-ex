@@ -18,10 +18,5 @@
       <div class="large-2 columns send-search">
         <%= submit_tag 'Search', :name => nil, id: 'sub-btn', class: 'button right search-button' %>
       </div>
-      <fieldset class="large-12 columns push-buttons" id="search-by-section">
-        <legend>filter by document or section</legend>
-        <%= collection_check_boxes :search, :section_ids, Section.all, :id, :name,
-                                   checked: @search.try(:section_ids) %>
-      </fieldset>
     </fieldset>
 <% end %>

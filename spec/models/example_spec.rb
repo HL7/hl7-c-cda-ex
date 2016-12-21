@@ -58,24 +58,6 @@ RSpec.describe Example, type: :model do
       expect((found.collect {|x| x.id}).sort).to eq([@ex_3.id, @ex_2.id].sort)
     end
 
-    it 'should find by section' do
-      query = SearchCriteria.new(section_ids: [@section_1.id])
-      found = Example.query(query)
-      expect(found.count).to eq(2)
-      expect((found.collect {|x| x.id}).sort).to eq([@ex_1.id, @ex_2.id].sort)
-
-      query = SearchCriteria.new(section_ids: [@section_2.id])
-      found = Example.query(query)
-      expect(found.count).to eq(1)
-      expect(found[0].id).to eq(@ex_3.id)
-    end
-
-    it 'should with multiple sections' do
-      query = SearchCriteria.new(section_ids: [@section_1.id, @section_2.id])
-      found = Example.query(query)
-      expect(found.count).to eq(3)
-    end
-
     it 'should find by keyword' do
       query = SearchCriteria.new(search_text: 'ribeye')
       found = Example.query(query)
@@ -175,30 +157,22 @@ RSpec.describe Example, type: :model do
     end
 
     it 'should find with a combination of criteria' do
-      query = SearchCriteria.new(search_text: 'epinephrine', section_ids: [@section_1.id],
-                                 status: [''])
+      query = SearchCriteria.new(search_text: 'epinephrine', status: ['pend'])
       found = Example.query(query)
       expect(found.count).to eq(1)
       expect(found[0].id).to eq(@ex_2.id)
 
-      query = SearchCriteria.new(section_ids: [@section_1.id], status: ['app'])
+      query = SearchCriteria.new(search_certification: '1', status: ['app'])
       found = Example.query(query)
       expect(found.count).to eq(1)
       expect(found[0].id).to eq(@ex_1.id)
 
-      query = SearchCriteria.new(search_text: 'epinephrine', section_ids: [@section_1.id],
-                                 status: ['pend'])
-      found = Example.query(query)
-      expect(found.count).to eq(1)
-      expect(found[0].id).to eq(@ex_2.id)
-
-      query = SearchCriteria.new(search_text: 'epinephrine', section_ids: [@section_1.id],
-                                 status: ['app'])
+      query = SearchCriteria.new(search_text: 'epinephrine',  status: ['app'])
       found = Example.query(query)
       expect(found.count).to eq(0)
 
-      query = SearchCriteria.new(search_text: 'epinephrine', section_ids: [@section_2.id],
-                                 status: ['app'])
+      query = SearchCriteria.new(search_text: 'epinephrine', search_certification: '1',
+                                 status: ['pend'])
       found = Example.query(query)
       expect(found.count).to eq(0)
     end
