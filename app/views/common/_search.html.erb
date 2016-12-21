@@ -6,10 +6,12 @@
                            placeholder: 'enter a word or words to search' %>
         <label for="search[search_text]">Search text</label>
       </div>
-      <fieldset class="large-4 small-6 columns push-buttons" id="search-by-status">
+      <fieldset class="large-3 small-4 columns push-buttons" id="search-by-status">
         <legend>filter by example status</legend>
         <%= collection_check_boxes :search, :status, CodeValue.where(code_table: 'appr-stat'),
                                    :code, :print_name %>
+      </fieldset>
+      <fieldset class="large-1 small-2 columns push-buttons" id="search-by-cert">
         <%= check_box :search, :search_certification %>
         <%= label_tag 'search[search_certification]', 'ONC Certified' %>
       </fieldset>

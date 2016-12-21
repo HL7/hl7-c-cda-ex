@@ -40,10 +40,6 @@ RSpec.describe Example, type: :model do
     end
 
     it 'should find by status' do
-      query = SearchCriteria.new(status: ['draft'])
-      found = Example.query(query)
-      expect(found.count).to eq(0)
-
       query = SearchCriteria.new(status: ['wthd'])
       found = Example.query(query)
       expect(found.count).to eq(1)

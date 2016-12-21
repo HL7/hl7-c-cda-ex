@@ -3,6 +3,5 @@ id,code_table,short_code,long_value,description,print_name,parent_id
 2,sect-type,doc,Document,Document,Document,
 3,sect-type,hdr,Header,Header,Header,
 10,appr-stat,app,Approved,Approved,Approved,
-11,appr-stat,draft,Draft,Draft,Draft,
 12,appr-stat,wthd,Withdrawn,Withdrawn,Withdrawn,
 13,appr-stat,pend,Pending,Pending,Pending,

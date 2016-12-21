@@ -1,7 +1,7 @@
 class Example < ActiveRecord::Base
   belongs_to :section
 
-  has_many :approvals
+  has_many :approvals, dependent: :destroy
 
   validates :name, presence: true
   validates :section, presence: true

@@ -5,13 +5,14 @@ require 'base64'
 require 'csv'
 
 namespace :data do
-  task :generate, [:date_val] => [:environment] do
+  task :generate, [:date_val] => [:environment] do |t, args|
     server = 'https://api.github.com/repos/HL7/C-CDA-Examples/'
     usr = ask('-->enter username: ') { |q| q.echo = '@'}
     pw = ask('-->enter password: ') { |q| q.echo = '@'}
 
     begin
-      date = Date.today
+      date = args[:date_val] ? Date.parse(args[:date_val]) : Date.today
+      puts "Using #{date} for last_modified"
       header = { Authorization: "Basic #{Base64.strict_encode64(usr + ':' + pw)}" }
       resp = RestClient.get "#{server}contents", header
       sections_csv = CSV.open(Rails.root + 'db/load-data/01-01-sections.csv', 'w')

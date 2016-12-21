@@ -1,9 +1,9 @@
 class MetadataParser
-  STATUS_TRANSLATE = {Approved: 'app', Draft: 'draft', Pending: 'pend', Withdrawn: 'wthd'}
+  STATUS_TRANSLATE = {Approved: 'app', Pending: 'pend', Withdrawn: 'wthd'}
   def self.parse(metadata)
-    example_meta = ExampleMetadata.new('draft',false)
+    example_meta = ExampleMetadata.new('pend',false)
 
-    metadata.split('#').each do |group|
+    metadata.split(/##+/).each do |group|
       if group.length > 0
         case group
           when /^approval/i
@@ -21,8 +21,7 @@ class MetadataParser
           when /^c-cda 2.1 example/i
             example_meta[:oids] = parse_oids(group)
           when /^certification/i
-            puts '    ***** found certification *****'
-            # example_meta[:keywords] = parse_keywords(group)
+            example_meta[:onc_certification] = parse_certifications(group)
           else
             puts '-------- unknown group'
             puts group
@@ -101,6 +100,13 @@ class MetadataParser
   def self.parse_keywords(chunk)
     content = chunk.split("\n").drop(1).delete_if { |element| element.nil? || element.empty? }
     (content.select { |line| line =~ /^\* /}).join(' ').tr('*,', '')
+  end
+
+  def self.parse_certifications(chunk)
+    cert = false
+    content = chunk.split("\n").drop(1).delete_if { |element| element.nil? || element.empty? }
+    content.each { |line| cert = true if line =~ / onc /i }
+    cert
   end
 
   def self.parse_oids(chunk)

@@ -42,7 +42,23 @@ class ApplyUpdate
       response = RestClient.get(URI::encode("#{URL}#{@source}/master/#{@update_file}"))
       metadata = MetadataParser.parse(response).to_h
       approvals = metadata.delete(:approvals)
+      example.approvals.clear
       example.update!(metadata)
+      if approvals
+        approvals.each do |approval|
+          example.approvals << Approval.new do |a|
+            a.committee = approval[0]
+            if approval[1].is_a?(Date)
+              a.approved = true
+              a.date = approval[1]
+            else
+              a.approved = true
+              a.comment = approval[1]
+            end
+          end
+        end
+        example.save
+      end
       true
     elsif @update_file =~ /c(-)?cda2.1..xml/i
       example.example_url = URI::encode("#{HTML_URL}#{@source}/blob/master/#{@update_file}")
