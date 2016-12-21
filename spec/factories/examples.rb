@@ -5,6 +5,7 @@ FactoryGirl.define do
     custodian  'Joe Dogg'
     validation 'http://google.com'
     keywords   'dog canine'
+    onc_certification false
     full_sample 'MyString'
     status     'app'
     example    'MyText'
@@ -14,6 +15,7 @@ FactoryGirl.define do
       name      'Allergy'
       comments  'This is breakfast'
       keywords  'bacon'
+      onc_certification true
       custodian "John D'Amore"
       status    'app'
     end
@@ -30,6 +32,7 @@ FactoryGirl.define do
       name      'Medication'
       comments  'This is supper'
       keywords  'pork ribeye custard'
+      onc_certification true
       status    'wthd'
     end
   end

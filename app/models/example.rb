@@ -45,6 +45,10 @@ class Example < ActiveRecord::Base
                                the_arel[:status].in(search_params.status))
     end
 
+    if search_params.certification
+      where_filter = and_where(where_filter, the_arel[:onc_certification].eq(true))
+    end
+
     where_filter
   end
 

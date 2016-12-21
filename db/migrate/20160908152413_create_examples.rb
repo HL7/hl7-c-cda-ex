@@ -7,8 +7,9 @@ class CreateExamples < ActiveRecord::Migration
       t.string     :custodian
       t.string     :validation
       t.string     :keywords
+      t.boolean    :onc_certification, null: false, default: false
       t.string     :full_sample
-      t.string     :status, limit: 20, null: false, default: 'draft'
+      t.string     :status, limit: 20, null: false, default: 'pend'
       t.string     :oids, array: true
       t.text       :example
       t.string     :example_url

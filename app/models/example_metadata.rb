@@ -1,2 +1,2 @@
-ExampleMetadata = Struct.new(:status, :comments, :custodian, :validation, :keywords,
+ExampleMetadata = Struct.new(:status, :onc_certification, :comments, :custodian, :validation, :keywords,
                              :full_sample, :oids, :approvals)

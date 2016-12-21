@@ -1,7 +1,7 @@
 class MetadataParser
   STATUS_TRANSLATE = {Approved: 'app', Draft: 'draft', Pending: 'pend', Withdrawn: 'wthd'}
   def self.parse(metadata)
-    example_meta = ExampleMetadata.new('draft')
+    example_meta = ExampleMetadata.new('draft',false)
 
     metadata.split('#').each do |group|
       if group.length > 0
@@ -20,6 +20,9 @@ class MetadataParser
             example_meta[:validation] = parse_validation(group)
           when /^c-cda 2.1 example/i
             example_meta[:oids] = parse_oids(group)
+          when /^certification/i
+            puts '    ***** found certification *****'
+            # example_meta[:keywords] = parse_keywords(group)
           else
             puts '-------- unknown group'
             puts group

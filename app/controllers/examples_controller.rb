@@ -6,7 +6,7 @@ class ExamplesController < ApplicationController
   def index
     if params[:search]
       @search = SearchCriteria.new(params[:search])
-      logger.debug "Got search params: #{params[:search]}"
+      logger.debug "Got search params: #{params[:search]} and built #{@search}"
       @examples = Example.query(@search)
     else
       @search = SearchCriteria.new

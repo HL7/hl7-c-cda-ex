@@ -33,6 +33,10 @@
 </div>
 <% end -%>
 
+<% if @example.onc_certification? -%>
+<p>ONC Certification</p>
+<% end -%>
+
 <p>
 <% if @example.validation -%>
     <%= link_to 'SITE C-CDA Validator', @example.validation, id: 'example-validation' %>

@@ -161,6 +161,23 @@ RSpec.describe Example, type: :model do
       expect(found[0].id).to eq(@ex_1.id)
     end
 
+    it 'should find by certification' do
+      query = SearchCriteria.new()
+      found = Example.query(query)
+      expect(found.count).to eq(3)
+      expect((found.collect {|x| x.id}).sort).to eq([@ex_1.id, @ex_2.id, @ex_3.id].sort)
+
+      query = SearchCriteria.new(search_certification: '1')
+      found = Example.query(query)
+      expect(found.count).to eq(2)
+      expect((found.collect {|x| x.id}).sort).to eq([@ex_1.id, @ex_3.id].sort)
+
+      query = SearchCriteria.new(search_certification: '0')
+      found = Example.query(query)
+      expect(found.count).to eq(3)
+      expect((found.collect {|x| x.id}).sort).to eq([@ex_1.id, @ex_2.id, @ex_3.id].sort)
+    end
+
     it 'should find with a combination of criteria' do
       query = SearchCriteria.new(search_text: 'epinephrine', section_ids: [@section_1.id],
                                  status: [''])

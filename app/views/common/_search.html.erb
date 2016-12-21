@@ -1,7 +1,7 @@
 <%= form_tag(examples_path, :method => 'get', id: 'search-form', name: 'searchform') do %>
     <fieldset id="search-criteria">
       <legend>search criteria</legend>
-      <div class="input-float-label small-6 large-8 columns" id="search-by-text">
+      <div class="input-float-label small-6 large-6 columns" id="search-by-text">
         <%= text_field_tag 'search[search_text]', @search.nil? ? nil : @search.search_text,
                            placeholder: 'enter a word or words to search' %>
         <label for="search[search_text]">Search text</label>
@@ -10,14 +10,16 @@
         <legend>filter by example status</legend>
         <%= collection_check_boxes :search, :status, CodeValue.where(code_table: 'appr-stat'),
                                    :code, :print_name %>
-      </fieldset>
-      <fieldset class="large-10 columns push-buttons" id="search-by-section">
-        <legend>filter by document or section</legend>
-        <%= collection_check_boxes :search, :section_ids, Section.all, :id, :name,
-                                   checked: @search.try(:section_ids) %>
+        <%= check_box :search, :search_certification %>
+        <%= label_tag 'search[search_certification]', 'ONC Certified' %>
       </fieldset>
       <div class="large-2 columns send-search">
         <%= submit_tag 'Search', :name => nil, id: 'sub-btn', class: 'button right search-button' %>
       </div>
+      <fieldset class="large-12 columns push-buttons" id="search-by-section">
+        <legend>filter by document or section</legend>
+        <%= collection_check_boxes :search, :section_ids, Section.all, :id, :name,
+                                   checked: @search.try(:section_ids) %>
+      </fieldset>
     </fieldset>
 <% end %>
