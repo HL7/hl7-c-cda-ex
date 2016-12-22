@@ -13,9 +13,9 @@
       </fieldset>
       <fieldset class="large-1 small-2 columns push-buttons" id="search-by-cert">
         <%= check_box :search, :search_certification %>
-        <%= label_tag 'search[search_certification]', 'ONC Certified' %>
+        <%= label_tag 'search[search_certification]', 'Certification' %>
       </fieldset>
-      <div class="large-2 columns send-search">
+      <div class="large-1 columns send-search">
         <%= submit_tag 'Search', :name => nil, id: 'sub-btn', class: 'button right search-button' %>
       </div>
     </fieldset>
