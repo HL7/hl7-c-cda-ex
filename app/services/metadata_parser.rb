@@ -105,7 +105,7 @@ class MetadataParser
   def self.parse_certifications(chunk)
     cert = false
     content = chunk.split("\n").drop(1).delete_if { |element| element.nil? || element.empty? }
-    content.each { |line| cert = true if line =~ / onc /i }
+    content.each { |line| cert = true if line =~ /(\Wonc)|(\Wonc\W)/i }
     cert
   end
 
