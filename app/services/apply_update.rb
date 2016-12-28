@@ -34,7 +34,7 @@ class ApplyUpdate
     puts 'Retrieving example'
     example = Example.find_or_create_by(name: update_parts[1]) do |t|
       t.section = @section
-      t.status = 'draft'
+      t.status = 'pend'
     end
 
     puts 'Processing update'
@@ -52,7 +52,7 @@ class ApplyUpdate
               a.approved = true
               a.date = approval[1]
             else
-              a.approved = true
+              a.approved = false
               a.comment = approval[1]
             end
           end

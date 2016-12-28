@@ -44,7 +44,7 @@ class MetadataParser
   end
 
   def self.parse_approvals(chunk)
-    status = 'draft'
+    status = 'pend'
     approvals = []
     date_regex = /\W?(\d?\d\/\d?\d\/\d\d\d\d)/
     content = chunk.split("\n").drop(1).delete_if { |element| element.nil? || element.empty? }

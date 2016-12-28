@@ -23,9 +23,15 @@
         <li>
           <span><%= approval.committee %></span>:
           <% if approval.approved -%>
+              <% unless approval.date.nil? -%>
               <span><%= approval.date.strftime('%-m-%-d-%Y') %></span>
+              <% end -%>
           <% else -%>
+              <% if approval.comment =~ /(\d?\d\/\d?\d\/\d\d)/ -%>
+              <span class="err-notice">Invalid date format: <%= approval.comment %></span>
+              <% elsif approval.comment -%>
               <span><%= approval.comment %></span>
+              <% end -%>
           <% end -%>
         </li>
     <% end -%>
