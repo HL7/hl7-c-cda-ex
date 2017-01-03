@@ -1,25 +1,36 @@
 id,name,section_type,narrative,created_at,updated_at
 1,Allergies,sect,"##Allergies and Intolerances Section Examples from C-CDA 
-",2016-12-22,2016-12-22
+",2017-01-03,2017-01-03
 2,Encounters,sect,"##Encounter Section Examples from C-CDA 
-",2016-12-22,2016-12-22
+",2017-01-03,2017-01-03
 3,Family History,sect,"##Family History Section Examples from C-CDA 
-",2016-12-22,2016-12-22
+",2017-01-03,2017-01-03
 4,General,sect,"##General Section Examples from C-CDA 
-",2016-12-22,2016-12-22
-5,Immunizations,sect,"##Immunization Section Examples from C-CDA 
-",2016-12-22,2016-12-22
-6,Medications,sect,"##Medication Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+5,Goals,sect,"##Goals Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+6,Header,doc,"##C-CDA Header Examples
+
+ ",2017-01-03,2017-01-03
+7,Health Concerns,sect,"##Health Concerns Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+8,Immunizations,sect,"##Immunization Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+9,Medical Equipment,sect,"##Medical Equipment Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+10,Medications,sect,"##Medication Section Examples from C-CDA 
 
 For all Medication examples the example task force agreed (8/28/2014) to only include institutionSpecified on the effectiveTime when the value is true. InstitutionSpecified indicates whether the exact timing is up to the party executing the schedule (e.g., to distinguish ""every 8 hours"" (false) from ""3 times a day"" (true)).
-",2016-12-22,2016-12-22
-7,Problems,sect,"##Problem Section Examples from C-CDA 
-",2016-12-22,2016-12-22
-8,Procedures,sect,"##Procedure Section Examples from C-CDA 
-",2016-12-22,2016-12-22
-9,Results,sect,"##Result Section Examples from C-CDA 
-",2016-12-22,2016-12-22
-10,Social History,sect,"##Social History Section Examples from C-CDA 
-",2016-12-22,2016-12-22
-11,Vital Signs,sect,"##Vital Sign Section Examples from C-CDA 
-",2016-12-22,2016-12-22
+",2017-01-03,2017-01-03
+11,Plan of Treatment,sect,"##Plan of Treatment Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+12,Problems,sect,"##Problem Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+13,Procedures,sect,"##Procedure Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+14,Results,sect,"##Result Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+15,Social History,sect,"##Social History Section Examples from C-CDA 
+",2017-01-03,2017-01-03
+16,Vital Signs,sect,"##Vital Sign Section Examples from C-CDA 
+",2017-01-03,2017-01-03
