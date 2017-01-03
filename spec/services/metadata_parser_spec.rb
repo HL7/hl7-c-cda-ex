@@ -73,4 +73,25 @@ describe MetadataParser do
       expect(MetadataParser.parse(RAW_METADATA).onc_certification).to be true
     end
   end
+
+  context 'parsing metadata with MS characters' do
+    it 'should not fail' do
+      data = File.read('spec/support-files/readme-badchar.md')
+      expect {MetadataParser.parse(data) }.not_to raise_exception
+    end
+  end
+
+  context 'parsing approvals' do
+    it 'should parse the correct number' do
+      data = File.read('spec/support-files/readme-approvals.md')
+      metadata = MetadataParser.parse(data)
+      expect(metadata.approvals.count).to eq 3
+    end
+
+    it 'should find all groups' do
+      data = File.read('spec/support-files/readme-approvals.md')
+      metadata = MetadataParser.parse(data)
+      expect(metadata.approvals.map { |i| i[0] }).to eq ['Example Task Force', 'SDWG', 'SDWG C-CDA R2.1 Upgrade']
+    end
+  end
 end

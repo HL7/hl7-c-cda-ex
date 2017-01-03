@@ -1,8 +1,10 @@
 class MetadataParser
   STATUS_TRANSLATE = {Approved: 'app', Pending: 'pend', Withdrawn: 'wthd'}
-  def self.parse(metadata)
+
+  def self.parse(raw_data)
     example_meta = ExampleMetadata.new('pend',false)
 
+    metadata = cleanse(raw_data)
     metadata.split(/##+/).each do |group|
       if group.length > 0
         case group
@@ -111,5 +113,36 @@ class MetadataParser
 
   def self.parse_oids(chunk)
     nil
+  end
+
+  def self.cleanse(string)
+    new_string = string.encode('UTF-8', invalid: :replace, replace: '(?)', undef: :replace)
+    #Quotes: Replace smart double quotes with straight double quotes.
+    #        ANSI version for use with 8-bit regex engines and the Windows code page 1252.
+    #new_string = tr('\x84\x93\x94', '"""')
+
+    #Quotes: Replace smart double quotes with straight double quotes.
+    #        Unicode version for use with Unicode regex engines.
+    new_string.tr!("\u201c\u201d\u201e\u201f\u2033\u2036", '"')
+
+    #Quotes: Replace smart single quotes and apostrophes with straight single quotes.
+    #        Unicode version for use with Unicode regex engines.
+    new_string.tr!("\u2018\u2019\u201a\u201b\u2032\u2035", "'")
+
+    #Quotes: Replace smart single quotes and apostrophes with straight single quotes.
+    #        ANSI version for use with 8-bit regex engines and the Windows code page 1252.
+    #new_string.gsub!("[\x82\x91\x92]", "'")
+
+    new_string.gsub!("\u00a9", '(c)')
+    new_string.gsub!("\u00ae", '(r)')
+    new_string.gsub!("\u2122", '(tm)')
+    # Ellipses
+    new_string.gsub!("\u2026", '...')
+    # em-dash and en-dash
+    new_string.tr!("\u2013\u2014", '-')
+    # bullet
+    new_string.tr!("\u2022", '*')
+    new_string.tr!("\r", '')
+    new_string
   end
 end
