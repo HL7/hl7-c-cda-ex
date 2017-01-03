@@ -7,7 +7,7 @@
 
 <%= link_to 'return to Main screen', sections_path, class: 'button small', id: 'main-page-link' %>
 
-<%= link_to 'return to result list', examples_path, class: 'button small', id: 'search-list-link' %>
+<a href="javascript:history.back()" class="button small" id="search-list-link">return to result list</a>
 
 <p class="detail-note">Example metadata last updated <%= @example.updated_at %></p>
 
