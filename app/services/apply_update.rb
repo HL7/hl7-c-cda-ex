@@ -60,13 +60,13 @@ class ApplyUpdate
         example.save
       end
       true
-    elsif @update_file =~ /c(-)?cda2.1..xml/i
+    elsif @update_file =~ /c(-)?cdar?2.1..xml/i
       example.example_url = URI::encode("#{HTML_URL}#{@source}/blob/master/#{@update_file}")
       example.example = RestClient.get(URI::encode("#{URL}#{@source}/master/#{@update_file}"))
       example.save!
       true
     else
-      Rails.logger.info("Unknown section file: #{@update_file} ignored")
+      Rails.logger.info("Unknown example file: #{@update_file} ignored")
       false
     end
   end
