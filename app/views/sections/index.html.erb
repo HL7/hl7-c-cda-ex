@@ -16,7 +16,7 @@
         <td>
           <div class="large-10 small-9 columns">
             <p class="list-title"><%= link_to(section.name, section) %></p>
-            <div class="list-detail"><%= section.narrative ? raw(markdown.render(section.narrative)) : '' %></div>
+            <div class="list-detail"><%= section.narrative ? raw(markdown.render(truncate_md(section.narrative, 80))) : '' %></div>
           </div>
           <div class="large-2 small-3 columns">
             <%= link_to section do %>
