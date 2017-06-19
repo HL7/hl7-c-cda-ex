@@ -53,8 +53,9 @@ def process_section(doc, name, section):
                 else:
                     link = lines[0][lines[0].index('(')+1 : lines[0].index(')')]
                     name = VALIDATOR_LOOKUP[link]
-            except:
-                ipdb.set_trace()
+            except Exception as e:
+                print e
+                #   ipdb.set_trace()
 
             doc['validator'] = {
                                 "link": link,
