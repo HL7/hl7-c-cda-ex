@@ -1,0 +1,1639 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Retrieved Example List</title>
+
+    <link rel="stylesheet" media="screen" href="/static/css/hl7.css" />
+    <script src="/assets/vendor/modernizr-21c79fdbd5c98d918a40c9fa2ec03aa716322b0a8a56159587b83d66b7fbc8a5.js"></script>
+    <script src="/assets/application-8739e30f2996908142d0b904268fb3dee4c280137e152dccfdf226db1626e4ff.js" data-turbolinks-track="true"></script>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="7aJZomckXLtdCHIaf+511za4pxWXlT4rkv6OiB05OIl+4UBh0xxX82dhPAysgilqu3ONuN8o0bDj3kcWEN2Y2w==" />
+  </head>
+
+  <body>
+  <div class="sticky">
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name"><h1><img src="/static/images/HL7-Logo-6a7cb6e141fe06112152b99cfd9c0a9a405b0ecc6eae595a6b5b064737bd38cc.png" alt="Hl7 logo" />            HL7 CDA Example Search</h1></li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <ul class="left">
+        <li class="main-title">Retrieved Example List </li>
+      </ul>
+      <ul class="right">
+        <li >
+          <a id="tour-invoke">Help</a>
+        </li>
+        <li><a href="mailto:webmaster@hl7.org"><span>Report an Issue</span></a></li>
+      </ul>
+    </section>
+  </nav>
+</div>
+
+    <section id="main-panel">
+      <div class="row">
+        <div class="large-12 small-12 small-centered columns">
+          <p id="notice"></p>
+
+
+<form id="search-form" name="searchform" action="/examples" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+    <fieldset id="search-criteria">
+      <legend>search criteria</legend>
+      <div class="input-float-label small-6 large-6 columns" id="search-by-text">
+        <input type="text" name="search[search_text]" id="search_search_text" value="" placeholder="enter a word or words to search" />
+        <label for="search[search_text]">Search text</label>
+      </div>
+      <fieldset class="large-3 small-4 columns push-buttons" id="search-by-status">
+        <legend>filter by example status</legend>
+        <input type="checkbox" value="app" name="search[status][]" id="search_status_app" /><label for="search_status_app">Approved</label><input type="checkbox" value="wthd" name="search[status][]" id="search_status_wthd" /><label for="search_status_wthd">Withdrawn</label><input type="checkbox" value="pend" name="search[status][]" id="search_status_pend" /><label for="search_status_pend">Pending</label><input type="hidden" name="search[status][]" value="" />
+      </fieldset>
+      <fieldset class="large-1 small-2 columns push-buttons" id="search-by-cert">
+        <input name="search[search_certification]" type="hidden" value="0" /><input type="checkbox" value="1" name="search[search_certification]" id="search_search_certification" />
+        <label for="search_search_certification">Certification</label>
+      </fieldset>
+      <div class="large-1 columns send-search">
+        <input type="submit" value="Search" id="sub-btn" class="button right search-button" />
+      </div>
+    </fieldset>
+</form>
+
+<p class="large-9 columns" id="query-count"> The query found 75 examples</p>
+<p class="return-link large-3 columns" id="main-page-link"><a href="/sections">return to Main Search</a></p>
+
+<table class="listing">
+  <thead>
+    <tr>
+      <th id="results-name">Name</th>
+      <th id="results-section">Section</th>
+      <th id="results-status">Status</th>
+      <th id="results-actions"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/1">Allergy to cat hair</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of an allergy to a specific substance (cat hair) using UNII as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Withdrawn</td>
+        <td>
+          <a href="/examples/1">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/1.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/2">Allergy to food egg</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a food allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in coordination with...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/2">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/2.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/3">Allergy to latex</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a propensity to substance allergy with information on both allergic reaction and reaction severity. It was based upon discussion with Russ Leftwich and Lisa Nelson in...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/3">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/3.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/4">Allergy to specific drug Codeine</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Rob Hausam and John...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/4">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/4.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/5">Allergy to specific drug Epinephrine</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a propensity to drug adverse event with information on multiple allergic reactions each with reaction severity. It was based upon discussion with Russ Leftwich and Lisa...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Withdrawn</td>
+        <td>
+          <a href="/examples/5">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/5.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/6">Allergy to specific drug Penicillin</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of an allergy to a specific drug (penicillin) using RxNorm as terminology with information on both allergic reaction and reaction severity. For drug allergies, this example...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/6">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/6.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/7">Allergy to specific drug class Penicillins</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of an allergy to a drug class (penicillins) using NDF-RT as terminology with information on both allergic reaction and reaction severity. See DSTU 219 for update regarding...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/7">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/7.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/8">No Known Allergies</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how an author can record a patient has no known allergies.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/8">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/8.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/19">Care Team In Transition of Care Documents</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to include Care Team information for 170.315_b1 Ambulatory test data</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Header</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/19">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/19.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/9">No Known Medication Allergies</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how an author can record a patient has no known medication allergies.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Allergies</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/9">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/9.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/10">Hospital Discharge Encounter with Billable Diagnoses</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a hospitalization with discharge diagnoses. Meaningful Use requires a place to document encounter diagnoses, and this example attempts to satisfy. This example aligns...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Encounters</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/10">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/10.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/14">Family History Generic</a></p>
+          <div class="list-detail">
+            <ul>
+<li>Example shows generic &quot;family history of x&quot; and &quot;no family history of x&quot; with commentary suggesting better options.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Family History</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/14">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/14.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/15">Family History two individuals same relationship to the patient</a></p>
+          <div class="list-detail">
+            <ul>
+<li>Example shows two brothers with multiple conditions. Though they have the same relationship to the patient, they can be identified by their separation into two family history organizers as...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Family History</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/15">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/15.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/16">Normal Family History Father deceased-Mother alive</a></p>
+          <div class="list-detail">
+            <ul>
+<li>Example shows multiple observations for one family member, identifying the cause of death, and a family member with no known problems.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Family History</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/16">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/16.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/17">No Section Information Problems</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of no information available for problems.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>General</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/17">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/17.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/12">Outpatient Encounter Patient Disenrolled</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of an outpatient visit discharge disposition. In order to support a local Discharge Disposition code the dischargeDisposition contains the &quot;OTH&quot; nullFlavor.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Encounters</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/12">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/12.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/13">Outpatient Encounter with Diagnoses</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure Encounter Diagnosis for the 170.314(b)(2) Transitions of care - L) Encounter Diagnosis</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Encounters</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/13">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/34">Medication Frequency Patterns</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is a reference to a google document of <a href="https://docs.google.com/document/d/1Y0Z458o_MrR2aPnpx6EygO6hpI88Bl95esjRWZ0agtY/edit">common medication frequency patterns</a></li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/34">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/35">Medication statusCodes</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is a reference to a google document of <a href="https://docs.google.com/spreadsheets/d/1d0RJoyzVQISK4ai3zbjKT6PCuOEQzgWBCqarDHyD-JE/edit">medication statusCodes</a>. SDWG developed this with the...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/35">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/25">Immunization not given Patient refused</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how an author can record a patient refused an immunization.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Immunizations</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/25">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/25.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/26">Influenza Vaccination</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure Immunizations for the 170.314(b)(2) Transitions of care - J) Immunizations.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Immunizations</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/26">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/26.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/27">Unknown Immunization Status</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how an author can record they do now know whether the patient has received any vaccinations.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Immunizations</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/27">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/27.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/30">Anitbiotics with varied dosing</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a medication with dosing that varies over time.</li>
+<li>This is an example of a common pattern for antibiotic administration which is complex (double dose on day 1, commonly...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Withdrawn</td>
+        <td>
+          <a href="/examples/30">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/30.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/20">Patient Demographic Information</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure Patient Demographics for the 170.314(b)(2) Transitions of care - A) Patient Demographics.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Header</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/20">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/20.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/28">Implant Without Procedure</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how an author can record an implant when the procedure is unknown.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medical Equipment</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/28">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/28.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/31">Med every 4-6 hours</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a medication (Sudafed) which to be administered every 4-6 hours, a common dosing pattern. Representing the range of potential of hours is done through a low and high...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/31">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/31.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/32">Med oral QID with PRN</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a medication which is QID and PRN (as needed) but with no precondition specified. It was generated based on SDWG list-serv discussion in December 2013. It also demonstrated...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/32">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/32.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/36">No Medications</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of no medications</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/36">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/36.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/37">Patient reported oral medication</a></p>
+          <div class="list-detail">
+            <ul>
+<li>Patients often report medications that they are taking, either self-prescribed or by another provider, and know the drug name but do not know any specific brand or dose. This is an example...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Withdrawn</td>
+        <td>
+          <a href="/examples/37">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/37.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/38">Single administration of medication</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of two baby aspirin being administered at a single point in time. At the January 2014 San Antonio meeting of HL7, this approach was decided as appropriate for medication...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/38">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/38.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/33">Med oral with indications and instructions</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a medication administered orally with a PRN coded precondition, instructions (not PRN), and indications (not PRN).</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/33">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/33.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/39">Care Plan Goals and Instructions</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure a Goals and Instructions for the 170.314(b)(2) Transitions of care - K) Care Plan (Goals and Instructions).</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Plan of Treatment</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/39">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/40">No Planned Tests</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how an author can record no planned tests.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Plan of Treatment</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/40">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/41">Planned EKG</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure a planned observation.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Plan of Treatment</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/41">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/42">Planned Encounter - Referral</a></p>
+          <div class="list-detail">
+            <ul>
+<li> This example illustrates how to structure a Referral for the 170.314(b)(2) Transitions of care - N) Referral</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Plan of Treatment</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/42">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/43">Active Problem</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure an active problem.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Problems</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/43">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/43.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/44">Complete or Resolved Problem</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure a resolved problem, both by having a biological resolution date and a completed status of the concern.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Problems</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/44">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/44.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/45">No Known Problems</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of no known problems.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Problems</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/45">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/45.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/48">Procedures Section Observation Entry</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how an observation within a procedure section.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Procedures</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/48">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/48.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/67">Panel of Vital Signs in Mixed Metric-Imperial Units</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is panel of the nine common vital signs collected on an adult in mixed metric/imperial units. Note that body surface area (BSA), head circumference and height (lying) are not included.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Vital Signs</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/67">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/67.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/46">Patient Does Not Have Diabetes</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of an author asserting a patient does not have diabetes.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Problems</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/46">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/46.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/50">Result panel with two ordinal values of negative-positive</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to encode positive and negative, which are common data types returned form lab equipment. While some technologies may represent this as a type of ST (string), it...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/50">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/50.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/22">Health Concerns Link to Problems Section</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to link a concern to a problem in the problem list section.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Health Concerns</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/22">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/22.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/49">Procedures Section Procedure Entry</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how a procedure which &quot;alters the physical state&quot; of the patient and should be classified as a procedure.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Procedures</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/49">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/49.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/51">Result with an unstructured string as value (urine color)</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a value from a lab result that may not be structured.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/51">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/51.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/52">Result with greater than a specified value</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to encode &quot;greater than&quot; (but not equal to) a specific range when returned from lab equipment. The example is for a point-of-care glucometer, which measures blood...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/52">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/52.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/54">Result with non-numeric physical quantity and unit</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a value from a lab with a discrete unit, but whose value is not a number, so the PQ datatype, the only type with a unit attribute, cannot be used.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/54">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/54.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/53">Result with lab location</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a results panel with Laboratory Location details as required by 2015 Certification Sender test 170.315(e1), in compliance with 42 CFR 493.1291(c)(1) through (7).</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/53">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/53.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/55">Results Radiology with Image Narrative</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to show a radiology result with narrative report in the results section. For the value, xsi-type equals ED (with reference) for encapsulated data.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/55">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/55.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/56">Results Unit Non-UCUM</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a value from a lab which didn&#39;t include a UCUM unit. </li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/56">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/56.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/71">Problem TargetSiteCode Qualifier</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of adding a SNOMED qualifier to an ambiguous ICD-9 which could be used in qualifying patients related to QRDA/eCQM measure</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Problems</td>
+        <td>Pending</td>
+        <td>
+          <a href="/examples/71">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/71.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/59">Results panel with pending component</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a results panel with pending component.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/59">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/59.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/60">Results with less than specific value</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to encode &quot;less than or equal to&quot; a specific range when returned from lab equipment. The example is for BNP, an immunoassay where the lower threshold for detection...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/60">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/60.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/57">Results of Basic Metabolic Panel and Troponin</a></p>
+          <div class="list-detail">
+            <ul>
+<li>Sample from Meaningful Use test data (inpatient data)</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/57">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/57.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/61">Results with translation unit</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a value from a lab which requires a translation for its unit. All units for physical quantities should be represent in UCUM.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/61">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/61.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/62">Current Smoking Status</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of current smoking status. This example also includes a coordinating social history observation to convey the amount of smoking using a SNOMED code. This SNOMED code in...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Social History</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/62">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/62.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/63">Former Smoking Status</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a former smoker in smoking status. There is a variation in how effectiveTime/high is used since this represents when the patient stopped smoking, not when they stopped...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Social History</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/63">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/63.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/70">Med at bedtime</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of having a medication with event timing (take at bedtime or at the &quot;hour of sleep&quot; (HS))</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medications</td>
+        <td>Pending</td>
+        <td>
+          <a href="/examples/70">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/70.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/64">Never Smoking Status</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a never smoker in smoking status. A best practice to avoid confusion is for each social history section to only include a single smoking status.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Social History</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/64">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/64.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/65">Unknown Smoking Status</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of unknown smoking status. There is a major variation in how no information is managed for smoking status. C-CDA explicitly guides to not utilize a nullFlavor for this...</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Social History</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/65">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/65.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/66">Panel of Vital Signs in Metric Units</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is panel of the nine common vital signs collected on an adult in metric units. Note that body surface area (BSA), head circumference and height (lying) are not included.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Vital Signs</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/66">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/66.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/68">Health Concerns Link to Problems Section with linkHTML</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to link a concern to a problem in the problem list section with linkHTML.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Health Concerns</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/68">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/68.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/24">No Known Health Concerns</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how an author can record they have no health concerns for a patient.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Health Concerns</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/24">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/24.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/11">Inpatient Encounter Discharged to Rehab Location</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of a hospitalization with discharge disposition. The Discharge Disposition includes both the standard code and a local code, and a discharge destination</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Encounters</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/11">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/11.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/23">Health Concerns Narrative Only</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to send a health concern section with only narrative.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Health Concerns</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/23">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/23.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/21">Patient Previous Name</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure Patient&#39;s previous name. </li>
+</ul>
+
+          </div>
+        </td>
+        <td>Header</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/21">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/21.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/58">Results of CO2 Test</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates how to structure Laboratory Tests and Values/Results for the 170.314(b)(2) Transitions of care - I) Laboratory Tests and Values/Results.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Results</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/58">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/58.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/18">Goals Narrative Only</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to send a goals section with only narrative.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Goals</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/18">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/18.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/69">Birth Sex</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This observation represents the sex of the patient at birth. It is the sex that is entered on the person&#39;s birth certificate at time of birth.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Social History</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/69">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/69.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/29">No Implanted Devices</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how an author can record a patient has no implanted devices</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Medical Equipment</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/29">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/29.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/72">Functional Impairment</a></p>
+          <div class="list-detail">
+
+          </div>
+        </td>
+        <td>Functional Status</td>
+        <td>Pending</td>
+        <td>
+          <a href="/examples/72">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/47">Procedures Section Act Entry</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This example illustrates an act within a procedure section.</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Procedures</td>
+        <td>Approved</td>
+        <td>
+          <a href="/examples/47">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/47.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/75">Multiple Implants</a></p>
+          <div class="list-detail">
+
+          </div>
+        </td>
+        <td>Medical Equipment</td>
+        <td>Pending</td>
+        <td>
+          <a href="/examples/75">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/73">Care Team Narrative Only</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how to send a Care Team with narrative only</li>
+</ul>
+
+          </div>
+        </td>
+        <td>Care Team - Provisional</td>
+        <td>Pending</td>
+        <td>
+          <a href="/examples/73">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/73.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="list-title"><a href="/examples/74">Parent Document Replace Relationship</a></p>
+          <div class="list-detail">
+            <ul>
+<li>This is an example of how a continuity of care document (or other document) may reference parent documents. This one replaces a previous document. </li>
+</ul>
+
+          </div>
+        </td>
+        <td>General</td>
+        <td>Pending</td>
+        <td>
+          <a href="/examples/74">
+              <span class="list-link-text">Detail</span><span class="link-pointer">}</span>
+</a>          <br/>
+          <a href="/examples/74.xml">
+              <span class="list-link-text">Download</span><span class="link-pointer">d</span>
+</a>        </td>
+      </tr>
+  </tbody>
+</table>
+
+<ol class="joyride-list" data-joyride>
+  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
+    <h4>C-CDA Example Search Help</h4>
+    <p><strong>C-CDA Example Search Results</strong><br/>
+      This screen displays the results of executing the example search criteria
+      against the existing examples recorded in the example database.</p>
+  </li>
+  <li data-id="search-criteria" data-text="Next" data-options="tip_location: left">
+  <h4>Search Criteria Panel</h4>
+  <p>This panel allow you to further refine your queries and narrow the results</p>
+</li>
+<li data-id="search-by-text" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
+  <h4>Text Search Words</h4>
+  <p>Use this field to enter words related to your search. These words can appear in the
+    title, the comments or as part of a special list of keywords associated with the example.
+  The search words should be entered with spaces separating the items.</p>
+</li>
+<li data-id="search-by-status" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+  <h4>Filter by example status</h4>
+  <p>By selecting the various statuses, the search results can be limited to only the example
+  that are set to the selected status(es). By removing all status selections, the filtering
+    is removed and examples from all statuses will be returned (based on any other filtering).</p>
+</li>
+<li data-id="search-by-cert" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+  <h4>Select only ONC Certified examples</h4>
+  <p>These are samples referenced in a government rule or certification companion guide.</p>
+</li>
+<li data-id="sub-btn" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+  <p>Execute the search based on the criteria entered (or retrieve all examples if no
+    criteria specified).</p>
+</li>
+
+  <li data-id="query-count" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>The number of results that match the query parameters can be found here.</p>
+  </li>
+  <li data-id="main-page-link" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>Use this link to jump back to the initial page of the application (that lists the sections).</p>
+  </li>
+  <li data-id="results-name" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns list the names of the examples that match the criteria (and the comment for each example).</p>
+  </li>
+  <li data-id="results-section" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns lists the area in the C-CDA specification (the specification is broken
+      into distinct topics for the various exchangeable documents, the common header, and
+      the sections that occur within the exchangeable documents) that the example demonstrates.</p>
+  </li>
+  <li data-id="results-status" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns lists the state of the example in the example verification and approval process.</p>
+  </li>
+  <li data-id="results-actions" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>You can select to download the examples directly or navigate to page with the full detailed description of the example.</p>
+  </li>
+  <li data-button="End" data-prev-text="Prev">
+    <h4>Tour Complete</h4>
+    <p>Return to the C-CDA Example Search Results page.</p>
+  </li>
+</ol>
+
+
+<script>
+  $(document).foundation();
+
+  function activateJoyride() {
+    $(document).foundation('joyride', 'start');
+  }
+
+  $( document ).ready(function() {
+
+    $('#sub-btn').click(function validateForm() {
+      var isValid = true;
+      $('.field').each(function() {
+        if ( $(this).val() === '' )
+          $(this).removeAttr("required");
+      });
+      document.searchform.submit();
+      return isValid;
+    });
+
+    $('#tour-invoke').click(function () {
+      $(document).foundation('joyride', 'start')
+    });
+  });
+</script>
+        </div>
+      </div>
+    </section>
+
+  </body>
+</html>
