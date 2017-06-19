@@ -38,7 +38,7 @@ from bson.objectid import ObjectId
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/sections', methods=['GET', 'POST'])
 def get_list_sections_page():
-    examples = db.sections.find({})
+    examples = db.sections.find({}).sort("name", 1)
     #   return render_template("orig.html", examples=examples)
     return render_template("sections.html", examples=examples)
 
