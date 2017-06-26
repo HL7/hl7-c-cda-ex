@@ -105,10 +105,12 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
         #   ipdb.set_trace()
     else:
         #   add permalink to readme
-        permalink = generate_permalink(repo, path, readme_filename, xml_filename)
+        result = db.examples.insert_one(doc)
+        permalink = result.inserted_id
+        #   permalink = generate_permalink(repo, path, readme_filename, xml_filename)
         doc['Permalink'] = permalink
         print "creating new permalink {}".format(permalink)
-        result = db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
+        result = db.examples.replace_one({"_id": doc['Permalink']}, doc, upsert=True)
         #   commit change to readme
         should_commit = True
         #   push change to GitHub repo
