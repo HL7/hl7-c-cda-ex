@@ -24,6 +24,7 @@ def sync():
 
     #   delete local repo afterwards
     if should_delete:
+        #   ipdb.set_trace()
         shutil.rmtree(LOCAL_EXAMPLES_REPO_DIR)
 
     basedir = os.path.abspath(os.path.dirname(__file__))

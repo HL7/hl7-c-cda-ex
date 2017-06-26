@@ -89,6 +89,7 @@ def process_sections(sections):
 def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename):
     sections = data.split('##')
     doc = process_sections(sections)
+
     doc['section'] = section_name
     doc['name'] = example_name
     doc['xml'] = example_xml
@@ -100,17 +101,20 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
     doc['updated_on'] = datetime.datetime.now()
     should_commit = False
     if 'Permalink' in doc:
-        db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
+        result = db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
         #   ipdb.set_trace()
     else:
         #   add permalink to readme
-        permalink = generate_permalink(repo, path, readme_filename)
+        permalink = generate_permalink(repo, path, readme_filename, xml_filename)
         doc['Permalink'] = permalink
         print "creating new permalink {}".format(permalink)
-        db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
+        result = db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
         #   commit change to readme
         should_commit = True
         #   push change to GitHub repo
+    if section_name.startswith('General'):
+        #   ipdb.set_trace()
+        print "{} id {} ".format(example_name, doc['Permalink'])
 
     return should_commit
 
@@ -130,13 +134,16 @@ def parse(repo, folder):
                     description = readme.read()
                     description = description.replace("##", "")
                     section_name = path.split(os.path.sep)[-1]
+
                     #   ipdb.set_trace()
                     if section_name not in  ['C-CDA-Examples', 'ccda_examples_repo']:
-                        db.sections.replace_one(
+                        db.sections.update_one(
                             {"name": section_name},
-                            {
-                                "name": section_name,
-                                "description": description
+                            {"$set":
+                                {
+                                    "name": section_name,
+                                    "description": description
+                                }
                             },
                             upsert=True
                         )
@@ -196,11 +203,14 @@ def parse(repo, folder):
         return should_commit
 
 
-def generate_permalink(repo, path, filename):
-    file_pth = os.path.join(os.getcwd(), path,filename)
+def generate_permalink(repo, path, readme_filename, xml_filename):
+    xml_pth =  os.path.join(os.getcwd(), path, readme_filename)
     #ipdb.set_trace()
-    git_blob_hash = repo.git.hash_object(file_pth)
-    with open( os.path.join(path,filename) , 'a+') as readme:
+    #   get git blob hash of actual example xml file
+    git_blob_hash = repo.git.hash_object(xml_pth)
+
+    #   add Permalink to readme file
+    with open( os.path.join(path,readme_filename) , 'a+') as readme:
         readme.write(add_permalink(git_blob_hash))
 
     return git_blob_hash
