@@ -37,7 +37,7 @@ Whenever a Heroku app is deployed, Heroku uses “build packs” to install depe
 
 
 ### Automatic synchronization with Examples GitHub Repo
-![alt text](https://raw.githubusercontent.com/HL7/hl7-c-cda-ex/master/static/automagicPermalinks.png)
+![alt text](https://raw.githubusercontent.com/schmoney/hl7-c-cda-ex/master/static/images/automagicPermalinks.png)
 
 1. SDWG TF member* pushes updated examples to GitHub HL7/C-CDA-Examples repo
 2. Commits to the GitHub Repo trigger a webhook to update the  Herokup app based on the latest commit to the master branch
