@@ -1,0 +1,26 @@
+<form id="search-form" name="searchform" action="/search" method="post">
+  <input name="utf8" type="hidden" value="&#x2713;" />
+    <fieldset id="search-criteria">
+      <legend>search criteria</legend>
+      <div class="input-float-label small-6 large-6 columns" id="search-by-text">
+        <input type="text" name="search_terms" id="search_search_text" value="" placeholder="enter a word or words to search" />
+        <label for="search[search_text]">Search text</label>
+      </div>
+      <fieldset class="large-3 small-4 columns push-buttons" id="search-by-status">
+        <legend>filter by example status</legend>
+        <input type="checkbox" value="Approved" name="approval" id="search_status_app" />
+        <label for="search_status_app">Approved</label>
+        <input type="checkbox" value="Withdrawn" name="approval" id="search_status_wthd" />
+        <label for="search_status_wthd">Withdrawn</label>
+        <input type="checkbox" value="Pending" name="approval" id="search_status_pend" />
+        <label for="search_status_pend">Pending</label>
+      </fieldset>
+      <fieldset class="large-1 small-2 columns push-buttons" id="search-by-cert">
+        <input type="checkbox" value="1" name="certification" id="search_search_certification" />
+        <label for="search_search_certification">Certification</label>
+      </fieldset>
+      <div class="large-1 columns send-search">
+        <input type="submit" value="Search" id="sub-btn" class="button right search-button" />
+      </div>
+    </fieldset>
+</form>
