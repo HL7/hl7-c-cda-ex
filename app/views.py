@@ -18,6 +18,7 @@ import ipdb
 from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
 from pygments.formatters import HtmlFormatter
+from bson.objectid import ObjectId
 
 from .sync import sync
 
@@ -52,8 +53,25 @@ def get_section_page(section_id):
 
 @application.route('/examples/view/<permalink_id>', methods=['GET', 'POST'])
 def get_example_page(permalink_id):
-    example = db.examples.find_one({"Permalink": permalink_id})
+    #   example = db.examples.find_one({"Permalink": ObjectId(permalink_id)})
+    #   example = db.examples.find_one({"Permalink": permalink_id})
+    obj_id = False
+    try:
+        obj_id = ObjectId(permalink_id)
+    except Exception as e:
+        obj_id = False
+    if obj_id:
+        example = db.examples.find_one({"Permalink": {
+                "$in": [permalink_id, obj_id],
+            }
+        })
+    else:
+        example = db.examples.find_one({"Permalink": permalink_id})
+
+    if not example:
+        pass #  TODO: handle if this doesn't work
     if example['xml']:
+        #   TODO: let's just set the lexer intead of guessing its
         lexer = guess_lexer(example['xml'])
         style = HtmlFormatter(style='friendly').style
         #   ipdb.set_trace()

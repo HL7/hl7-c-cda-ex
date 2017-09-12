@@ -5,7 +5,8 @@ folder = '../C-CDA-Examples'
 #folder = '../ccda_examples_repo'
 
 VALIDATOR_LOOKUP = {
-    "https://sitenv.org/c-cda-validator": "SITE C-CDA Validator"
+    "https://sitenv.org/c-cda-validator": "SITE C-CDA Validator",
+    "https://sitenv.org/sandbox-ccda/ccda-validator": "SITE C-CDA Validator"
 }
 
 from app.db import db, GIT_BRANCH, GIT_URL
@@ -33,8 +34,10 @@ def process_section(doc, name, section):
         lines = [ l.replace('* ', '') for l in lines if l.startswith("*") ]
         #   get rid of remaining #
         name = name.strip()[1:] if name.startswith("#") else name.strip()
+        name = name.strip() # catch any lingering white spaces i.e. "# Validaton" => " Validation" => "Validation"
         # make name safe for mongo
         name = name.replace(".", ' ')
+
 
         #   update Permalink field to just be the id, otherwise list of bulleted items
         isStr = name in ['Permalink', 'Comments', 'Custodian', 'Reference to full CDA sample', 'Certification']
@@ -42,28 +45,43 @@ def process_section(doc, name, section):
 
         if name == 'Approval Status':
             doc['approval']  = lines[0].split(":")[1].strip()
+            if doc['approval'] in ['', None]:
+                ipdb.set_trace()
+
         if name == 'Validation location':
-            try:
-                if lines[0].startswith("CDA valid, no C-CDA rules exist"):
-                    link = None
-                    name = 'CDA valid, no C-CDA rules exist'
-                elif lines[0] == 'N/A':
-                    link = None
-                    name = 'N/A'
-                else:
+            if lines[0].startswith("CDA valid, no C-CDA rules exist"):
+                link = None
+                name = 'CDA valid, no C-CDA rules exist'
+            elif lines[0].lower() in ['n/a', 'not applicable']:
+                link = None
+                name = 'N/A'
+            else:
+                try:
                     link = lines[0][lines[0].index('(')+1 : lines[0].index(')')]
                     name = VALIDATOR_LOOKUP[link]
-            except Exception as e:
-                link = None
-                print e
-                #   ipdb.set_trace()
+                except Exception as e:
+                    link = lines[0]
+                    #   print e
+                    #   ipdb.set_trace()
+                if link in VALIDATOR_LOOKUP:
+                    name = VALIDATOR_LOOKUP[link]
+                else:
+                    name = link
 
             doc['validator'] = {
                                 "link": link,
                                 "name": name
                                 }
-        doc[name] = lines[0] if isStr else lines
 
+        doc[name] = lines[0] if isStr and len(lines) == 1  else lines
+
+        #   check if Permalink section is blank
+        if name == 'Permalink' and doc[name] == []:
+            #   set to None so that permalink gets generated later
+            doc[name] = None
+
+        if doc[name] == 'Multiple Patient Identifiers':
+            ipdb.set_trace()
 
 def process_sections(sections):
     doc = {}
@@ -90,6 +108,7 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
     sections = data.split('##')
     doc = process_sections(sections)
 
+
     doc['section'] = section_name
     doc['name'] = example_name
     doc['xml'] = example_xml
@@ -100,7 +119,7 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
         doc['google_sheets_url'] = markdown2.markdown(doc['Comments'])
     doc['updated_on'] = datetime.datetime.now()
     should_commit = False
-    if 'Permalink' in doc:
+    if 'Permalink' in doc and doc['Permalink'] != None:
         result = db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
         #   ipdb.set_trace()
     else:

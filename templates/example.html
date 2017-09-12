@@ -64,13 +64,13 @@
 
 
               <p>
-                {% if example['validator']['link'] %}
+                {% if 'validator' in example and example['validator']['link'] %}
                     <a id="example-validation" href="{{example['validator']['link']}}">{{example['validator']['name']}}</a>
                 {% else %}
                     No validation URL supplied
                 {% endif %}
               </p>
-              {% if example['Certification'] not in ['', 'N/A'] %}
+              {% if 'Certification' in example and example['Certification'] not in ['', 'N/A'] %}
                 <p>{{example['Certification']}} Certification</p>
               {% endif %}
               <p class="detail-with-list">
@@ -78,8 +78,6 @@
               </p>
               <div class="large-10 large-offset-1 columns">
                 <ul>
-
-
               <li>
                 {% if example['xml'] != None %}
                       {{example['Comments']}}
