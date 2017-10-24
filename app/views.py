@@ -72,7 +72,7 @@ def get_example_page(permalink_id):
         pass #  TODO: handle if this doesn't work
     if example['xml']:
         #   TODO: let's just set the lexer intead of guessing its
-        lexer = guess_lexer(example['xml'])
+        lexer = XmlLexer() #  guess_lexer(example['xml'])
         style = HtmlFormatter(style='friendly').style
         #   ipdb.set_trace()
         xml = highlight(example['xml'], lexer, HtmlFormatter(full=True, style='colorful'))
