@@ -104,10 +104,13 @@ def process_sections(sections):
     return doc
 
 
-def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename):
+def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename, update_one_example_only):
     sections = data.split('##')
     doc = process_sections(sections)
 
+    #   check if it's just this one example or all examples
+    if update_one_example_only and 'Permalink' in doc and doc['Permalink'] != update_one_example_only:
+        return False
 
     doc['section'] = section_name
     doc['name'] = example_name
@@ -120,6 +123,7 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
     doc['updated_on'] = datetime.datetime.now()
     should_commit = False
     if 'Permalink' in doc and doc['Permalink'] != None:
+        print "updating example {}.{} ({})".format(doc['section'], doc['name'], doc['Permalink'])
         result = db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
         #   ipdb.set_trace()
     else:
@@ -129,7 +133,7 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
         update_readme(repo, path, readme_filename, permalink)
         #   permalink = generate_permalink(repo, path, readme_filename, xml_filename)
         doc['Permalink'] = permalink
-        print "creating new permalink {}".format(permalink)
+        print "creating new permalink {}.{} for {}".format(doc['section'], doc['Permalink'], doc['name'])
         result = db.examples.replace_one({"_id": doc['Permalink']}, doc, upsert=True)
         #   commit change to readme
         should_commit = True
@@ -142,7 +146,7 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
     return should_commit
 
 #   loop through each section folder
-def parse(repo, folder):
+def parse(repo, folder, update_one_example_only):
     should_commit = False
     for path,dirs,files in os.walk(folder):
         #   print "path: {} dir: {} "
@@ -150,7 +154,7 @@ def parse(repo, folder):
         for filename in files:
             #   section folder
             if filename.lower() == "readme.md" and len(dirs) != 0:
-                print os.path.join(path,filename)
+                #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
                 with open(os.path.join(path,filename), 'rb') as readme:
@@ -181,7 +185,7 @@ def parse(repo, folder):
 
                 else:
                     xml_filename = xml_files[0]
-                    print os.path.join(path,filename)
+                    #   print os.path.join(path,filename)
                     pth = os.path.join(re.sub(folder, '', path), filename)
                     pth = pth.lstrip('/')
 
@@ -207,7 +211,7 @@ def parse(repo, folder):
                     #file_pth = os.path.join(path,filename)
                     #ipdb.set_trace()
                     #permalink_id = repo.git.hash_object(file_pth)
-                    commit_new_id = process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, filename)
+                    commit_new_id = process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, filename, update_one_example_only)
 
                     if commit_new_id:
                         should_commit = True

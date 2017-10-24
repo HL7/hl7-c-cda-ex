@@ -123,8 +123,12 @@ def get_search_results():
 
 
 @application.route('/sync', methods=['GET', 'POST'])
-def sync_from_github():
-    return jsonify(sync())
+@application.route('/sync/<permalink_id>', methods=['GET', 'POST'])
+def sync_from_github(permalink_id=None):
+    if(permalink_id):
+        return jsonify(sync(permalink_id))
+    else:
+        return jsonify(sync())
 
 import configparser
 

@@ -9,7 +9,7 @@ from parse_meta_data import parse
 from db import GIT_URL, GIT_BRANCH
 
 
-def sync():
+def sync(permalink_id=None):
 
     #   repo = git.Repo(folder)
     LOCAL_EXAMPLES_REPO_DIR = "./ccda_examples_repo"
@@ -20,7 +20,7 @@ def sync():
 
     repo = git.Repo.clone_from(GIT_URL, LOCAL_EXAMPLES_REPO_DIR)
     repo.git.pull("origin", GIT_BRANCH)
-    should_delete = parse(repo, LOCAL_EXAMPLES_REPO_DIR)
+    should_delete = parse(repo, LOCAL_EXAMPLES_REPO_DIR, permalink_id)
 
     #   delete local repo afterwards
     if should_delete:
@@ -29,6 +29,9 @@ def sync():
 
     basedir = os.path.abspath(os.path.dirname(__file__))
 
-    sections = db.sections.find().count()
-    examples = db.examples.find().count()
-    return "loaded {} sections and {} examples".format(sections, examples)
+    if not permalink_id:
+        sections = db.sections.find().count()
+        examples = db.examples.find().count()
+        return "loaded {} sections and {} examples".format(sections, examples)
+    else:
+        return "reloaded example {}".format(permalink_id)
