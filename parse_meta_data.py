@@ -27,21 +27,27 @@ def get_name(section):
 
 
 def process_section(doc, name, section):
-    if section.startswith(name): # not clear what this section maps to in the front end
+
+    if section.strip().startswith(name): # not clear what this section maps to in the front end
 
         lines = section.split("\n")
         #   ipdb.set_trace()
         lines = [ l.replace('* ', '') for l in lines if l.startswith("*") ]
+
         #   get rid of remaining #
         name = name.strip()[1:] if name.startswith("#") else name.strip()
         name = name.strip() # catch any lingering white spaces i.e. "# Validaton" => " Validation" => "Validation"
         # make name safe for mongo
         name = name.replace(".", ' ')
 
-
         #   update Permalink field to just be the id, otherwise list of bulleted items
         isStr = name in ['Permalink', 'Comments', 'Custodian', 'Reference to full CDA sample', 'Certification']
 
+        #if name.startswith('# Approval Status') or name.endswith(' Approval Status'):
+        #    ipdb.set_trace()
+
+        #if 'Approval Status' in [name, name2] and name != name2:
+        #    ipdb.set_trace()
 
         if name == 'Approval Status':
             doc['approval']  = lines[0].split(":")[1].strip()
@@ -80,14 +86,15 @@ def process_section(doc, name, section):
             #   set to None so that permalink gets generated later
             doc[name] = None
 
-        if doc[name] == 'Multiple Patient Identifiers':
-            ipdb.set_trace()
+        #if doc[name] == 'Multiple Patient Identifiers':
+        #    ipdb.set_trace()
 
-def process_sections(sections):
+def process_sections(example_name, sections):
     doc = {}
     for section in sections:
         if section != '':
             name = get_name(section)
+
             process_section(doc,name, section)
 
             #   ipdb.set_trace()
@@ -106,7 +113,7 @@ def process_sections(sections):
 
 def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename, update_one_example_only):
     sections = data.split('##')
-    doc = process_sections(sections)
+    doc = process_sections(example_name, sections)
 
     #   check if it's just this one example or all examples
     if update_one_example_only and 'Permalink' in doc and doc['Permalink'] != update_one_example_only:
@@ -124,12 +131,12 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
     should_commit = False
     if 'Permalink' in doc and doc['Permalink'] != None:
         print "updating example {}.{} ({})".format(doc['section'], doc['name'], doc['Permalink'])
-        result = db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
+        result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
         #   ipdb.set_trace()
     else:
         #   add permalink to readme
         result = db.examples.insert_one(doc)
-        permalink = result.inserted_id
+        permalink = str(result.inserted_id)
         update_readme(repo, path, readme_filename, permalink)
         #   permalink = generate_permalink(repo, path, readme_filename, xml_filename)
         doc['Permalink'] = permalink
