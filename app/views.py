@@ -70,7 +70,7 @@ def get_example_page(permalink_id):
 
     if not example:
         pass #  TODO: handle if this doesn't work
-    if example['xml']:
+    if 'xml' in example and example['xml']:
         #   TODO: let's just set the lexer intead of guessing its
         lexer = XmlLexer() #  guess_lexer(example['xml'])
         style = HtmlFormatter(style='friendly').style
