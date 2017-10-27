@@ -70,16 +70,20 @@ def get_example_page(permalink_id):
 
     if not example:
         pass #  TODO: handle if this doesn't work
-    if 'xml' in example and example['xml']:
-        #   TODO: let's just set the lexer intead of guessing its
-        lexer = XmlLexer() #  guess_lexer(example['xml'])
-        style = HtmlFormatter(style='friendly').style
-        #   ipdb.set_trace()
-        xml = highlight(example['xml'], lexer, HtmlFormatter(full=True, style='colorful'))
+    """
+    if 'xml_data' in example and example['xml_data']:
+        for filename, xml in example['xml_data']:
+            #   TODO: let's just set the lexer intead of guessing its
+            lexer = XmlLexer() #  guess_lexer(example['xml'])
+            style = HtmlFormatter(style='friendly').style
+            #   ipdb.set_trace()
+            formatted_xml = highlight(xml, lexer, HtmlFormatter(full=True, style='colorful'))
+
     else:
         xml = None
+    """
     #   return render_template("orig.html", examples=examples)
-    return render_template("example.html", example=example, xml=xml)
+    return render_template("example.html", example=example)
 
 @application.route("/examples/download/<permalink_id>", methods=['GET', 'POST'])
 def download_example(permalink_id):

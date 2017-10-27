@@ -1,5 +1,8 @@
 import os, ipdb, re, datetime, markdown2
 from git import Repo
+from pygments import highlight
+from pygments.lexers import XmlLexer, guess_lexer
+from pygments.formatters import HtmlFormatter
 
 folder = '../C-CDA-Examples'
 #folder = '../ccda_examples_repo'
@@ -82,10 +85,13 @@ def process_section(doc, name, section):
         doc[name] = lines[0] if isStr and len(lines) == 1  else lines
 
         #   check if Permalink section is blank
-        if name == 'Permalink' and doc[name] == []:
+        if name == 'Permalink' and isinstance(doc[name], list) and len(doc[name]) == 0: # doc[name] == []:
             #   set to None so that permalink gets generated later
+            #   ipdb.set_trace()
             doc[name] = None
 
+        if 'name' in doc and doc['name'] in ['Parent Document Replace Relationship']:
+            ipdb.set_trace()
         #if doc[name] == 'Multiple Patient Identifiers':
         #    ipdb.set_trace()
 
@@ -111,7 +117,9 @@ def process_sections(example_name, sections):
     return doc
 
 
-def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename, update_one_example_only):
+#   def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename, update_one_example_only):
+def process_readme(repo, section_name, example_name, data, xml_data, path, readme_filename, update_one_example_only):
+
     sections = data.split('##')
     doc = process_sections(example_name, sections)
 
@@ -121,14 +129,27 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
 
     doc['section'] = section_name
     doc['name'] = example_name
+
+    """
     doc['xml'] = example_xml
     doc['xml_filename'] = xml_filename
     #   if no xml, then assume it's just a comment that links to the google doc
     if example_xml is None:
         #   convert markdown to html with link to google doc
         doc['google_sheets_url'] = markdown2.markdown(doc['Comments'])
+    """
+
+    if xml_data is None:
+        doc['google_sheets_url'] = markdown2.markdown(doc['Comments'])
+    else:
+        doc['xml_data'] = xml_data
+
     doc['updated_on'] = datetime.datetime.now()
     should_commit = False
+
+    #if doc['name'] in ['Parent Document Replace Relationship']:
+    #    ipdb.set_trace()
+
     if 'Permalink' in doc and doc['Permalink'] != None:
         print "updating example {}.{} ({})".format(doc['section'], doc['name'], doc['Permalink'])
         result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
@@ -141,7 +162,7 @@ def process_readme(repo, section_name, example_name, data, example_xml, xml_file
         #   permalink = generate_permalink(repo, path, readme_filename, xml_filename)
         doc['Permalink'] = permalink
         print "creating new permalink {}.{} for {}".format(doc['section'], doc['Permalink'], doc['name'])
-        result = db.examples.replace_one({"_id": doc['Permalink']}, doc, upsert=True)
+        result = db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
         #   commit change to readme
         should_commit = True
         #   ipdb.set_trace()
@@ -186,19 +207,31 @@ def parse(repo, folder, update_one_example_only):
             if filename.lower() == "readme.md" and dirs == []:
                 #   get the xml file for the example
                 xml_files =  [ _file for _file in files if _file.lower().endswith(".xml") ]
-                if len(xml_files) != 1:
+                if len(xml_files) == 0:
                     xml_filename = None
                     example_xml = None
 
                 else:
-                    xml_filename = xml_files[0]
-                    #   print os.path.join(path,filename)
-                    pth = os.path.join(re.sub(folder, '', path), filename)
-                    pth = pth.lstrip('/')
+                    xml_samples = []
+                    for xml_file in xml_files:
+                        xml_data = {"filename": '', "xml": '', 'formatted_xml': ''}
+                        #   xml_filename = xml_files[0]
+                        xml_filename = xml_file
+                        #   print os.path.join(path,filename)
+                        pth = os.path.join(re.sub(folder, '', path), filename)
+                        pth = pth.lstrip('/')
 
-                    example_xml = ''
-                    with open(os.path.join(path,xml_filename), 'rU') as xml:
-                        example_xml = xml.read()
+                        example_xml = ''
+                        with open(os.path.join(path,xml_filename), 'rU') as xml:
+                            example_xml = xml.read()
+                            xml_data['filename'] = xml_filename
+                            xml_data["xml"] = example_xml
+                            lexer = XmlLexer() #  guess_lexer(example['xml'])
+                            style = HtmlFormatter(style='friendly').style
+                            #   ipdb.set_trace()
+                            formatted_xml = highlight(example_xml, lexer, HtmlFormatter(full=True, style='colorful'))
+                            xml_data['formatted_xml'] = formatted_xml
+                        xml_samples.append(xml_data)
 
                 """
                 url_files =  [ _file for _file in files if _file.lower().endswith(".url") ]
@@ -218,7 +251,8 @@ def parse(repo, folder, update_one_example_only):
                     #file_pth = os.path.join(path,filename)
                     #ipdb.set_trace()
                     #permalink_id = repo.git.hash_object(file_pth)
-                    commit_new_id = process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, filename, update_one_example_only)
+                    #   commit_new_id = process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, filename, update_one_example_only)
+                    commit_new_id = process_readme(repo, section_name, example_name, data, xml_samples, path, filename, update_one_example_only)
 
                     if commit_new_id:
                         should_commit = True

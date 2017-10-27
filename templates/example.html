@@ -79,7 +79,7 @@
               <div class="large-10 large-offset-1 columns">
                 <ul>
               <li>
-                {% if example['xml'] != None %}
+                {% if "xml_data" in example and example['xml_data'] != None %}
                       {{example['Comments']}}
                 {% else %}
                     {{example['google_sheets_url']|safe}}
@@ -98,18 +98,20 @@
                 <strong id="example-full">Full sample:</strong>
                  {{example['Reference to full CDA sample']}}
               </p>
-              {% if example['xml'] == None %}
+              {% if not "xml_data" in example %}
                   <p>
                     <strong id="example-example">Example:</strong>
                     no example provided
                   </p>
               {% else %}
-                <p>
-                  <strong id="example-example">Example:</strong>
-                  <a class="button tiny" id="example-download" href="/examples/download/{{example['Permalink']}}">download example</a>
-                  <a target='_blank' class="button tiny" id="example-github" href="https://github.com/HL7/C-CDA-Examples/blob/master/{{example['section']}}/{{example['name']}}/{{example['xml_filename']}}">view on GitHub</a>
-                </p>
-                {{xml|safe}}
+                {% for xml_data in example['xml_data'] %}
+                  <p>
+                    <strong id="example-example">Example: </strong><i>{{xml_data['filename']}}</i>
+                    <a class="button tiny" id="example-download" href="/examples/download/{{example['Permalink']}}">download example</a>
+                    <a target='_blank' class="button tiny" id="example-github" href="https://github.com/HL7/C-CDA-Examples/blob/master/{{example['section']}}/{{example['name']}}/{{xml_data['filename']}}">view on GitHub</a>
+                  </p>
+                  {{xml_data['formatted_xml']|safe}}
+                {% endfor %}
               {% endif %}
 
 <ol class="joyride-list" data-joyride>
