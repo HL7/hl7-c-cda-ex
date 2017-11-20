@@ -118,7 +118,7 @@ def process_sections(example_name, sections):
 
 
 #   def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename, update_one_example_only):
-def process_readme(repo, section_name, example_name, data, xml_data, path, readme_filename, update_one_example_only):
+def process_readme(repo, section_name, example_name, data, xml_data, google_sheets_url, path, readme_filename, update_one_example_only):
 
     sections = data.split('##')
     doc = process_sections(example_name, sections)
@@ -139,8 +139,8 @@ def process_readme(repo, section_name, example_name, data, xml_data, path, readm
         doc['google_sheets_url'] = markdown2.markdown(doc['Comments'])
     """
 
-    if xml_data is None:
-        doc['google_sheets_url'] = markdown2.markdown(doc['Comments'])
+    if xml_data is None or google_sheets_url:
+        doc['google_sheets_url'] = google_sheets_url #  markdown2.markdown(doc['Comments'])
     else:
         doc['xml_data'] = xml_data
 
@@ -162,7 +162,12 @@ def process_readme(repo, section_name, example_name, data, xml_data, path, readm
         #   permalink = generate_permalink(repo, path, readme_filename, xml_filename)
         doc['Permalink'] = permalink
         print "creating new permalink {}.{} for {}".format(doc['section'], doc['Permalink'], doc['name'])
-        result = db.examples.replace_one({"Permalink": doc['Permalink']}, doc, upsert=True)
+        #   result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
+        update_result = db.examples.update_one({
+            "_id": doc['_id']
+        }, {
+            "$set": {"Permalink": str(doc['Permalink'])}
+        })
         #   commit change to readme
         should_commit = True
         #   ipdb.set_trace()
@@ -233,10 +238,10 @@ def parse(repo, folder, update_one_example_only):
                             xml_data['formatted_xml'] = formatted_xml
                         xml_samples.append(xml_data)
 
-                """
+
                 url_files =  [ _file for _file in files if _file.lower().endswith(".url") ]
                 if len(url_files) != 1:
-                    pass
+                    google_sheets_url=None
                 else:
                     url_filename = url_files[0]
                     example_xml = ''
@@ -244,7 +249,10 @@ def parse(repo, folder, update_one_example_only):
                         urldata = urlfile.read()
                         lines = urldata.split("\n")
                         lines = [ l for l in lines if l.startswith("URL")]
-                """
+                        if len(lines) == 1:
+                            urlLineTokens = lines[0].split("=")
+                            google_sheets_url = urlLineTokens[1] if len(urlLineTokens) >= 2 else "error"
+                            #   url_data['url'] = url
                 example_name = path.split(os.path.sep)[-1]
                 with open(os.path.join(path,filename), 'rU') as readme:
                     data = readme.read()
@@ -252,7 +260,7 @@ def parse(repo, folder, update_one_example_only):
                     #ipdb.set_trace()
                     #permalink_id = repo.git.hash_object(file_pth)
                     #   commit_new_id = process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, filename, update_one_example_only)
-                    commit_new_id = process_readme(repo, section_name, example_name, data, xml_samples, path, filename, update_one_example_only)
+                    commit_new_id = process_readme(repo, section_name, example_name, data, xml_samples, google_sheets_url, path, filename, update_one_example_only)
 
                     if commit_new_id:
                         should_commit = True

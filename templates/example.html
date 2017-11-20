@@ -82,7 +82,7 @@
                 {% if "xml_data" in example and example['xml_data'] != None %}
                       {{example['Comments']}}
                 {% else %}
-                    {{example['google_sheets_url']|safe}}
+                    {{example['Comments']}}
                 {% endif %}
               </li>
               </ul>
@@ -91,18 +91,27 @@
 
               <p>
                 <strong id="example-custodian">Custodian:</strong>
-                {{example['Custodian']}}
+                {% if example['Custodian'] is iterable and example['Custodian'] is not string %}
+                  {% for custodian in example['Custodian'] %}
+                    <li>{{custodian}}</li>
+                  {% endfor %}
+                {% else %}
+                  {{example['Custodian']}}
+                {% endif %}
               </p>
 
               <p>
                 <strong id="example-full">Full sample:</strong>
                  {{example['Reference to full CDA sample']}}
               </p>
-              {% if not "xml_data" in example %}
+              {% if not "xml_data" in example and not "google_sheets_url" in example %}
                   <p>
                     <strong id="example-example">Example:</strong>
                     no example provided
                   </p>
+
+              {% elif "google_sheets_url" in example and example['google_sheets_url'] %}
+                <a href="{{example['google_sheets_url']|safe}}" target="_blank">open example in Google Drive</a>
               {% else %}
                 {% for xml_data in example['xml_data'] %}
                   <p>
