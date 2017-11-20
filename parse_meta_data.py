@@ -55,7 +55,9 @@ def process_section(doc, name, section):
         if name == 'Approval Status':
             doc['approval']  = lines[0].split(":")[1].strip()
             if doc['approval'] in ['', None]:
-                ipdb.set_trace()
+                # ipdb.set_trace()
+                print "no status"
+                pass
 
         if name == 'Validation location':
             if lines[0].startswith("CDA valid, no C-CDA rules exist"):
@@ -90,8 +92,9 @@ def process_section(doc, name, section):
             #   ipdb.set_trace()
             doc[name] = None
 
-        if 'name' in doc and doc['name'] in ['Parent Document Replace Relationship']:
-            ipdb.set_trace()
+        #if 'name' in doc and doc['name'] in ['Parent Document Replace Relationship']:
+        #    ipdb.set_trace()
+
         #if doc[name] == 'Multiple Patient Identifiers':
         #    ipdb.set_trace()
 
