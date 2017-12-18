@@ -1,4 +1,4 @@
-import os, ipdb, re, datetime, markdown2
+import os, ipdb, re, datetime, markdown2, urllib
 from git import Repo
 from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
@@ -123,6 +123,15 @@ def process_sections(example_name, sections):
 #   def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename, update_one_example_only):
 def process_readme(repo, section_name, example_name, data, xml_data, google_sheets_url, path, readme_filename, update_one_example_only):
 
+    #   add example links to readme BEFORE readme is parsed and saved to db
+    if xml_data is None or google_sheets_url:
+        added_links = False
+        pass
+    else:
+        print "checking for xml links"
+        #   added_links = add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data)
+
+
     sections = data.split('##')
     doc = process_sections(example_name, sections)
 
@@ -142,17 +151,26 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
         #   convert markdown to html with link to google doc
         doc['google_sheets_url'] = markdown2.markdown(doc['Comments'])
     """
+    #   ipdb.set_trace()
 
     if xml_data is None or google_sheets_url:
         doc['google_sheets_url'] = google_sheets_url #  markdown2.markdown(doc['Comments'])
     else:
+        print "checking for xml links"
         doc['xml_data'] = xml_data
+        # TODO: look for filenames in xml_data[0][filename]
+        #   added_links = add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data)
+
+
+        # https://github.com/HL7/C-CDA-Examples/tree/master/Mental%20Status/Memory%20Impairment
 
     doc['updated_on'] = datetime.datetime.now()
     should_commit = False
 
     #if doc['name'] in ['Parent Document Replace Relationship']:
     #    ipdb.set_trace()
+    if added_links:
+        should_commit = True
 
     if 'Permalink' in doc and doc['Permalink'] != None:
         print "updating example {}.{} ({})".format(doc['section'], doc['name'], doc['Permalink'])
@@ -301,3 +319,22 @@ def generate_permalink(repo, path, readme_filename, xml_filename):
 
 def add_permalink(id):
     return "\n\n###Permalink \n\n* %s" %id
+
+
+def add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data):
+    to_add = '\n\n###Links \n\n'
+    for xml_link in xml_data:
+        base_url = "https://github.com/HL7/C-CDA-Examples/tree/master"
+        encoded_section = urllib.quote(section_name)
+        encoded_example_name = urllib.quote(example_name)
+        encoded_filename = urllib.quote(xml_link['filename'])
+        encoded_url = '{}/{}/{}/{}'.format(base_url, encoded_section, encoded_example_name, encoded_filename)
+        to_add += "* [{}]({})\n".format(xml_link['filename'], encoded_url)
+        print "generating link to add to example readme file - {}".format(encoded_url)
+    with open( os.path.join(path,readme_filename) , 'a+') as readme:
+        readme.write(to_add)
+    return True
+
+    #   https://github.com/schmoney/C-CDA-Examples/blob/master/Allergies/Allergy%20to%20cat%20hair/Allergy%20to%20specific%20substance%20cat%20hair(C-CDA2.1).xml
+    #   https://github.com/HL7/C-CDA-Examples/tree/master/Allergies/Allergy+to+specific+substance+cat+hair%28C-CDA2.1%29.xml
+    #   https://github.com/HL7/C-CDA-Examples/tree/master/Allergies/Allergy%20to%20cat%20hair/Allergy%20to%20specific%20substance%20cat%20hair%28C-CDA2.1%29.xml
