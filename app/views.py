@@ -19,6 +19,8 @@ from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
 from pygments.formatters import HtmlFormatter
 from bson.objectid import ObjectId
+import markdown2
+
 
 from .sync import sync
 
@@ -82,8 +84,11 @@ def get_example_page(permalink_id):
     else:
         xml = None
     """
+    readme = markdown2.markdown(example['readme'])
     #   return render_template("orig.html", examples=examples)
-    return render_template("example.html", example=example)
+    #   return render_template("example.html", example=example)
+    return render_template("readme_example.html", example=example, readme=readme)
+
 
 @application.route("/examples/download/<permalink_id>", methods=['GET', 'POST'])
 def download_example(permalink_id):

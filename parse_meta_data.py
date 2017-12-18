@@ -132,6 +132,7 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
 
     doc['section'] = section_name
     doc['name'] = example_name
+    doc['readme'] = data
 
     """
     doc['xml'] = example_xml
