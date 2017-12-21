@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>sync with github</title>
+
+    <link rel="stylesheet" media="screen" href="/static/css/hl7.css" />
+    <link rel="stylesheet" media="screen" href="/static/css/examples.css" />
+
+    <script src="/static/js/modernizr.js"></script>
+    <script src="/static/js/application.js" data-turbolinks-track="true"></script>
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="7aJZomckXLtdCHIaf+511za4pxWXlT4rkv6OiB05OIl+4UBh0xxX82dhPAysgilqu3ONuN8o0bDj3kcWEN2Y2w==" />
+  </head>
+
+  <body>
+  <div class="sticky">
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name"><h1><img src="/static/images/HL7-Logo-6a7cb6e141fe06112152b99cfd9c0a9a405b0ecc6eae595a6b5b064737bd38cc.png" alt="Hl7 logo" />            HL7 CDA Example Search</h1></li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <ul class="left">
+        <li class="main-title">Sync with GitHub</li>
+      </ul>
+      <ul class="right">
+        <li >
+          <a id="tour-invoke">Help</a>
+        </li>
+        <li><a href="mailto:webmaster@hl7.org"><span>Report an Issue</span></a></li>
+      </ul>
+    </section>
+  </nav>
+</div>
+
+    <section id="main-panel">
+
+      <div class='readme'>
+        <div class'readme'>
+          <p>Click below to sync with the <a target='_blank' href='https://github.com/HL7/C-CDA-Examples'>HL7/C-CDA Examples Repo</a>.  Syncing is done with the master branch of the repo.
+            If you run into any errors, please contact <a href='mailto:webmaster@hl7.org'>webmaster@hl7.org</a>
+          </p>
+
+          <p>
+            <a href='/do-sync'><button id='syncButton'>sync now</button></a>
+            {% if status == 'True' %}
+                <div id='success'>sync completed successfully!</div>
+            {% elif status == 'False' %}
+              <div id='failed'>there was an error syncing with github</div>
+            {% else %}
+            {% endif %}
+        </div>
+      </div>
+
+
+<ol class="joyride-list" data-joyride>
+  <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">
+    <h4>C-CDA Example Search Help</h4>
+    <p><strong>C-CDA Example Search Results</strong><br/>
+      This screen displays the results of executing the example search criteria
+      against the existing examples recorded in the example database.</p>
+  </li>
+  <li data-id="search-criteria" data-text="Next" data-options="tip_location: left">
+  <h4>Search Criteria Panel</h4>
+  <p>This panel allow you to further refine your queries and narrow the results</p>
+</li>
+<li data-id="search-by-text" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
+  <h4>Text Search Words</h4>
+  <p>Use this field to enter words related to your search. These words can appear in the
+    title, the comments or as part of a special list of keywords associated with the example.
+  The search words should be entered with spaces separating the items.</p>
+</li>
+<li data-id="search-by-status" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+  <h4>Filter by example status</h4>
+  <p>By selecting the various statuses, the search results can be limited to only the example
+  that are set to the selected status(es). By removing all status selections, the filtering
+    is removed and examples from all statuses will be returned (based on any other filtering).</p>
+</li>
+<li data-id="search-by-cert" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+  <h4>Select only ONC Certified examples</h4>
+  <p>These are samples referenced in a government rule or certification companion guide.</p>
+</li>
+<li data-id="sub-btn" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+  <p>Execute the search based on the criteria entered (or retrieve all examples if no
+    criteria specified).</p>
+</li>
+
+  <li data-id="query-count" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>The number of results that match the query parameters can be found here.</p>
+  </li>
+  <li data-id="main-page-link" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>Use this link to jump back to the initial page of the application (that lists the sections).</p>
+  </li>
+  <li data-id="results-name" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns list the names of the examples that match the criteria (and the comment for each example).</p>
+  </li>
+  <li data-id="results-section" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns lists the area in the C-CDA specification (the specification is broken
+      into distinct topics for the various exchangeable documents, the common header, and
+      the sections that occur within the exchangeable documents) that the example demonstrates.</p>
+  </li>
+  <li data-id="results-status" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>This columns lists the state of the example in the example verification and approval process.</p>
+  </li>
+  <li data-id="results-actions" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <p>You can select to download the examples directly or navigate to page with the full detailed description of the example.</p>
+  </li>
+  <li data-button="End" data-prev-text="Prev">
+    <h4>Tour Complete</h4>
+    <p>Return to the C-CDA Example Search Results page.</p>
+  </li>
+</ol>
+
+
+<script>
+  $(document).foundation();
+
+  function activateJoyride() {
+    $(document).foundation('joyride', 'start');
+  }
+
+  $( document ).ready(function() {
+
+    $('#sub-btn').click(function validateForm() {
+      var isValid = true;
+      $('.field').each(function() {
+        if ( $(this).val() === '' )
+          $(this).removeAttr("required");
+      });
+      document.searchform.submit();
+      return isValid;
+    });
+
+    $('#tour-invoke').click(function () {
+      $(document).foundation('joyride', 'start')
+    });
+  });
+</script>
+        </div>
+      </div>
+    </section>
+
+  </body>
+</html>

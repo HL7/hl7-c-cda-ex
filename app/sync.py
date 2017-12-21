@@ -20,18 +20,21 @@ def sync(permalink_id=None):
 
     repo = git.Repo.clone_from(GIT_URL, LOCAL_EXAMPLES_REPO_DIR)
     repo.git.pull("origin", GIT_BRANCH)
-    should_delete = parse(repo, LOCAL_EXAMPLES_REPO_DIR, permalink_id)
+    try:
+        should_delete = parse(repo, LOCAL_EXAMPLES_REPO_DIR, permalink_id)
 
-    #   delete local repo afterwards
-    if should_delete:
-        #   ipdb.set_trace()
-        shutil.rmtree(LOCAL_EXAMPLES_REPO_DIR)
+        #   delete local repo afterwards
+        if should_delete:
+            #   ipdb.set_trace()
+            shutil.rmtree(LOCAL_EXAMPLES_REPO_DIR)
 
-    basedir = os.path.abspath(os.path.dirname(__file__))
+        basedir = os.path.abspath(os.path.dirname(__file__))
 
-    if not permalink_id:
-        sections = db.sections.find().count()
-        examples = db.examples.find().count()
-        return "loaded {} sections and {} examples".format(sections, examples)
-    else:
-        return "reloaded example {}".format(permalink_id)
+        if not permalink_id:
+            sections = db.sections.find().count()
+            examples = db.examples.find().count()
+            return True, "loaded {} sections and {} examples".format(sections, examples)
+        else:
+            return True, "reloaded example {}".format(permalink_id)
+    except Exception as e:
+        return False, str(e)

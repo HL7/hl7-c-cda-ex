@@ -129,6 +129,7 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
         pass
     else:
         print "checking for xml links"
+        added_links = False
         #   added_links = add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data)
 
 

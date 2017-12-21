@@ -131,13 +131,21 @@ def get_search_results():
     return render_template("search_results.html", examples=examples)
 
 
-@application.route('/sync', methods=['GET', 'POST'])
-@application.route('/sync/<permalink_id>', methods=['GET', 'POST'])
+@application.route('/do-sync', methods=['GET', 'POST'])
+@application.route('/do-sync/<permalink_id>', methods=['GET', 'POST'])
 def sync_from_github(permalink_id=None):
     if(permalink_id):
-        return jsonify(sync(permalink_id))
+        status, msg = sync(permalink_id)
     else:
-        return jsonify(sync())
+        status, msg = sync()
+
+    return render_template("request_sync.html", permalink_id=permalink_id, status=str(status))
+
+
+@application.route('/sync', methods=['GET', 'POST'])
+@application.route('/sync/<permalink_id>', methods=['GET', 'POST'])
+def request_sync(permalink_id=None):
+    return render_template("request_sync.html", permalink_id=permalink_id)
 
 import configparser
 
