@@ -126,10 +126,11 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
     #   add example links to readme BEFORE readme is parsed and saved to db
     if xml_data is None or google_sheets_url:
         added_links = False
-        pass
+        
     else:
         print "checking for xml links"
         added_links = False
+        #   ONETIME just to add xml links to readme's
         #   added_links = add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data)
 
 
