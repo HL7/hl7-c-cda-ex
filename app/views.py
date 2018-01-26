@@ -57,19 +57,21 @@ def get_section_page(section_id):
 def get_example_page(permalink_id):
     #   example = db.examples.find_one({"Permalink": ObjectId(permalink_id)})
     #   example = db.examples.find_one({"Permalink": permalink_id})
+    """
     obj_id = False
     try:
         obj_id = ObjectId(permalink_id)
     except Exception as e:
         obj_id = False
     if obj_id:
-        example = db.examples.find_one({"Permalink": {
+        example = db.examples.find_one({"PermalinkId": {
                 "$in": [permalink_id, obj_id],
             }
         })
     else:
-        example = db.examples.find_one({"Permalink": permalink_id})
-
+        example = db.examples.find_one({"PermalinkId": permalink_id})
+    """
+    example = db.examples.find_one({"PermalinkId": str(permalink_id)})
     if not example:
         pass #  TODO: handle if this doesn't work
     """
@@ -92,7 +94,8 @@ def get_example_page(permalink_id):
 
 @application.route("/examples/download/<permalink_id>", methods=['GET', 'POST'])
 def download_example(permalink_id):
-    example = db.examples.find_one({"Permalink": permalink_id})
+    example = db.examples.find_one({"PermalinkId": permalink_id})
+
     response = make_response(example['xml'])
     # This is the key: Set the right header for the response
     # to be downloaded, instead of just printed on the browser
@@ -135,11 +138,24 @@ def get_search_results():
 @application.route('/do-sync/<permalink_id>', methods=['GET', 'POST'])
 def sync_from_github(permalink_id=None):
     if(permalink_id):
-        status, msg = sync(permalink_id)
+        status, msg = sync(operation='sync', permalink_id=permalink_id)
     else:
-        status, msg = sync()
+        status, msg = sync(operation='sync')
 
     return render_template("request_sync.html", permalink_id=permalink_id, status=str(status))
+
+"""
+#   ONE TIME used jsut to convert permalinks from ids to links
+@application.route('/replace', methods=['GET', 'POST'])
+@application.route('/replace/<permalink_id>', methods=['GET', 'POST'])
+def replace(permalink_id=None):
+    if(permalink_id):
+        status, msg = sync(operation='replace', permalink_id=permalink_id)
+    else:
+        status, msg = sync(operation='replace')
+
+    return render_template("request_sync.html", permalink_id=permalink_id, status=str(status))
+"""
 
 
 @application.route('/sync', methods=['GET', 'POST'])

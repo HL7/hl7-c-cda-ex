@@ -15,16 +15,15 @@ if os.environ.get("HEROKU"):
 else:
     #database = 'ccdaExamples'
     #client = MongoClient('localhost', 27017)
-
+    """
     #test
     database = 'heroku_brpn0kqd'
     client = MongoClient("mongodb://heroku_brpn0kqd:ji373v99tdvndpb3ccpvhg0sqe@ds155091.mlab.com:55091/heroku_brpn0kqd")
     GIT_URL = "https://github.com/schmoney/C-CDA-Examples.git"
     #   GIT_URL = "https://github.com/brettmarquard/C-CDA-Examples.git"
     #GIT_BRANCH = 'permalinksHashObject'
-    GIT_BRANCH = 'master'
+    GIT_BRANCH = 'redoPermalinks12'
     GIT_SSH_KEY = ''
-
     """
 
     database = 'heroku_4zktbrkp'
@@ -33,6 +32,6 @@ else:
     #GIT_BRANCH = 'permalinksHashObject'
     GIT_BRANCH = 'master'
     GIT_SSH_KEY = ''
-    """
+    
 
 db = client[database]

@@ -41,32 +41,32 @@
 </div>
 
       <div class='row'>
-        <div class="col-md-10">
+        <div class="col-md-10 offset-md-1">
           <section id="main-paned">
           <a name='readme'></a>
           <div class='readme'>
-            <div class'readme'>
               <h2 id="example-name">{{example['name']}}</h2>
               <hr />
               {{readme|safe}}
-            </div>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           <div class='exampleLinks position-fixed'>
-              <div class="card" style="width: 20rem;">
+              <div class="card" style="width: 12rem;">
                   <div class="card-header">
                     <b>jump to</b>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <a class='list-group-item' href='#readme'>example overview</a>
+                    <small><a class='list-group-item' href='#readme'>example overview (top of page)</a></small>
                     {% if not "xml_data" in example and not "google_sheets_url" in example %}
 
                     {% elif "google_sheets_url" in example and example['google_sheets_url'] %}
 
                     {% else %}
                       {% for xml_data in example['xml_data'] %}
-                          <a class='list-group-item' href='#{{xml_data["filename"]}}'>{{xml_data["filename"]}}</a>
+                          <small>
+                            <a class='list-group-item' href='#{{xml_data["filename"]}}'>{{xml_data["filename"]}}</a>
+                          </small>
                       {% endfor %}
                     {% endif %}
                   </ul>
@@ -76,7 +76,7 @@
       </div>
 
       <div class='row'>
-        <div class="col-md-12">
+        <div class="col-md-10 offset-md-1">
           <div class='inlineExample'>
             {% if not "xml_data" in example and not "google_sheets_url" in example %}
                 <p>
@@ -91,7 +91,7 @@
                 <p>
                   <a name='{{xml_data["filename"]}}'></a>
                   <strong id="example-example">Example: </strong>{% if example['xml_data']|length > 1 %}<i>{{xml_data['filename']}}</i>{% endif %}
-                  <a class="button tiny" id="example-download" href="/examples/download/{{example['Permalink']}}">download example</a>
+                  <a class="button tiny" id="example-download" href="/examples/download/{{example['PermalinkId']}}">download example</a>
                   <a target='_blank' class="button tiny" id="example-github" href="https://github.com/HL7/C-CDA-Examples/blob/master/{{example['section']}}/{{example['name']}}/{{xml_data['filename']}}">view on GitHub</a>
                 </p>
                 {{xml_data['formatted_xml']|safe}}

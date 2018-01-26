@@ -1,21 +1,19 @@
 .readme{
   padding: 5%;
-  margin: 5%;
+  margin: 1%;
   background-color: #F7F6EF;
 }
 
 .inlineExample{
   padding: 5%;
-  margin: 5%;
-  display: inline-block;
-  overflow: visible;
+  margin: 1%;
+  display: block;
+  overflow: scroll;
+  border: 1px solid #F7F6EF;
 }
 
 .exampleLinks{
-  padding: 1%;
-  margin: 5%;
   background-color: #efefef;
+
   z-index: 100;
-
-
 }

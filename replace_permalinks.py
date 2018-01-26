@@ -139,6 +139,7 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
 
     #   check if it's just this one example or all examples
     if update_one_example_only and 'Permalink' in doc and doc['Permalink'] != update_one_example_only:
+        print "skipping {}".format(doc['name'])
         return False
 
     doc['section'] = section_name
@@ -163,45 +164,45 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
         # TODO: look for filenames in xml_data[0][filename]
         #   added_links = add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data)
 
-
-        # https://github.com/HL7/C-CDA-Examples/tree/master/Mental%20Status/Memory%20Impairment
-
     doc['updated_on'] = datetime.datetime.now()
-    should_commit = False
 
-    #if doc['name'] in ['Parent Document Replace Relationship']:
+    should_commit = True
+
+
+    permalink = doc['Permalink']
+    new_permalink, new_readme_contents = update_readme(repo, path, readme_filename, permalink)
+
+    doc['Permalink'] = new_permalink
+    doc['PermalinkId'] = permalink
+    print "creating new permalink {}.{} for {}".format(doc['section'], doc['Permalink'], doc['name'])
+    #   result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
+    #   ipdb.set_trace()
+
+    #   query = {"_id": doc['_id']} #  TODO: change back to this
+    query = {"Permalink": permalink}
+    updates = {
+        "$set": { "Permalink": str(doc['Permalink']),
+                  "PermalinkId": str(doc['PermalinkId']),
+                  "readme": new_readme_contents
+
+         }
+    }
+
+    #if doc['name'] == 'Panel of Vital Signs in Metric Units':
     #    ipdb.set_trace()
-    if added_links:
-        should_commit = True
+    update_result = db.examples.update_one(query, updates)
+    if update_result.matched_count == 0 or update_result.modified_count == 0:
+        print "{} didn't match anything".format(doc['name'])
+        #ipdb.set_trace()
 
-    if 'Permalink' in doc and doc['Permalink'] != None:
-        #   ipdb.set_trace()
-        print "updating example {}.{} ({})".format(doc['section'], doc['name'], doc['Permalink'])
-        result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
-    else:
-        #   add permalink to readme
-        result = db.examples.insert_one(doc)
-        permalink_id = str(result.inserted_id)
-        permalink = "http://cdasearch.hl7.org/examples/view/{}".format(permalink_id)
+    if update_result.matched_count > 1:
+        print "foudn more than one"
+        #ipdb.set_trace()
 
-        update_readme(repo, path, readme_filename, permalink)
-
-        doc['Permalink'] = permalink
-        #doc['PermalinkId'] = permalink
-        print "creating new permalink {}.{} for {}".format(doc['section'], doc['Permalink'], doc['name'])
-        #   result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
-        #   ipdb.set_trace()
-
-        query = {"_id": doc['_id']} #  TODO: change back to this
-        #   query = {"Permalink": permalink}
-        updates = {
-            "$set": { "Permalink": str(doc['Permalink']), "PermalinkId": str(permalink_id) }
-        }
-        update_result = db.examples.update_one(query, updates)
-        #   commit change to readme
-        should_commit = True
-        #   ipdb.set_trace()
-        #   push change to GitHub repo
+    #   commit change to readme
+    should_commit = True
+    #   ipdb.set_trace()
+    #   push change to GitHub repo
     if section_name.startswith('General'):
         #   ipdb.set_trace()
         print "{} id {} ".format(example_name, doc['Permalink'])
@@ -209,7 +210,7 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
     return should_commit
 
 #   loop through each section folder
-def parse(repo, folder, update_one_example_only):
+def replace_permalinks(repo, folder, update_one_example_only):
     should_commit = False
     for path,dirs,files in os.walk(folder):
         #   print "path: {} dir: {} "
@@ -305,13 +306,46 @@ def parse(repo, folder, update_one_example_only):
 
         repo.git.add("-A")
         repo.git.commit(m="adding automagically generated permalink ids for new examples")
-        repo.remotes.origin.push(refspec='master:master')
+        #   repo.remotes.origin.push(refspec='master:master')
+        repo.remotes.origin.push(refspec='{}:{}'.format(GIT_BRANCH, GIT_BRANCH))
         return should_commit
 
 
 def update_readme(repo, path, readme_filename, permalink):
-    with open( os.path.join(path,readme_filename) , 'a+') as readme:
-        readme.write(add_permalink(permalink))
+    #   with open( os.path.join(path,readme_filename) , 'a+') as readme:
+        #   readme.write(add_permalink(permalink))
+    print 'in update readme {}'.format(path)
+    with open( os.path.join(path,readme_filename) , 'r') as readme:
+        original_text = readme.read()
+
+    #   check for *[Permalink] or * [Permalink]
+    """
+    if original_text.find("###Permalink \n\n*{}".format(permalink)) != -1:
+        #   without spaces
+        old_permalink = "###Permalink \n\n*{}".format(permalink)
+
+    elif original_text.find("###Permalink \n\n* {}".format(permalink)) != -1:
+        #   with space
+        old_permalink = "###Permalink \n\n* {}".format(permalink)
+    """
+
+    start = original_text.find("###Permalink")
+    end = original_text.find(permalink) + len(permalink)
+
+    old_permalink = original_text[start:end]
+
+    link = "http://cdasearch.hl7.org/examples/view/{}".format(permalink)
+    markdown_link = "[{}]({})".format(link,link)
+    new_permalink = "###Permalink \n\n* {}".format(markdown_link)
+    print old_permalink
+    print new_permalink
+    new_text=original_text.replace(old_permalink, new_permalink )
+    found = original_text.find(old_permalink)
+    #   print "new text tho?"
+    #   print new_text
+    with open( os.path.join(path,readme_filename) , 'w') as readme:
+        readme.write(new_text)
+    return markdown_link, new_text
 
 
 
