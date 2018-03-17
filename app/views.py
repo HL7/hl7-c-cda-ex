@@ -1,4 +1,4 @@
-import uuid
+import uuid, urllib2
 from flask import (
     Flask,
     request,
@@ -52,6 +52,15 @@ def get_section_page(section_id):
     examples = db.examples.find({"section": section['name']}).sort("name", 1)
     #   return render_template("orig.html", examples=examples)
     return render_template("examples.html", section=section, examples=examples)
+
+
+@application.route('/sections/name/<name>', methods=['GET', 'POST'])
+def get_section_by_name_page(name):
+    section = db.sections.find_one({"name": urllib2.unquote(name).decode('utf8')})
+    examples = db.examples.find({"section": section['name']}).sort("name", 1)
+    #   return render_template("orig.html", examples=examples)
+    return render_template("examples.html", section=section, examples=examples)
+
 
 @application.route('/examples/view/<permalink_id>', methods=['GET', 'POST'])
 def get_example_page(permalink_id):

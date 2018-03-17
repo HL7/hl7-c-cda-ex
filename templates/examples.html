@@ -67,7 +67,7 @@
             <p class="list-title"><a href="/examples/view/{{example['PermalinkId']}}">{{example['name']}}</a></p>
             <div class="list-detail">
               <ul>
-  <li>{{ example['Comments'] | truncate(100) }}</li>
+  <li>{{ example['Comments'] | join('') | truncate(100) }}</li>
   </ul>
 
             </div>
