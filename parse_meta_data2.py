@@ -3,6 +3,7 @@ from git import Repo
 from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
 from pygments.formatters import HtmlFormatter
+from slackbot import sc
 
 folder = '../C-CDA-Examples'
 #folder = '../ccda_examples_repo'
@@ -309,19 +310,27 @@ def parse(repo, folder, update_one_example_only):
                     commit_new_id = process_readme(repo, section_name, example_name, data, xml_samples, google_sheets_url, path, filename, update_one_example_only)
 
                     if commit_new_id:
+                        print "should be committing"
                         should_commit = True
     if should_commit:
         print "updating repo"
         reader = repo.config_reader()
         #repo.git.config(user_name="hl7bot")
         #repo.git.config(user_email='donotreply@hl7.org')
-        with repo.config_writer() as writer:
-            writer.set_value("user", "name", "Chris Millet")
-            writer.set_value("user", "email", "chris@thelazycompany.com")
+        try:
+            with repo.config_writer() as writer:
+                writer.set_value("user", "name", "Chris Millet")
+                writer.set_value("user", "email", "chris@thelazycompany.com")
 
-        repo.git.add("-A")
-        repo.git.commit(m="adding automagically generated permalink ids for new examples")
-        repo.remotes.origin.push(refspec='{}:{}'.format(GIT_BRANCH,GIT_BRANCH))
+            repo.git.add("-A")
+            repo.git.commit(m="adding automagically generated permalink ids for new examples")
+            repo.remotes.origin.push(refspec='{}:{}'.format(GIT_BRANCH,GIT_BRANCH))
+        except Exception as e:
+            sc.api_call(
+              "chat.postMessage",
+              channel="hl7-notifications",
+              text="uh oh: error when committing back to hl7 repo {}".format(str(e))
+            )
         return should_commit
 
 
@@ -329,7 +338,7 @@ def update_readme(repo, path, readme_filename, permalink):
 
     link = "http://cdasearch.hl7.org/examples/view/{}".format(permalink)
     markdown_link = "[{}]({})".format(link,link)
-    new_permalink = "###Permalink \n\n* {}".format(markdown_link)
+    new_permalink = "\n\n### Permalink \n\n* {}".format(markdown_link)
     #   append Permalink section to readme file
     with open( os.path.join(path,readme_filename) , 'a+') as readme:
         readme.write(new_permalink)
