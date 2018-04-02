@@ -21,7 +21,7 @@ def sync(operation='sync', permalink_id=None):
 
     repo = git.Repo.clone_from(GIT_URL, LOCAL_EXAMPLES_REPO_DIR)
     repo.git.fetch()
-    repo.git.reset("--hard", "origin/{}".format(GIT_BRANCH))
+    #repo.git.reset("--hard", "origin/{}".format(GIT_BRANCH))
     repo.git.pull("origin", GIT_BRANCH)
     repo.git.checkout(GIT_BRANCH)
     print GIT_BRANCH
