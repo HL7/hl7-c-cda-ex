@@ -20,34 +20,38 @@
 
   <body>
   <div class="sticky">
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name"><h1><img src="/static/images/HL7-Logo-6a7cb6e141fe06112152b99cfd9c0a9a405b0ecc6eae595a6b5b064737bd38cc.png" alt="Hl7 logo" />            HL7 CDA Example Search</h1></li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
+        <nav class="top-bar" data-topbar role="navigation">
+          <ul class="title-area">
+            <li class="name"><h1><img src="/static/images/HL7-Logo-6a7cb6e141fe06112152b99cfd9c0a9a405b0ecc6eae595a6b5b064737bd38cc.png" alt="Hl7 logo" />            HL7 CDA Example Search</h1></li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+          </ul>
 
-    <section class="top-bar-section">
-      <ul class="left">
-        <li class="main-title">{{example['section']}} Section</li>
-      </ul>
-      <ul class="right">
-        <li >
-          <a id="tour-invoke">Help</a>
-        </li>
-        <li><a href="mailto:webmaster@hl7.org"><span>Report an Issue</span></a></li>
-      </ul>
-    </section>
-  </nav>
-</div>
-      <div class='row'>
-        <div class="col-md-10 offset-md-1">
+          <section class="top-bar-section">
+            <ul class="left">
+              <li class="main-title">{{example['section']}} Section</li>
+            </ul>
+            <ul class="right">
+              <li >
+                <a id="tour-invoke">Help</a>
+              </li>
+              <li><a href="mailto:webmaster@hl7.org"><span>Report an Issue</span></a></li>
+            </ul>
+          </section>
+        </nav>
+  </div>
+      <div class=''>
+        <div class="">
           <p>&nbsp;</p>
-          <a class="button small" href="/">back to homepage</a>
+          <div style="margin: 2%">
+          </div>
           {# <a class="button small" href="/sections/name/{{example['section'] | urlencode}}">back to {{example['section']}} Section</a> #}
           <section id="main-paned">
           <a name='readme'></a>
           <div class='readme'>
-              <h2 id="example-name">{{example['name']}}</h2>
+              <span class='d-flex justify-content-between'>
+                  <h2 id="example-name">{{example['name']}}</h2>
+                  <a class="button small" href="/">back to homepage</a>
+              </span>
               <hr />
               {{readme|safe}}
           </div>
@@ -55,32 +59,11 @@
         <div class="col-md-1">
           <p>&nbsp;</p>
 
-          <div class='exampleLinks position-fixed'>
-              <div class="card" style="width: 12rem;">
-                  <div class="card-header">
-                    <b>jump to</b>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <small><a class='list-group-item' href='#readme'>example overview (top of page)</a></small>
-                    {% if not "xml_data" in example and not "google_sheets_url" in example %}
-
-                    {% elif "google_sheets_url" in example and example['google_sheets_url'] %}
-
-                    {% else %}
-                      {% for xml_data in example['xml_data'] %}
-                          <small>
-                            <a class='list-group-item' href='#{{xml_data["filename"]}}'>{{xml_data["filename"]}}</a>
-                          </small>
-                      {% endfor %}
-                    {% endif %}
-                  </ul>
-                </div>
-          </div>
         </div>
       </div>
 
-      <div class='row'>
-        <div class="col-md-10 offset-md-1">
+      <div class=''>
+        <div class="">
           <div class='inlineExample'>
             {% if not "xml_data" in example and not "google_sheets_url" in example %}
                 <p>

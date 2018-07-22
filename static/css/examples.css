@@ -1,15 +1,16 @@
 .readme{
   padding: 5%;
-  margin: 1%;
+  margin: 2%;
   background-color: #F7F6EF;
 }
 
 .inlineExample{
-  padding: 5%;
-  margin: 1%;
+  padding: 1%;
+  margin: 2%;
   display: block;
   overflow: scroll;
   border: 1px solid #F7F6EF;
+  font-size: 10pt;
 }
 
 .exampleLinks{
