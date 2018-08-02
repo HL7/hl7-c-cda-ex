@@ -1,4 +1,4 @@
-import uuid, urllib2
+import uuid, urllib, urllib2, base64, os
 from flask import (
     Flask,
     request,
@@ -20,12 +20,14 @@ from pygments.lexers import XmlLexer, guess_lexer
 from pygments.formatters import HtmlFormatter
 from bson.objectid import ObjectId
 import markdown2
+import requests
 
 
 from .sync import sync
 
 config = configparser.ConfigParser()
 config.read('app/config.ini')
+GITHUB_PERSONAL_TOKEN = os.environ['GITHUB_PERSONAL_TOKEN']
 
 application = Flask(__name__)
 application.config.update(
@@ -41,16 +43,36 @@ from bson.objectid import ObjectId
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/sections', methods=['GET', 'POST'])
 def get_list_sections_page():
-    examples = db.sections.find({}).sort("name", 1)
-    #   return render_template("orig.html", examples=examples)
-    return render_template("sections.html", examples=examples)
+    url = "https://api.github.com/repos/HL7/C-CDA-Examples/git/trees/4ab475857608c821b057d926fb9edda44793c635"
+    #   url = 'https://api.github.com/search/code?q="Section Examples from C-CDA"++repo:HL7/C-CDA-Examples+extension:md'
+    response = requests.get(url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+    sections = []
+    for item in response.json()['tree']:
+        # only include directories for each section
+        if item['type'] == 'tree':
+             sections.append({
+                "name": item['path'],
+                "slug": urllib.quote(item['path']),
+                "sha": item['sha']
+             })
+    return render_template("sections.html", sections=sections)
 
 
-@application.route('/sections/<section_id>', methods=['GET', 'POST'])
-def get_section_page(section_id):
-    section = db.sections.find_one({"_id": ObjectId(section_id)})
-    examples = db.examples.find({"section": section['name']}).sort("name", 1)
-    #   return render_template("orig.html", examples=examples)
+@application.route('/sections/<slug>/<sha>', methods=['GET', 'POST'])
+def get_section_page(slug, sha):
+    url = "https://api.github.com/repos/HL7/C-CDA-Examples/git/trees/{}".format(sha)
+    response = requests.get(url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+    section = {"name": urllib.unquote(slug), "slug":slug, "sha": sha}
+    examples = []
+    for item in response.json()['tree']:
+        # only include directories for each example
+        if item['type'] == 'tree':
+            examples.append({
+                "name": item['path'],
+                "slug": urllib.quote(item['path']),
+                "sha": item['sha']
+            })
+
     return render_template("examples.html", section=section, examples=examples)
 
 
@@ -62,55 +84,120 @@ def get_section_by_name_page(name):
     return render_template("examples.html", section=section, examples=examples)
 
 
-@application.route('/examples/view/<permalink_id>', methods=['GET', 'POST'])
-def get_example_page(permalink_id):
-    #   example = db.examples.find_one({"Permalink": ObjectId(permalink_id)})
-    #   example = db.examples.find_one({"Permalink": permalink_id})
-    """
-    obj_id = False
-    try:
-        obj_id = ObjectId(permalink_id)
-    except Exception as e:
-        obj_id = False
-    if obj_id:
-        example = db.examples.find_one({"PermalinkId": {
-                "$in": [permalink_id, obj_id],
-            }
-        })
-    else:
-        example = db.examples.find_one({"PermalinkId": permalink_id})
-    """
-    example = db.examples.find_one({"PermalinkId": str(permalink_id)})
-    if not example:
-        pass #  TODO: handle if this doesn't work
-    """
-    if 'xml_data' in example and example['xml_data']:
-        for filename, xml in example['xml_data']:
-            #   TODO: let's just set the lexer intead of guessing its
+@application.route('/examples/view/<section_slug>/<section_sha>/<example_slug>/<example_sha>', methods=['GET', 'POST'])
+def get_example_page(section_slug,section_sha,example_slug,example_sha):
+    section = {"name": section_slug, "slug":urllib.quote(section_slug), "sha": section_sha}
+    example = {"name": example_slug, "slug":urllib.quote(example_slug), "sha": example_sha}
+    data_url = 'https://api.github.com/search/code?q=repo:HL7/C-CDA-Examples+path:"/{}/{}"'.format(section['slug'], example['slug'])
+    response = requests.get(data_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+    readme = {}
+    example_files = []
+    print response.json()
+    print data_url
+    for item in response.json()['items']:
+        print item
+        # only include directories for each example
+        if item['name'].lower() == 'readme.md' :
+            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+            json_data = r.json()
+            decoded_content = base64.b64decode(json_data['content'])
+            readme['content'] = markdown2.markdown(decoded_content)
+            print readme
+        elif item['name'].endswith('.xml'):
+            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+            json_data = r.json()
+            decoded_content = base64.b64decode(json_data['content'])
             lexer = XmlLexer() #  guess_lexer(example['xml'])
             style = HtmlFormatter(style='friendly').style
-            #   ipdb.set_trace()
-            formatted_xml = highlight(xml, lexer, HtmlFormatter(full=True, style='colorful'))
+            example_files.append({
+                "name": item['name'],
+                "github_link": item['html_url'],
+                "content": highlight(decoded_content, lexer, HtmlFormatter(full=True, style='colorful')),
+                "sha": json_data['sha']
+            })
 
-    else:
-        xml = None
-    """
-    readme = markdown2.markdown(example['readme'])
-    #   return render_template("orig.html", examples=examples)
-    #   return render_template("example.html", example=example)
-    return render_template("readme_example.html", example=example, readme=readme)
+        elif item['name'].endswith('.html'):
+            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+            json_data = r.json()
+            decoded_content = base64.b64decode(json_data['content'])
+            #lexer = XmlLexer() #  guess_lexer(example['xml'])
+            #style = HtmlFormatter(style='friendly').style
+            example_files.append({
+                "name": item['name'],
+                "github_link": item['html_url'],
+                "content": decoded_content,
+                "sha": json_data['sha']
+            })
+    print example_files
+    return render_template("readme_example.html", data_url=data_url, example=example, readme=readme, example_files=example_files)
 
 
-@application.route("/examples/download/<permalink_id>", methods=['GET', 'POST'])
-@application.route("/examples/download/<permalink_id>/<index>", methods=['GET', 'POST'])
+@application.route('/examples/view/<permalink_id>', methods=['GET', 'POST'])
+def get_example_page_by_permalink_id(permalink_id):
+    data_url = 'https://api.github.com/search/code?q="http://cdasearch.hl7.org/examples/view/{}"+repo:HL7/C-CDA-Examples+extension:md+in:file'.format(permalink_id)
+    response = requests.get(data_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+    readme = {}
+    example_files = []
+    example = {"name": 'test'}
+    print response.json()
+    path = response.json()['items'][0]['path']
+    slugs = path.split('/')
+    section = {"name": slugs[0], "slug":urllib.quote(slugs[0])}
+    example = {"name": slugs[1], "slug":urllib.quote(slugs[1])}
 
-def download_example(permalink_id, index=0):
-    example = db.examples.find_one({"PermalinkId": permalink_id})
-    index = int(index)
-    response = make_response(example['xml_data'][index]['xml'])
+
+    data_url = 'https://api.github.com/search/code?q=repo:HL7/C-CDA-Examples+path:"/{}/{}"'.format(section['slug'], example['slug'])
+    response = requests.get(data_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+
+    for item in response.json()['items']:
+        # only include directories for each example
+        if item['name'].lower() == 'readme.md' :
+            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+            json_data = r.json()
+            decoded_content = base64.b64decode(json_data['content'])
+            readme['content'] = markdown2.markdown(decoded_content)
+        elif item['name'].endswith('.xml'):
+            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+            json_data = r.json()
+            decoded_content = base64.b64decode(json_data['content'])
+            lexer = XmlLexer() #  guess_lexer(example['xml'])
+            style = HtmlFormatter(style='friendly').style
+            example_files.append({
+                "name": item['name'],
+                "github_link": item['html_url'],
+                "download_url": item['download_url'],
+                "content": highlight(decoded_content, lexer, HtmlFormatter(full=True, style='colorful')),
+                "sha": json_data['sha']
+
+            })
+        elif item['name'].endswith('.html'):
+            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+            json_data = r.json()
+            decoded_content = base64.b64decode(json_data['content'])
+            #lexer = XmlLexer() #  guess_lexer(example['xml'])
+            #style = HtmlFormatter(style='friendly').style
+            example_files.append({
+                "name": item['name'],
+                "github_link": item['html_url'],
+                "download_url": item['download_url'],
+                "content": decoded_content,
+                "sha": json_data['sha']
+            })
+
+
+    return render_template("readme_example.html", section=section, example=example, readme=readme, example_files=example_files)
+
+
+@application.route("/examples/download/<name>/<sha>", methods=['GET', 'POST'])
+def download_example(name,sha):
+    data_url = 'https://api.github.com/repos/HL7/C-CDA-Examples/git/blobs/{}'.format(sha)
+    r = requests.get(data_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+    blob = r.json()
+    decoded_content = base64.b64decode(blob['content'])
+    response = make_response(decoded_content)
     # This is the key: Set the right header for the response
     # to be downloaded, instead of just printed on the browser
-    response.headers["Content-Disposition"] = "attachment; filename={}.xml".format(example['name'])
+    response.headers["Content-Disposition"] = "attachment; filename={}".format(name)
     return response
 
 @application.route('/search', methods=['GET', 'POST'])

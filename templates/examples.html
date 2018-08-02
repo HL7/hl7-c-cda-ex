@@ -47,7 +47,7 @@
           </div>
 {% include "search_form.html" %}
 
-<p class="large-9 columns"  id="query-count"> This section has {{examples.count()}} examples</p>
+<p class="large-9 columns"  id="query-count"> This section has {{examples | length}} examples</p>
 
 <p class="return-link large-3 columns" id="main-page-link"><a href="/sections">return to Main Search</a></p>
 
@@ -64,7 +64,7 @@
     {% for example in examples %}
     <tr>
           <td>
-            <p class="list-title"><a href="/examples/view/{{example['PermalinkId']}}">{{example['name']}}</a></p>
+            <p class="list-title"><a href="/examples/view/{{section['slug']}}/{{section['sha']}}/{{example['slug']}}/{{example['sha']}}">{{example['name']}}</a></p>
             <div class="list-detail">
               <ul>
   <li>{{ example['Comments'] | join('') | truncate(100) }}</li>
@@ -74,10 +74,10 @@
           </td>
           <td>{{example['approval']}}</td>
           <td>
-            <a href="/examples/view/{{example['PermalinkId']}}">
+            <a href="/examples/view/{{section['slug']}}/{{section['sha']}}/{{example['slug']}}/{{example['sha']}}">
                 <span class="list-link-text">Detail</span><span class="link-pointer"></span>
   </a>          <br/>
-            <a href="/examples/download/{{example['PermalinkId']}}.xml">
+            <a href="/examples/download/{{example['download']}}.xml">
                 <span class="list-link-text">Download</span><span class="link-pointer"></span>
   </a>        </td>
         </tr>

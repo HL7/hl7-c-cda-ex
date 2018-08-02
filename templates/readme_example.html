@@ -53,7 +53,7 @@
                   <a class="button small" href="/">back to homepage</a>
               </span>
               <hr />
-              {{readme|safe}}
+              {{readme['content']|safe}}
           </div>
         </div>
         <div class="col-md-1">
@@ -65,33 +65,20 @@
       <div class=''>
         <div class="">
           <div class='inlineExample'>
-            {% if not "xml_data" in example and not "google_sheets_url" in example %}
+              {% for file in example_files %}
                 <p>
-                  <strong id="example-example">Example:</strong>
-                  no example provided
-                </p>
-
-            {% elif "google_sheets_url" in example and example['google_sheets_url'] %}
-              <a href="{{example['google_sheets_url']|safe}}" target="_blank">open example in Google Drive</a>
-            {% else %}
-              {% for xml_data in example['xml_data'] %}
-                <p>
-                  <a name='{{xml_data["filename"]}}'></a>
-                  <strong id="example-example">Example: </strong>{% if example['xml_data']|length > 1 %}<i>{{xml_data['filename']}}</i>{% endif %}
+                  <a name='{{file["name"]}}'></a>
+                  <strong id="example-example">Example: </strong>{% if example_files|length > 1 %}<i>{{file['name']}}</i>{% endif %}
                   <a class="button tiny"
                     id="example-download"
-                    href="{% if example['xml_data']|length > 1 %}
-                            /examples/download/{{example['PermalinkId']}}/{{loop.index0}}
-                         {% else %}
-                            /examples/download/{{example['PermalinkId']}}
-                         {% endif %}">
+                    target="_blank"
+                    href="/examples/download/{{file['name']}}/{{file['sha']}}">
                     download example
                   </a>
-                  <a target='_blank' class="button tiny" id="example-github" href="https://github.com/HL7/C-CDA-Examples/blob/master/{{example['section']}}/{{example['name']}}/{{xml_data['filename']}}">view on GitHub</a>
+                  <a target='_blank' class="button tiny" id="example-github" href="{{file['github_link']}}">view on GitHub</a>
                 </p>
-                {{xml_data['formatted_xml']|safe}}
+                {{file['content'] |safe}}
               {% endfor %}
-            {% endif %}
           </div>
         </div>
       </div>
