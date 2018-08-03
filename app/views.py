@@ -84,8 +84,9 @@ def get_section_by_name_page(name):
     return render_template("examples.html", section=section, examples=examples)
 
 
+@application.route('/examples/view/<section_slug>/<example_slug>', methods=['GET', 'POST'])
 @application.route('/examples/view/<section_slug>/<section_sha>/<example_slug>/<example_sha>', methods=['GET', 'POST'])
-def get_example_page(section_slug,section_sha,example_slug,example_sha):
+def get_example_page(section_slug,example_slug,section_sha=None, example_sha=None):
     section = {"name": section_slug, "slug":urllib.quote(section_slug), "sha": section_sha}
     example = {"name": example_slug, "slug":urllib.quote(example_slug), "sha": example_sha}
     data_url = 'https://api.github.com/search/code?q=repo:HL7/C-CDA-Examples+path:"/{}/{}"'.format(section['slug'], example['slug'])
@@ -209,7 +210,37 @@ def get_search_results():
     #   ipdb.set_trace()
     params = dict(request.form)
     import re
-    terms = '.*{}.*'.format(str(params['search_terms'][0]))
+    #terms = '.*{}.*'.format(str(params['search_terms'][0]))
+    terms = '"{}"'.format(str(params['search_terms'][0]))
+    criteria = []
+    if terms != '""':
+        criteria.append(terms)
+    STATUSES = ['Approved', 'Withdrawn', 'Pending']
+    if 'approval' in params:
+        #   terms = '{} AND "Approval Status: {}"'.format(terms, params['approval'][0])
+        approval_query = '"Approval Status: {}"'.format(params['approval'][0])
+        criteria.append(approval_query)
+
+    if 'certification' in params and params['certification'][0] == '1':
+        #   terms = '{} AND "Certification ONC"'.format(terms)
+        onc_cert_query = '"Certification ONC"'
+        criteria.append(onc_cert_query)
+
+    query = " AND ".join(criteria)
+    data_url = 'https://api.github.com/search/code?q={}+repo:HL7/C-CDA-Examples+extension:md'.format(query)
+    print data_url
+    response = requests.get(data_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+
+    results = response.json()
+    examples = []
+    for item in results["items"]:
+        path = item['path']
+        slugs = path.split('/')
+        section = {"name": slugs[0], "slug":urllib.quote(slugs[0])}
+        example = {"name": slugs[1], "slug":urllib.quote(slugs[1])}
+        examples.append({"section": section, "example": example})
+
+    return render_template("search_results.html", data_url=data_url, results=examples)
 
     regx = re.compile(terms, re.IGNORECASE)
     #   ipdb.set_trace()
