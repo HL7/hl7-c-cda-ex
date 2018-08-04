@@ -121,12 +121,13 @@ def get_example_page(section_slug,example_slug,section_sha=None, example_sha=Non
             r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
             json_data = r.json()
             decoded_content = base64.b64decode(json_data['content'])
+            utf8_content = decoded_content.decode("utf8")
             #lexer = XmlLexer() #  guess_lexer(example['xml'])
             #style = HtmlFormatter(style='friendly').style
             example_files.append({
                 "name": item['name'],
                 "github_link": item['html_url'],
-                "content": decoded_content,
+                "content": utf8_content,
                 "sha": json_data['sha']
             })
     print example_files

@@ -5,7 +5,7 @@ import git
 import ipdb
 import git
 import shutil
-from parse_meta_data2 import parse
+from permalinks import parse
 from replace_permalinks import replace_permalinks
 from db import GIT_URL, GIT_BRANCH
 
@@ -46,5 +46,5 @@ def sync(operation='sync', permalink_id=None):
         else:
             return True, "reloaded example {}".format(permalink_id)
     except Exception as e:
-        #   ipdb.set_trace()
+        ipdb.set_trace()
         return False, str(e)
