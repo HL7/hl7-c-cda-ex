@@ -167,7 +167,7 @@ def get_example_page_by_permalink_id(permalink_id):
             example_files.append({
                 "name": item['name'],
                 "github_link": item['html_url'],
-                "download_url": item['download_url'],
+                #   "download_url": item['download_url'],
                 "content": highlight(decoded_content, lexer, HtmlFormatter(full=True, style='colorful')),
                 "sha": json_data['sha']
 
@@ -181,7 +181,7 @@ def get_example_page_by_permalink_id(permalink_id):
             example_files.append({
                 "name": item['name'],
                 "github_link": item['html_url'],
-                "download_url": item['download_url'],
+                #   "download_url": item['download_url'],
                 "content": decoded_content,
                 "sha": json_data['sha']
             })
