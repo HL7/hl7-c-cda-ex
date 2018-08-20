@@ -21,7 +21,7 @@ from pygments.formatters import HtmlFormatter
 from bson.objectid import ObjectId
 import markdown2
 import requests
-
+from md2py import md2py
 
 from .sync import sync
 
@@ -67,14 +67,34 @@ def get_section_page(slug, sha):
     for item in response.json()['tree']:
         # only include directories for each example
         if item['type'] == 'tree':
-            examples.append({
+            example = {
                 "name": item['path'],
                 "slug": urllib.quote(item['path']),
                 "sha": item['sha']
-            })
+            }
+            section = {"name": slug, "slug":urllib.quote(slug), "sha": sha}
+            data_url = 'https://api.github.com/search/code?q=repo:HL7/C-CDA-Examples+path:"/{}/{}"'.format(section['slug'], example['slug'])
+            response = requests.get(data_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+            for ex in response.json()['items']:
+                readme = get_readme(ex['git_url'])
+                #   ipdb.set_trace()
+                if readme.find('Approval Status: Withdrawn') != -1:
+                    example['approval_status'] = 'Withdrawn'
+                if readme.find('Approval Status: Approved') != -1:
+                    example['approval_status'] = 'Pending'
+                if readme.find('Approval Status: Pending') != -1:
+                    example['approval_status'] = 'Pending'
+
+            examples.append(example)
 
     return render_template("examples.html", section=section, examples=examples)
 
+def get_readme(git_url):
+    r = requests.get(git_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
+    json_data = r.json()
+    decoded_content = base64.b64decode(json_data['content'])
+    readme = markdown2.markdown(decoded_content)
+    return readme
 
 @application.route('/sections/name/<name>', methods=['GET', 'POST'])
 def get_section_by_name_page(name):

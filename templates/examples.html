@@ -56,7 +56,6 @@
     <tr>
       <th id="results-name">Name</th>
       <th id="results-status">Status</th>
-      <th id="results-actions"></th>
     </tr>
   </thead>
 
@@ -72,14 +71,7 @@
 
             </div>
           </td>
-          <td>{{example['approval']}}</td>
-          <td>
-            <a href="/examples/view/{{section['slug']}}/{{section['sha']}}/{{example['slug']}}/{{example['sha']}}">
-                <span class="list-link-text">Detail</span><span class="link-pointer"></span>
-  </a>          <br/>
-            <a href="/examples/download/{{example['download']}}.xml">
-                <span class="list-link-text">Download</span><span class="link-pointer"></span>
-  </a>        </td>
+          <td>{{example['approval_status']}}</td>
         </tr>
 
       {% endfor %}
