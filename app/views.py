@@ -21,7 +21,6 @@ from pygments.formatters import HtmlFormatter
 from bson.objectid import ObjectId
 import markdown2
 import requests
-from md2py import md2py
 
 from .sync2 import sync
 from repo import get_sections, get_section, get_example, get_file, search
