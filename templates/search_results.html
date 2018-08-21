@@ -52,7 +52,6 @@
       <th id="results-name">Name</th>
       <th id="results-name">Section</th>
       <th id="results-status">Status</th>
-      <th id="results-actions"></th>
     </tr>
   </thead>
 
@@ -60,23 +59,15 @@
     {% for result in results %}
     <tr>
           <td>
-            <p class="list-title"><a href="/examples/view/{{result['section']['slug']}}/{{result['example']['slug']}}">{{result['example']['name']}}</a></p>
+            <p class="list-title"><a href="/examples/view/{{result['section']}}/{{result['example']}}">{{result['example']}}</a></p>
             <div class="list-detail">
               <ul>
                   <li>{{ '' | truncate(100) }}</li>
               </ul>
-
             </div>
           </td>
-          <td>{{result['section']['name']}}</td>
-          <td>-</td>
-          <td>
-            <a href="/examples/view/{{result['section']['slug']}}/{{result['example']['slug']}}">
-                <span class="list-link-text">Detail</span><span class="link-pointer"></span>
-  </a>          <br/>
-            <a href="/examples/download/.xml">
-                <span class="list-link-text">Download</span><span class="link-pointer"></span>
-  </a>        </td>
+          <td>{{result['section']}}</td>
+          <td>{{result['approval_status']}}</td>
         </tr>
 
       {% endfor %}

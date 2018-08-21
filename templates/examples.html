@@ -63,7 +63,7 @@
     {% for example in examples %}
     <tr>
           <td>
-            <p class="list-title"><a href="/examples/view/{{section['slug']}}/{{section['sha']}}/{{example['slug']}}/{{example['sha']}}">{{example['name']}}</a></p>
+            <p class="list-title"><a href="/examples/view/{{section['slug']}}/{{example['slug']}}">{{example['name']}}</a></p>
             <div class="list-detail">
               <ul>
   <li>{{ example['Comments'] | join('') | truncate(100) }}</li>
