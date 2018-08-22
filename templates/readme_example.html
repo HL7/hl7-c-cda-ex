@@ -50,7 +50,16 @@
           <div class='readme'>
               <span class='d-flex justify-content-between'>
                   <h2 id="example-name">{{readme['name']}}</h2>
-                  <a class="button small" href="/">back to homepage</a>
+                  <span>
+                    {% if not readme['has_permalink']: %}
+                      <a class="button small"
+                         href="/permalink/generate/{{section['name']}}/{{readme['name']}}/{{readme['filename']}}"
+                      >
+                        generate permalink
+                      </a>
+                    {% endif %}
+                    <a class="button small" href="/">back to homepage</a>
+                  </span>
               </span>
               <hr />
               {{readme['content']|safe}}

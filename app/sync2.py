@@ -26,4 +26,5 @@ def sync(operation='sync'):
         repo.git.checkout(GIT_BRANCH)
         return True, repo
     except Exception as e:
-        return False, e
+        #   ipdb.set_trace()
+        return False, str(e)

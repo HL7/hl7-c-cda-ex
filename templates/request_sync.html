@@ -43,16 +43,17 @@
 
       <div class='readme'>
         <div class'readme'>
-          <p>Click below to sync with the <a target='_blank' href='https://github.com/HL7/C-CDA-Examples'>HL7/C-CDA Examples Repo</a>.  Syncing is done with the master branch of the repo.
+          <p>Click below to sync with repo <b>{{git['url']}}</b> branch <b>{{git['branch']}}</b>.  Syncing is done with the master branch of the repo.
             If you run into any errors, please contact <a href='mailto:webmaster@hl7.org'>webmaster@hl7.org</a>
           </p>
 
           <p>
             <a href='/do-sync'><button id='syncButton'>sync now</button></a>
-            {% if status == 'True' %}
+            {% if status == True %}
                 <div id='success'>sync completed successfully!</div>
-            {% elif status == 'False' %}
+            {% elif status == False %}
               <div id='failed'>there was an error syncing with github</div>
+              <div id='failed'>{{msg}}</div>
             {% else %}
             {% endif %}
         </div>

@@ -34,7 +34,7 @@ application.config.update(
         SECRET_KEY=config['GENERAL']['SECRET_KEY']
 )
 
-from db import db
+from db import db, GIT_URL, GIT_BRANCH
 from bson.objectid import ObjectId
 
 #application.register_blueprint(search)
@@ -180,26 +180,23 @@ def get_search_results():
 
 
 @application.route('/do-sync', methods=['GET', 'POST'])
-@application.route('/do-sync/<permalink_id>', methods=['GET', 'POST'])
-def sync_from_github(permalink_id=None):
-    if(permalink_id):
-        status = sync(operation='sync', permalink_id=permalink_id)
-    else:
-        status = sync(operation='sync')
-
-    return render_template("request_sync.html", permalink_id=permalink_id, status=str(status))
+def sync_from_github():
+    status, repo = sync(operation='sync')
+    git = {'url': GIT_URL, 'branch': GIT_BRANCH}
+    msg = repo if not status else ''
+    return render_template("request_sync.html", git=git, status=status, msg=msg)
 
 
 
 @application.route('/sync', methods=['GET', 'POST'])
-@application.route('/sync/<permalink_id>', methods=['GET', 'POST'])
-def request_sync(permalink_id=None):
-    return render_template("request_sync.html", permalink_id=permalink_id)
+def request_sync():
+    git = {'url': GIT_URL, 'branch': GIT_BRANCH}
+    return render_template("request_sync.html", git=git)
 
 @application.route('/permalink/generate/<section>/<example>/<readme>', methods=['GET', 'POST'])
 def request_new_permalink(section, example, readme):
-    completed, error = generate_permalink(section, example, readme)
-    return render_template("request_sync.html", error=error)
+    completed, msg = generate_permalink(section, example, readme)
+    return render_template("request_permalink.html", section=section, example=example, msg=msg)
 
 
 

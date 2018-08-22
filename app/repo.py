@@ -96,6 +96,8 @@ def get_example(section_name, example_name):
                 if filename.lower() == 'readme.md' :
                     #   decoded_content = base64.b64decode(json_data['content'])
                     readme['content'] = markdown2.markdown(content)
+                    readme['has_permalink'] = has_permalink(content)
+                    readme['filename'] = filename
 
                 elif filename.endswith('.xml'):
 
@@ -143,7 +145,8 @@ def search(query, status, onc_certified):
                     onc_certified_criteria = not onc_certified or (onc_certified and content.find(onc) != -1)
                     #   print "searching for {} in {}".format(query, example_name)
                     #   ipdb.set_trace()
-                    if content.find(query) != -1 and status_criteria and onc_certified_criteria:
+                    search_criteria = content.find(query) != -1 or example_name.find(query) != -1
+                    if search_criteria and status_criteria and onc_certified_criteria:
                         print "found  {} in {}".format(query, example_name)
                         section_name = path.split(os.path.sep)[-2]
                         example_name = path.split(os.path.sep)[-1]
@@ -164,6 +167,9 @@ def get_approval_status(content):
     if content.find('Approval Status: Pending') != -1:
         return 'Pending'
 
+def has_permalink(content):
+    #   returns True if content has a permalink section already, False if it doesn't
+    return content.find('Permalink') != -1
 
 def generate_permalink(section, example, readme_filename):
     try:
@@ -182,7 +188,7 @@ def generate_permalink(section, example, readme_filename):
 
         content = readme.read()
         #   check if file has permalink
-        if content.find('Permalink') != -1:
+        if has_permalink(content):
             return False, "permalink exists already"
 
         #   ipdb.set_trace()
