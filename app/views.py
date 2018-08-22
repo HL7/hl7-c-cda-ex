@@ -23,7 +23,7 @@ import markdown2
 import requests
 
 from .sync2 import sync
-from repo import get_sections, get_section, get_example, get_file, search
+from repo import get_sections, get_section, get_example, get_file, search, generate_permalink
 
 config = configparser.ConfigParser()
 config.read('app/config.ini')
@@ -195,6 +195,13 @@ def sync_from_github(permalink_id=None):
 @application.route('/sync/<permalink_id>', methods=['GET', 'POST'])
 def request_sync(permalink_id=None):
     return render_template("request_sync.html", permalink_id=permalink_id)
+
+@application.route('/permalink/generate/<section>/<example>/<readme>', methods=['GET', 'POST'])
+def request_new_permalink(section, example, readme):
+    completed, error = generate_permalink(section, example, readme)
+    return render_template("request_sync.html", error=error)
+
+
 
 import configparser
 

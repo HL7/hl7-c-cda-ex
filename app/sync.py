@@ -42,7 +42,7 @@ def sync(operation='sync', permalink_id=None):
         if not permalink_id:
             sections = db.sections.find().count()
             examples = db.examples.find().count()
-            return True, "loaded {} sections and {} examples".format(sections, examples)
+            return repo, "loaded {} sections and {} examples".format(sections, examples)
         else:
             return True, "reloaded example {}".format(permalink_id)
     except Exception as e:

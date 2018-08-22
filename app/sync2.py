@@ -24,6 +24,6 @@ def sync(operation='sync'):
         repo.git.reset("--hard", "origin/{}".format(GIT_BRANCH))
         repo.git.pull("origin", GIT_BRANCH)
         repo.git.checkout(GIT_BRANCH)
-        return True
+        return True, repo
     except Exception as e:
-        return False
+        return False, e

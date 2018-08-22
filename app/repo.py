@@ -3,6 +3,10 @@ import markdown2
 from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
 from pygments.formatters import HtmlFormatter
+import uuid
+from slackbot import sc
+from app.db import db, GIT_BRANCH, GIT_URL
+from sync2 import sync
 
 folder = 'ccda_examples_repo'
 
@@ -159,3 +163,65 @@ def get_approval_status(content):
         return 'Approved'
     if content.find('Approval Status: Pending') != -1:
         return 'Pending'
+
+
+def generate_permalink(section, example, readme_filename):
+    try:
+        synced, repo = sync()
+    except Exception as e:
+        print str(e)
+        print 'sync with repo failed'
+        #   ipdb.set_trace()
+        sc.api_call(
+          "chat.postMessage",
+          channel="hl7-notifications",
+          text="uh oh: error doing the pre permalink generation sync with hl7 repo b {}".format(str(e))
+        )
+        return False, str(e)
+    with open(os.path.join(folder,section,example, readme_filename), 'r+') as readme:
+
+        content = readme.read()
+        #   check if file has permalink
+        if content.find('Permalink') != -1:
+            return False, "permalink exists already"
+
+        #   ipdb.set_trace()
+        permalink_id = str(uuid.uuid4())
+        link = "http://cdasearch.hl7.org/examples/view/{}".format(permalink_id)
+        markdown_link = "[{}]({})".format(link,link)
+        new_permalink = "\n\n### Permalink \n\n* {}".format(markdown_link)
+        print "new permalink is {}".format(link)
+        #   append Permalink section to readme file
+        readme.write(new_permalink)
+
+    db.examples.insert_one({
+        "section": section,
+        "example": example,
+        "permalink_id": permalink_id,
+        "permalink": link
+    })
+    print "inserted into database"
+
+    print "updating repo"
+    reader = repo.config_reader()
+    #repo.git.config(user_name="hl7bot")
+    #repo.git.config(user_email='donotreply@hl7.org')
+    try:
+        with repo.config_writer() as writer:
+            writer.set_value("user", "name", "Chris Millet")
+            writer.set_value("user", "email", "chris@thelazycompany.com")
+
+        repo.git.add("-A")
+        repo.git.commit(m="adding automagically generated permalink ids for new examples")
+        repo.remotes.origin.push(refspec='{}:{}'.format(GIT_BRANCH,GIT_BRANCH))
+        print "repo updated"
+    except Exception as e:
+        print "updating repo failed"
+        ipdb.set_trace()
+        sc.api_call(
+          "chat.postMessage",
+          channel="hl7-notifications",
+          text="uh oh: error when committing back to hl7 repo {}".format(str(e))
+        )
+        return False, str(e)
+    return True, 'success'
