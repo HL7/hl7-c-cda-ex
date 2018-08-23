@@ -5,8 +5,6 @@ import git
 import ipdb
 import git
 import shutil
-from permalinks import parse
-from replace_permalinks import replace_permalinks
 from db import GIT_URL, GIT_BRANCH
 
 
