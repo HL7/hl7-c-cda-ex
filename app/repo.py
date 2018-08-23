@@ -5,7 +5,7 @@ from pygments.lexers import XmlLexer, guess_lexer
 from pygments.formatters import HtmlFormatter
 import uuid
 from slackbot import sc
-from app.db import db, GIT_BRANCH, GIT_URL
+from app.db import db, GIT_BRANCH, GIT_URL, GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL
 from sync2 import sync
 
 folder = 'ccda_examples_repo'
@@ -202,9 +202,9 @@ def generate_permalink(section, example, readme_filename):
 
     db.examples.insert_one({
         "section": section,
-        "example": example,
-        "permalink_id": permalink_id,
-        "permalink": link
+        "name": example,
+        "PermalinkId": permalink_id,
+        "Permalink": link
     })
     print "inserted into database"
 
@@ -214,8 +214,8 @@ def generate_permalink(section, example, readme_filename):
     #repo.git.config(user_email='donotreply@hl7.org')
     try:
         with repo.config_writer() as writer:
-            writer.set_value("user", "name", "Chris Millet")
-            writer.set_value("user", "email", "chris@thelazycompany.com")
+            writer.set_value("user", "name", GIT_COMMITTER_NAME)
+            writer.set_value("user", "email", GIT_COMMITTER_EMAIL)
 
         repo.git.add("-A")
         repo.git.commit(m="adding automagically generated permalink ids for new examples")

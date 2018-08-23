@@ -11,6 +11,8 @@ if os.environ.get("HEROKU"):
     client = MongoClient(uri)
     GIT_URL = os.environ.get("GIT_URL")
     GIT_BRANCH = os.environ.get("GIT_BRANCH")
+    GIT_COMMITTER_NAME = os.environ.get('GIT_COMMITTER_NAME')
+    GIT_COMMITTER_EMAIL = os.environ.get('GIT_COMMITTER_EMAIL')
     #   GIT_SSH_KEY = os.environ.get("GIT_SSH_KEY")
 else:
     #database = 'ccdaExamples'
@@ -25,6 +27,8 @@ else:
     #GIT_BRANCH = 'permalinksHashObject'
     GIT_BRANCH = 'permalink-gentest'
     GIT_SSH_KEY = ''
+    GIT_COMMITTER_NAME = os.environ.get('GIT_COMMITTER_NAME')
+    GIT_COMMITTER_EMAIL = os.environ.get('GIT_COMMITTER_EMAIL')
 
 
     """

@@ -15,11 +15,6 @@ from app import application
 
 import configparser
 import ipdb
-from pygments import highlight
-from pygments.lexers import XmlLexer, guess_lexer
-from pygments.formatters import HtmlFormatter
-from bson.objectid import ObjectId
-import markdown2
 import requests
 
 from .sync2 import sync
@@ -53,20 +48,6 @@ def get_section_page(name):
 
     return render_template("examples.html", section=section, examples=examples)
 
-def get_readme(git_url):
-    r = requests.get(git_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
-    json_data = r.json()
-    decoded_content = base64.b64decode(json_data['content'])
-    readme = markdown2.markdown(decoded_content)
-    return readme
-
-@application.route('/sections/name/<name>', methods=['GET', 'POST'])
-def get_section_by_name_page(name):
-    section = db.sections.find_one({"name": urllib2.unquote(name).decode('utf8')})
-    examples = db.examples.find({"section": section['name']}).sort("name", 1)
-    #   return render_template("orig.html", examples=examples)
-    return render_template("examples.html", section=section, examples=examples)
-
 
 @application.route('/examples/view/<section_slug>/<example_slug>', methods=['GET', 'POST'])
 @application.route('/examples/view/<section_slug>/<section_sha>/<example_slug>/<example_sha>', methods=['GET', 'POST'])
@@ -81,58 +62,16 @@ def get_example_page(section_slug,example_slug,section_sha=None, example_sha=Non
 
 @application.route('/examples/view/<permalink_id>', methods=['GET', 'POST'])
 def get_example_page_by_permalink_id(permalink_id):
-    data_url = 'https://api.github.com/search/code?q="http://cdasearch.hl7.org/examples/view/{}"+repo:HL7/C-CDA-Examples+extension:md+in:file'.format(permalink_id)
-    response = requests.get(data_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
-    readme = {}
-    example_files = []
-    example = {"name": 'test'}
-    print response.json()
-    path = response.json()['items'][0]['path']
-    slugs = path.split('/')
-    section = {"name": slugs[0], "slug":urllib.quote(slugs[0])}
-    example = {"name": slugs[1], "slug":urllib.quote(slugs[1])}
+    example = db.examples.find_one({"PermalinkId": permalink_id})
+    if not example:
+        return 'error'
 
+    section, readme, example_files = get_example(example['section'], example['name'])
 
-    data_url = 'https://api.github.com/search/code?q=repo:HL7/C-CDA-Examples+path:"/{}/{}"'.format(section['slug'], example['slug'])
-    response = requests.get(data_url, headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
-
-    for item in response.json()['items']:
-        # only include directories for each example
-        if item['name'].lower() == 'readme.md' :
-            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
-            json_data = r.json()
-            decoded_content = base64.b64decode(json_data['content'])
-            readme['content'] = markdown2.markdown(decoded_content)
-        elif item['name'].endswith('.xml'):
-            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
-            json_data = r.json()
-            decoded_content = base64.b64decode(json_data['content'])
-            lexer = XmlLexer() #  guess_lexer(example['xml'])
-            style = HtmlFormatter(style='friendly').style
-            example_files.append({
-                "name": item['name'],
-                "github_link": item['html_url'],
-                #   "download_url": item['download_url'],
-                "content": highlight(decoded_content, lexer, HtmlFormatter(full=True, style='colorful')),
-                "sha": json_data['sha']
-
-            })
-        elif item['name'].endswith('.html'):
-            r = requests.get(item['git_url'], headers={"Authorization": "Bearer {}".format(GITHUB_PERSONAL_TOKEN)})
-            json_data = r.json()
-            decoded_content = base64.b64decode(json_data['content'])
-            #lexer = XmlLexer() #  guess_lexer(example['xml'])
-            #style = HtmlFormatter(style='friendly').style
-            example_files.append({
-                "name": item['name'],
-                "github_link": item['html_url'],
-                #   "download_url": item['download_url'],
-                "content": decoded_content,
-                "sha": json_data['sha']
-            })
-
-
-    return render_template("readme_example.html", section=section, example=example, readme=readme, example_files=example_files)
+    return render_template("readme_example.html",
+                            section=section,
+                            readme=readme,
+                            example_files=example_files)
 
 
 @application.route("/examples/download/<section>/<example>/<filename>", methods=['GET', 'POST'])
