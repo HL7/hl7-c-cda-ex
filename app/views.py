@@ -22,7 +22,6 @@ from repo import get_sections, get_section, get_example, get_file, search, gener
 
 config = configparser.ConfigParser()
 config.read('app/config.ini')
-GITHUB_PERSONAL_TOKEN = os.environ['GITHUB_PERSONAL_TOKEN']
 
 application = Flask(__name__)
 application.config.update(
