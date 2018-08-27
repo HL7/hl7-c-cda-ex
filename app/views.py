@@ -33,6 +33,14 @@ from bson.objectid import ObjectId
 
 #application.register_blueprint(search)
 #search.config=config
+print "syncing with github..."
+try:
+    sync()
+    print "syncing complete"
+
+except Exception as e:
+    print "syncing failed"
+    print str(e)
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/sections', methods=['GET', 'POST'])

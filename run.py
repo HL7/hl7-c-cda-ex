@@ -16,13 +16,6 @@ else:
     port = 7000
 
 if __name__ == "__main__":
-    print "syncing with github..."
-    try:
-        sync()
-        print "syncing complete"
 
-    except Exception as e:
-        print "syncing failed"
-        print str(e)
 
     application.run(host=host, port=port, debug=True)
