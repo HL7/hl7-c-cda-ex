@@ -20,8 +20,9 @@ if __name__ == "__main__":
     try:
         sync()
         print "syncing complete"
-        application.run(host=host, port=port, debug=True)
 
     except Exception as e:
         print "syncing failed"
         print str(e)
+
+    application.run(host=host, port=port, debug=True)
