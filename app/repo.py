@@ -223,7 +223,7 @@ def generate_permalink(section, example, readme_filename):
         print "repo updated"
     except Exception as e:
         print "updating repo failed"
-        ipdb.set_trace()
+        #   ipdb.set_trace()
         sc.api_call(
           "chat.postMessage",
           channel="hl7-notifications",
