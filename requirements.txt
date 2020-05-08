@@ -9,7 +9,7 @@ billiard==3.6.3.0
 blinker==1.4
 braintree==4.1.0
 celery==4.4.2
-click==7.1.2
+click==7.0
 configparser==5.0.0
 decorator==4.4.2
 Flask==1.1.2
@@ -26,12 +26,12 @@ passlib==1.7.2
 pathlib2==2.3.5
 pexpect==4.8.0
 pickleshare==0.7.5
-prompt-toolkit==3.0.5
+prompt-toolkit~=2.0.7
 ptyprocess==0.6.0
 py2neo==4.3.0
-Pygments==2.6.1
+Pygments~=2.3.1
 pymongo==3.10.1
-python-premailer==0.5.7
+premailer==3.7.0
 pytz==2020.1
 PyYAML==5.3.1
 redis==3.5.0
