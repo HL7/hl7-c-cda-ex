@@ -1,4 +1,4 @@
-import os, ipdb, re, datetime, markdown2, urllib
+import os, ipdb, re, datetime, markdown2, urllib.request, urllib.parse, urllib.error
 from git import Repo
 from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
@@ -57,7 +57,7 @@ def process_section(doc, name, section):
             doc['approval']  = lines[0].split(":")[1].strip()
             if doc['approval'] in ['', None]:
                 # ipdb.set_trace()
-                print "no status"
+                print("no status")
                 pass
 
         if name == 'Validation location':
@@ -166,7 +166,7 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
     #if example_name == 'Test':
     #    ipdb.set_trace()
 
-    print "checking {}".format(example_name)
+    print("checking {}".format(example_name))
     #   return False
 
     if 'Permalink' in doc and doc['Permalink'] != None:
@@ -194,7 +194,7 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
 
         #doc['Permalink'] = new_permalink
         #doc['PermalinkId'] = permalink
-        print "creating new permalink {}.{} for {}".format(doc['section'], permalink, doc['name'])
+        print("creating new permalink {}.{} for {}".format(doc['section'], permalink, doc['name']))
         #   result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
         #   ipdb.set_trace()
 
@@ -310,10 +310,10 @@ def parse(repo, folder, update_one_example_only):
                     commit_new_id = process_readme(repo, section_name, example_name, data, xml_samples, google_sheets_url, path, filename, update_one_example_only)
 
                     if commit_new_id:
-                        print "should be committing"
+                        print("should be committing")
                         should_commit = True
     if should_commit:
-        print "updating repo"
+        print("updating repo")
         reader = repo.config_reader()
         #repo.git.config(user_name="hl7bot")
         #repo.git.config(user_email='donotreply@hl7.org')
@@ -372,12 +372,12 @@ def add_xml_links_to_readme(repo, path, section_name, example_name, readme_filen
     to_add = '\n\n###Links \n\n'
     for xml_link in xml_data:
         base_url = "https://github.com/HL7/C-CDA-Examples/tree/master"
-        encoded_section = urllib.quote(section_name)
-        encoded_example_name = urllib.quote(example_name)
-        encoded_filename = urllib.quote(xml_link['filename'])
+        encoded_section = urllib.parse.quote(section_name)
+        encoded_example_name = urllib.parse.quote(example_name)
+        encoded_filename = urllib.parse.quote(xml_link['filename'])
         encoded_url = '{}/{}/{}/{}'.format(base_url, encoded_section, encoded_example_name, encoded_filename)
         to_add += "* [{}]({})\n".format(xml_link['filename'], encoded_url)
-        print "generating link to add to example readme file - {}".format(encoded_url)
+        print("generating link to add to example readme file - {}".format(encoded_url))
     with open( os.path.join(path,readme_filename) , 'a+') as readme:
         readme.write(to_add)
     return True

@@ -18,4 +18,4 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 sections = db.sections.find().count()
 examples = db.examples.find().count()
-print("loaded {} sections and {} examples".format(sections, examples))
+print "loaded {} sections and {} examples".format(sections, examples)

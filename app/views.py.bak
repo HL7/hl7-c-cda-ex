@@ -1,4 +1,4 @@
-import uuid, urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse, base64, os
+import uuid, urllib, urllib2, base64, os
 from flask import (
     Flask,
     request,
@@ -18,7 +18,7 @@ import ipdb
 import requests
 
 from .sync2 import sync
-from .repo import get_sections, get_section, get_example, get_file, search, generate_permalink
+from repo import get_sections, get_section, get_example, get_file, search, generate_permalink
 
 config = configparser.ConfigParser()
 config.read('app/config.ini')
@@ -28,19 +28,19 @@ application.config.update(
         SECRET_KEY=config['GENERAL']['SECRET_KEY']
 )
 
-from .db import db, GIT_URL, GIT_BRANCH
+from db import db, GIT_URL, GIT_BRANCH
 from bson.objectid import ObjectId
 
 #application.register_blueprint(search)
 #search.config=config
-print("syncing with github...")
+print "syncing with github..."
 try:
     sync()
-    print("syncing complete")
+    print "syncing complete"
 
 except Exception as e:
-    print("syncing failed")
-    print(str(e))
+    print "syncing failed"
+    print str(e)
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/sections', methods=['GET', 'POST'])
@@ -150,7 +150,7 @@ import configparser
 
 @application.before_request
 def before_request():
-    print("initialize db")
+    print "initialize db"
 
 """
 @application.errorhandler(404)
