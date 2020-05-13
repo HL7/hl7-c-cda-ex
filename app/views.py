@@ -33,14 +33,14 @@ from bson.objectid import ObjectId
 
 #application.register_blueprint(search)
 #search.config=config
-print "syncing with github..."
+print ("syncing with github...")
 try:
     sync()
-    print "syncing complete"
+    print ("syncing complete")
 
 except Exception as e:
-    print "syncing failed"
-    print str(e)
+    print ("syncing failed")
+    print (str(e))
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/sections', methods=['GET', 'POST'])
@@ -150,7 +150,7 @@ import configparser
 
 @application.before_request
 def before_request():
-    print "initialize db"
+    print ("initialize db")
 
 """
 @application.errorhandler(404)
