@@ -44,3 +44,4 @@ Werkzeug==1.0.1
 GitPython==3.1.2
 markdown2==2.3.8
 slackclient==2.5.0
+slackbot==0.5.6
