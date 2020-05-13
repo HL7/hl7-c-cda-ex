@@ -24,9 +24,9 @@ def get_sections():
                 #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
-                with open(os.path.join(path,filename), 'r') as readme:
+                with open(os.path.join(path,filename), 'rb') as readme:
                     description = readme.read()
-                    description = description.replace("##", "")
+                    description = description.decode('utf8').replace("##", "")
                     section_name = path.split(os.path.sep)[-1]
                     section = {
                         "name": section_name,
@@ -53,7 +53,7 @@ def get_section(section_name):
                 #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
-                with open(os.path.join(path,filename), 'r') as readme:
+                with open(os.path.join(path,filename), 'rb') as readme:
                     content = readme.read()
                     description = content.replace("##", "")
                     example_name = path.split(os.path.sep)[-1]
@@ -81,7 +81,7 @@ def get_example(section_name, example_name):
             print(os.path.join(path,filename))
             pth = os.path.join(re.sub(folder, '', path), filename)
             pth = pth.lstrip('/')
-            with open(os.path.join(path,filename), 'r') as file:
+            with open(os.path.join(path,filename), 'rb') as file:
                 content = file.read()
                 #   content = readme.replace("##", "")
                 #   example_filename = path.split(os.path.sep)[-1]
@@ -116,7 +116,7 @@ def get_example(section_name, example_name):
 
 def get_file(section, example, filename):
 
-    with open(os.path.join(folder,section,example,filename), 'r') as file:
+    with open(os.path.join(folder,section,example,filename), 'rb') as file:
         content = file.read()
         return content
 
@@ -134,7 +134,7 @@ def search(query, status, onc_certified):
                 #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
-                with open(os.path.join(path,filename), 'r') as readme:
+                with open(os.path.join(path,filename), 'rb') as readme:
                     section_name = path.split(os.path.sep)[-2]
                     example_name = path.split(os.path.sep)[-1]
                     content = readme.read()
