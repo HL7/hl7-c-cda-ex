@@ -38,7 +38,7 @@ def get_sections():
                         "examples": []
                     }
                     sections.append(section)
-    sections.sort()
+    sections = {k: disordered[k] for k in sorted(sections)}
     return sections
 
 def get_section(section_name):
