@@ -1,4 +1,4 @@
-import os, re, urllib, urllib2, ipdb
+import os, re, urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse, ipdb
 import markdown2
 from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
@@ -6,14 +6,14 @@ from pygments.formatters import HtmlFormatter
 import uuid
 from slackbot import sc
 from app.db import db, GIT_BRANCH, GIT_URL, GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL
-from sync2 import sync
+from .sync2 import sync
 
 folder = 'ccda_examples_repo'
 
 def get_sections():
     sections = []
     for path,dirs,files in os.walk(folder):
-        print "path: {} dir: {} ".format(path, dirs)
+        print("path: {} dir: {} ".format(path, dirs))
         dirs[:] = [d for d in dirs if not d[0] ==  '.' ]
 
 
@@ -31,7 +31,7 @@ def get_sections():
                     section = {
                         "name": section_name,
                         "description": description,
-                        "slug": urllib.quote(section_name),
+                        "slug": urllib.parse.quote(section_name),
                         "examples": []
                     }
                     sections.append(section)
@@ -39,11 +39,11 @@ def get_sections():
     return sections
 
 def get_section(section_name):
-    section = {'name': section_name, 'slug': urllib.quote(section_name)}
+    section = {'name': section_name, 'slug': urllib.parse.quote(section_name)}
     examples = []
-    print section_name
+    print(section_name)
     for path,dirs,files in os.walk(os.path.join(folder, section_name)):
-        print "path: {} dir: {} ".format(path, dirs)
+        print("path: {} dir: {} ".format(path, dirs))
         dirs[:] = [d for d in dirs if not d[0] in ['.', section_name] ]
 
         for filename in files:
@@ -60,7 +60,7 @@ def get_section(section_name):
                     example = {
                         "name": example_name,
                         "description": description,
-                        "slug": urllib.quote(example_name)
+                        "slug": urllib.parse.quote(example_name)
                     }
                     example['approval_status'] = get_approval_status(content)
 
@@ -69,23 +69,23 @@ def get_section(section_name):
     return section, examples
 
 def get_example(section_name, example_name):
-    section = {'name': section_name, 'slug': urllib.quote(section_name)}
-    readme = {'name': example_name, 'slug': urllib.quote(example_name)}
+    section = {'name': section_name, 'slug': urllib.parse.quote(section_name)}
+    readme = {'name': example_name, 'slug': urllib.parse.quote(example_name)}
     examples = []
     for path,dirs,files in os.walk(os.path.join(folder, section_name, example_name)):
-        print "path: {} dir: {} ".format(path, dirs)
+        print("path: {} dir: {} ".format(path, dirs))
         dirs[:] = [d for d in dirs if not d[0] == '.']
 
         for filename in files:
 
-            print os.path.join(path,filename)
+            print(os.path.join(path,filename))
             pth = os.path.join(re.sub(folder, '', path), filename)
             pth = pth.lstrip('/')
             with open(os.path.join(path,filename), 'rb') as file:
                 content = file.read()
                 #   content = readme.replace("##", "")
                 #   example_filename = path.split(os.path.sep)[-1]
-                print "example_filename = {}".format(filename)
+                print("example_filename = {}".format(filename))
                 github_url = "https://github.com/HL7/C-CDA-Examples/blob/master/{}/{}/{}".format(section_name, example_name, filename)
                 example = {
                     "name": filename,
@@ -124,7 +124,7 @@ def search(query, status, onc_certified):
     results = []
     #   ipdb.set_trace()
     for path,dirs,files in os.walk(folder):
-        print "path: {} dir: {} ".format(path, dirs)
+        print("path: {} dir: {} ".format(path, dirs))
         dirs[:] = [d for d in dirs if not d[0] ==  '.' ]
 
         for filename in files:
@@ -147,7 +147,7 @@ def search(query, status, onc_certified):
                     #   ipdb.set_trace()
                     search_criteria = content.find(query) != -1 or example_name.find(query) != -1
                     if search_criteria and status_criteria and onc_certified_criteria:
-                        print "found  {} in {}".format(query, example_name)
+                        print("found  {} in {}".format(query, example_name))
                         section_name = path.split(os.path.sep)[-2]
                         example_name = path.split(os.path.sep)[-1]
                         results.append({
@@ -175,8 +175,8 @@ def generate_permalink(section, example, readme_filename):
     try:
         synced, repo = sync()
     except Exception as e:
-        print str(e)
-        print 'sync with repo failed'
+        print(str(e))
+        print('sync with repo failed')
         #   ipdb.set_trace()
         sc.api_call(
           "chat.postMessage",
@@ -196,7 +196,7 @@ def generate_permalink(section, example, readme_filename):
         link = "http://cdasearch.hl7.org/examples/view/{}".format(permalink_id)
         markdown_link = "[{}]({})".format(link,link)
         new_permalink = "\n\n### Permalink \n\n* {}".format(markdown_link)
-        print "new permalink is {}".format(link)
+        print("new permalink is {}".format(link))
         #   append Permalink section to readme file
         readme.write(new_permalink)
 
@@ -206,9 +206,9 @@ def generate_permalink(section, example, readme_filename):
         "PermalinkId": permalink_id,
         "Permalink": link
     })
-    print "inserted into database"
+    print("inserted into database")
 
-    print "updating repo"
+    print("updating repo")
     reader = repo.config_reader()
     #repo.git.config(user_name="hl7bot")
     #repo.git.config(user_email='donotreply@hl7.org')
@@ -220,9 +220,9 @@ def generate_permalink(section, example, readme_filename):
         repo.git.add("-A")
         repo.git.commit(m="adding automagically generated permalink ids for new examples")
         repo.remotes.origin.push(refspec='{}:{}'.format(GIT_BRANCH,GIT_BRANCH))
-        print "repo updated"
+        print("repo updated")
     except Exception as e:
-        print "updating repo failed"
+        print("updating repo failed")
         #   ipdb.set_trace()
         sc.api_call(
           "chat.postMessage",
