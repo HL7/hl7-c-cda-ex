@@ -35,7 +35,7 @@ def get_sections():
                         "examples": []
                     }
                     sections.append(section)
-    sections.sort()
+    sections.decode('utf8').sort()
     return sections
 
 def get_section(section_name):
