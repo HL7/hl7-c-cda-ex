@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import unicode_literals
+from builtins import str
 import os, re, urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse, ipdb
 import markdown2
 from pygments import highlight
@@ -26,7 +29,7 @@ def get_sections():
                 pth = pth.lstrip('/')
                 with open(os.path.join(path,filename), 'rb') as readme:
                     description = readme.read()
-                    description = description.decode('utf8').replace("##", "")
+                    description = description.replace(b"##", b"")
                     section_name = path.split(os.path.sep)[-1]
                     section = {
                         "name": section_name,
@@ -35,7 +38,7 @@ def get_sections():
                         "examples": []
                     }
                     sections.append(section)
-    sections.decode('utf8').sort()
+    sections.sort()
     return sections
 
 def get_section(section_name):

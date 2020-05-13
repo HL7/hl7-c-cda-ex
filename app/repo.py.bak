@@ -1,3 +1,5 @@
+from __future__ import print_function
+from builtins import str
 import os, re, urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse, ipdb
 import markdown2
 from pygments import highlight
