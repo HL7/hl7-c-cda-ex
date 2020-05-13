@@ -24,7 +24,7 @@ def get_sections():
                 #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
-                with open(os.path.join(path,filename), 'rb') as readme:
+                with open(os.path.join(path,filename), 'r') as readme:
                     description = readme.read()
                     description = description.replace("##", "")
                     section_name = path.split(os.path.sep)[-1]
