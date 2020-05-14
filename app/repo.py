@@ -38,7 +38,7 @@ def get_sections():
                         "examples": []
                     }
                     sections.append(section)
-    sections = {k: disordered[k] for k in sorted(sections)}
+    sorted([{-21: None, 2: None}, {-100: None, -2: None}], key=lambda x: tuple(x.keys()))
     return sections
 
 def get_section(section_name):
