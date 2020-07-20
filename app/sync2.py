@@ -1,11 +1,11 @@
 #!flask/bin/python
-from app.db import db
+from .db import db
 import os.path
 import git
 import ipdb
 import git
 import shutil
-from db import GIT_URL, GIT_BRANCH
+from .db import GIT_URL, GIT_BRANCH
 
 
 def sync(operation='sync'):
