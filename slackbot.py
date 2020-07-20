@@ -1,5 +1,5 @@
-import slack
+from slack import WebClient
 import os
 
 slack_token = os.environ["SLACK_API_TOKEN"]
-sc = slack.RTMClient(token=slack_token)
+sc = WebClient(slack_token)

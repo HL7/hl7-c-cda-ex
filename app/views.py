@@ -1,4 +1,4 @@
-import uuid, urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse, base64, os
+import uuid, urllib, base64, os
 from flask import (
     Flask,
     request,

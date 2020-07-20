@@ -1,7 +1,4 @@
-from __future__ import print_function
-from __future__ import unicode_literals
-from builtins import str
-import os, re, urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse, ipdb
+import os, re, urllib, ipdb
 import markdown2
 from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
@@ -27,21 +24,23 @@ def get_sections():
                 #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
-                with open(os.path.join(path,filename), 'rb') as readme:
+                with open(os.path.join(path,filename), 'r') as readme:
                     description = readme.read()
-                    description = description.replace(b"##", b"")
+                    description = description.replace("##", "")
                     section_name = path.split(os.path.sep)[-1]
                     section = {
                         "name": section_name,
                         "description": description,
-                        "slug": urllib.parse.quote(section_name),
+                        "slug": urllib.parse.quote(section_name, safe='/'),
                         "examples": []
                     }
                     sections.append(section)
+    #  sections.sort()
+    sections.sort(key=lambda x: x['name'], reverse=False)
     return sections
 
 def get_section(section_name):
-    section = {'name': section_name, 'slug': urllib.parse.quote(section_name)}
+    section = {'name': section_name, 'slug': urllib.parse.quote(section_name, safe='/')}
     examples = []
     print(section_name)
     for path,dirs,files in os.walk(os.path.join(folder, section_name)):
@@ -55,24 +54,26 @@ def get_section(section_name):
                 #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
-                with open(os.path.join(path,filename), 'rb') as readme:
+                with open(os.path.join(path,filename), 'r') as readme:
                     content = readme.read()
                     description = content.replace("##", "")
                     example_name = path.split(os.path.sep)[-1]
                     example = {
                         "name": example_name,
                         "description": description,
-                        "slug": urllib.parse.quote(example_name)
+                        "slug": urllib.parse.quote(example_name, safe='/')
                     }
                     example['approval_status'] = get_approval_status(content)
 
                     examples.append(example)
-    examples.sort()
+    # examples.sort()
+    examples.sort(key=lambda x: x['name'], reverse=False)
+
     return section, examples
 
 def get_example(section_name, example_name):
-    section = {'name': section_name, 'slug': urllib.parse.quote(section_name)}
-    readme = {'name': example_name, 'slug': urllib.parse.quote(example_name)}
+    section = {'name': section_name, 'slug': urllib.parse.quote(section_name,'/')}
+    readme = {'name': example_name, 'slug': urllib.parse.quote(example_name, '/')}
     examples = []
     for path,dirs,files in os.walk(os.path.join(folder, section_name, example_name)):
         print("path: {} dir: {} ".format(path, dirs))
@@ -83,7 +84,7 @@ def get_example(section_name, example_name):
             print(os.path.join(path,filename))
             pth = os.path.join(re.sub(folder, '', path), filename)
             pth = pth.lstrip('/')
-            with open(os.path.join(path,filename), 'rb') as file:
+            with open(os.path.join(path,filename), 'r') as file:
                 content = file.read()
                 #   content = readme.replace("##", "")
                 #   example_filename = path.split(os.path.sep)[-1]
@@ -118,7 +119,7 @@ def get_example(section_name, example_name):
 
 def get_file(section, example, filename):
 
-    with open(os.path.join(folder,section,example,filename), 'rb') as file:
+    with open(os.path.join(folder,section,example,filename), 'r') as file:
         content = file.read()
         return content
 
@@ -136,7 +137,7 @@ def search(query, status, onc_certified):
                 #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
-                with open(os.path.join(path,filename), 'rb') as readme:
+                with open(os.path.join(path,filename), 'r') as readme:
                     section_name = path.split(os.path.sep)[-2]
                     example_name = path.split(os.path.sep)[-1]
                     content = readme.read()
@@ -157,7 +158,8 @@ def search(query, status, onc_certified):
                             "example": example_name,
                             "approval_status": get_approval_status(content)
                         })
-    results.sort()
+    results.sort(key=lambda x: (x['section'], x['example']), reverse=False)
+    # results.sort()
     return results
 
 

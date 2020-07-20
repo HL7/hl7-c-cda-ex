@@ -1,5 +1,5 @@
 #!flask/bin/python
-from app.db import db
+from .db import db
 import os.path
 import git
 import ipdb
