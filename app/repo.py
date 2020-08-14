@@ -84,10 +84,7 @@ def get_example(section_name, example_name):
             print(os.path.join(path,filename))
             pth = os.path.join(re.sub(folder, '', path), filename)
             pth = pth.lstrip('/')
-            with open(os.path.join(path,filename), 'r') as file:
-                content = file.read()
-                #   content = readme.replace("##", "")
-                #   example_filename = path.split(os.path.sep)[-1]
+            if filename.endswith('.pdf'):
                 print("example_filename = {}".format(filename))
                 github_url = "https://github.com/HL7/C-CDA-Examples/blob/master/{}/{}/{}".format(section_name, example_name, filename)
                 example = {
@@ -95,26 +92,39 @@ def get_example(section_name, example_name):
                     "github_url": github_url
                 }
 
+            else:
 
-                if filename.lower() == 'readme.md' :
-                    #   decoded_content = base64.b64decode(json_data['content'])
-                    readme['content'] = markdown2.markdown(content)
-                    readme['has_permalink'] = has_permalink(content)
-                    readme['filename'] = filename
+                with open(os.path.join(path,filename), 'r') as file:
+                    content = file.read()
+                    #   content = readme.replace("##", "")
+                    #   example_filename = path.split(os.path.sep)[-1]
+                    print("example_filename = {}".format(filename))
+                    github_url = "https://github.com/HL7/C-CDA-Examples/blob/master/{}/{}/{}".format(section_name, example_name, filename)
+                    example = {
+                        "name": filename,
+                        "github_url": github_url
+                    }
 
-                elif filename.endswith('.xml'):
 
-                    #   decoded_content = base64.b64decode(json_data['content'])
-                    lexer = XmlLexer() #  guess_lexer(example['xml'])
-                    style = HtmlFormatter(style='friendly').style
-                    example['content'] = highlight(content, lexer, HtmlFormatter(full=True, style='colorful'))
-                    examples.append(example)
-                elif filename.endswith('.html'):
+                    if filename.lower() == 'readme.md' :
+                        #   decoded_content = base64.b64decode(json_data['content'])
+                        readme['content'] = markdown2.markdown(content)
+                        readme['has_permalink'] = has_permalink(content)
+                        readme['filename'] = filename
 
-                    #   decoded_content = base64.b64decode(json_data['content'])
-                    #   utf8_content = decoded_content.decode("utf8")
-                    example['content'] = content
-                    examples.append(example)
+                    elif filename.endswith('.xml'):
+
+                        #   decoded_content = base64.b64decode(json_data['content'])
+                        lexer = XmlLexer() #  guess_lexer(example['xml'])
+                        style = HtmlFormatter(style='friendly').style
+                        example['content'] = highlight(content, lexer, HtmlFormatter(full=True, style='colorful'))
+                        examples.append(example)
+                    elif filename.endswith('.html'):
+
+                        #   decoded_content = base64.b64decode(json_data['content'])
+                        #   utf8_content = decoded_content.decode("utf8")
+                        example['content'] = content
+                        examples.append(example)
         return section, readme, examples
 
 def get_file(section, example, filename):

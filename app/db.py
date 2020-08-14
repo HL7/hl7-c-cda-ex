@@ -30,7 +30,7 @@ else:
     GIT_COMMITTER_EMAIL = os.environ.get('GIT_COMMITTER_EMAIL')
 
 
-    """
+    ###
     # production
     database = 'heroku_4zktbrkp'
     client = MongoClient("mongodb://heroku_4zktbrkp:p6tt3tvn0fv1do77c70ip17ve5@ds127982.mlab.com:27982/heroku_4zktbrkp")
@@ -40,7 +40,7 @@ else:
     GIT_SSH_KEY = ''
     GIT_COMMITTER_NAME = os.environ.get('GIT_COMMITTER_NAME')
     GIT_COMMITTER_EMAIL = os.environ.get('GIT_COMMITTER_EMAIL')
-    """
+    ###
 
 
 db = client[database]
