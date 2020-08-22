@@ -100,7 +100,8 @@ def get_search_results():
     params = dict(request.form)
     import re
     #terms = '.*{}.*'.format(str(params['search_terms'][0]))
-    terms = '{}'.format(str(params['search_terms'][0]))
+    #   terms = '{}'.format(str(params['search_terms'][0]))
+    terms = '{}'.format(str(params['search_terms']))
 
     criteria = []
     if terms != '""':
