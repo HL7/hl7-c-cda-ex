@@ -86,7 +86,11 @@
                   </a>
                   <a target='_blank' class="button tiny" id="example-github" href="{{file['github_url']}}">view on GitHub</a>
                 </p>
-                {{file['content'] |safe}}
+                {% if file['name'].endswith('.png') %}
+                  <p><img src="data:image/png;base64,{{file['content']}}" /></p>
+                {% else %}
+                  {{file['content'] |safe}}
+                {% endif %}
               {% endfor %}
           </div>
         </div>

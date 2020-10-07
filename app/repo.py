@@ -7,6 +7,7 @@ import uuid
 from slackbot import sc
 from app.db import db, GIT_BRANCH, GIT_URL, GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL
 from .sync2 import sync
+import base64
 
 folder = 'ccda_examples_repo'
 
@@ -81,7 +82,6 @@ def get_example(section_name, example_name):
 
         for filename in files:
 
-            print(os.path.join(path,filename))
             pth = os.path.join(re.sub(folder, '', path), filename)
             pth = pth.lstrip('/')
             if filename.endswith('.pdf'):
@@ -95,10 +95,9 @@ def get_example(section_name, example_name):
             else:
 
                 with open(os.path.join(path,filename), 'r') as file:
-                    content = file.read()
+                    print("example_filename = {}".format(filename))
                     #   content = readme.replace("##", "")
                     #   example_filename = path.split(os.path.sep)[-1]
-                    print("example_filename = {}".format(filename))
                     github_url = "https://github.com/HL7/C-CDA-Examples/blob/master/{}/{}/{}".format(section_name, example_name, filename)
                     example = {
                         "name": filename,
@@ -107,24 +106,41 @@ def get_example(section_name, example_name):
 
 
                     if filename.lower() == 'readme.md' :
+                        content = file.read()
+
                         #   decoded_content = base64.b64decode(json_data['content'])
                         readme['content'] = markdown2.markdown(content)
                         readme['has_permalink'] = has_permalink(content)
                         readme['filename'] = filename
 
                     elif filename.endswith('.xml'):
-
+                        content = file.read()
                         #   decoded_content = base64.b64decode(json_data['content'])
                         lexer = XmlLexer() #  guess_lexer(example['xml'])
                         style = HtmlFormatter(style='friendly').style
                         example['content'] = highlight(content, lexer, HtmlFormatter(full=True, style='colorful'))
                         examples.append(example)
                     elif filename.endswith('.html'):
-
+                        content = file.read()
                         #   decoded_content = base64.b64decode(json_data['content'])
                         #   utf8_content = decoded_content.decode("utf8")
                         example['content'] = content
                         examples.append(example)
+                    elif filename.endswith('.png'):
+                        with open(os.path.join(path,filename), 'rb') as img:
+
+                            # img = Image.open(os.path.join(path,filename))
+
+
+
+                            example['content'] = base64.b64encode(img.read()).decode('utf-8')
+                            example['type'] = 'png'
+                            examples.append(example)
+                    else:
+                        print('uh oh some other file {}'.format(file))
+                        print(os.path.join(path,filename))
+                        print(type(file))
+
         return section, readme, examples
 
 def get_file(section, example, filename):
