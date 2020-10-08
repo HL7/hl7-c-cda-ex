@@ -88,6 +88,9 @@
                 </p>
                 {% if file['name'].endswith('.png') %}
                   <p><img src="data:image/png;base64,{{file['content']}}" /></p>
+                {% elif file['name'].endswith('.pdf') %}
+                    <p>pdf</p>
+
                 {% else %}
                   {{file['content'] |safe}}
                 {% endif %}

@@ -8,6 +8,7 @@ from slackbot import sc
 from app.db import db, GIT_BRANCH, GIT_URL, GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL
 from .sync2 import sync
 import base64
+from flask import send_from_directory
 
 folder = 'ccda_examples_repo'
 
@@ -141,13 +142,19 @@ def get_example(section_name, example_name):
                         print(os.path.join(path,filename))
                         print(type(file))
 
+
         return section, readme, examples
 
 def get_file(section, example, filename):
-
     with open(os.path.join(folder,section,example,filename), 'r') as file:
-        content = file.read()
-        return content
+        if filename.endswith('.png'):
+            with open(os.path.join(folder,section,example,filename), 'rb') as img:
+                content = img.read()
+                return content
+        else:
+            content = file.read()
+            return content
+
 
 def search(query, status, onc_certified):
     results = []

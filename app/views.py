@@ -9,13 +9,16 @@ from flask import (
     jsonify,
     current_app,
     render_template,
-    g
+    g,
+    send_from_directory,
+    send_file
 )
 from app import application
 
 import configparser
 import ipdb
 import requests
+import urllib.parse
 
 from .sync2 import sync
 from .repo import get_sections, get_section, get_example, get_file, search, generate_permalink
@@ -83,6 +86,18 @@ def get_example_page_by_permalink_id(permalink_id):
 
 @application.route("/examples/download/<section>/<example>/<filename>", methods=['GET', 'POST'])
 def download_example(section,example,filename):
+    """
+    section = urllib.parse.unquote_plus(section)
+    example =  urllib.parse.unquote_plus(example)
+    filename = urllib.parse.unquote_plus(filename)
+    pth = os.path.join('ccda_examples_repo',section,example)
+    print(pth)
+    file = get_file(section,example,filename)
+    print(file)
+    print("DOWNLOADING {}".format(pth))
+    #return send_file(file, as_attachement=True)
+    #return send_from_directory(pth, filename, as_attachment=True, filename_or_fp=file)
+    """
     content = get_file(section,example,filename)
     response = make_response(content)
     # This is the key: Set the right header for the response
