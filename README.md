@@ -67,6 +67,11 @@ https://hl7-c-cda-examples.herokuapp.com/sync
 
 ### Other Future Considerations
 
-Readme files don’t use MarkDown formatting for the headings.  For example, each heading contains the markdown heading markup ### instead of displaying as heading 3.  This is done consistently across all headings in all Readme files.  The impact is mostly cosmetic, instead of the Readme files appearing to be formatted, they contain the markup for each heading.  However, the heroku app parses the Readme files whenever changes are made to the C-CDA Examples Repository.  
+#### Markdown formatting
 
-If in the future, contributors commit examples where the readme file does not follow this convention, this may not be parsed properly by the heroku app.
+Readme files don’t use MarkDown formatting for the headings.  For example, each heading contains the markdown heading markup ### instead of displaying as heading 3.  This is done consistently across all headings in all Readme files.  The impact is mostly cosmetic, instead of the Readme files appearing to be formatted, they contain the markup for each heading.  However, this app parses the Readme files whenever changes are made to the C-CDA Examples Repository.  
+
+If in the future, contributors commit examples where the readme file does not follow this convention, this may not be parsed properly by the app.
+
+#### Github repo and Heroku Repo
+This app is deployed to heroku by pushing to the git repo hosted by Heroku.  Keep in mind that the Heroku git repo is separate from the Github repo.  While the Github repo is the official repo, the production app is running off of the latest code in the master branch of the Heroku repo.  Be sure to keep both repos in sync so that the official Github repo reflects the app in production hosted on Heroku.

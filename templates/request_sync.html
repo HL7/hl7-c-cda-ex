@@ -5,11 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>{{example['name']}}</title>
+    <title>sync with github</title>
 
     <link rel="stylesheet" media="screen" href="/static/css/hl7.css" />
+    <link rel="stylesheet" media="screen" href="/static/css/examples.css" />
+
     <script src="/static/js/modernizr.js"></script>
     <script src="/static/js/application.js" data-turbolinks-track="true"></script>
+
     <meta name="csrf-param" content="authenticity_token" />
 <meta name="csrf-token" content="7aJZomckXLtdCHIaf+511za4pxWXlT4rkv6OiB05OIl+4UBh0xxX82dhPAysgilqu3ONuN8o0bDj3kcWEN2Y2w==" />
   </head>
@@ -24,7 +27,7 @@
 
     <section class="top-bar-section">
       <ul class="left">
-        <li class="main-title">{{example['section']}} Section</li>
+        <li class="main-title">Sync with GitHub</li>
       </ul>
       <ul class="right">
         <li >
@@ -37,82 +40,25 @@
 </div>
 
     <section id="main-panel">
-      <div class="row">
-        <div class="large-12 small-12 small-centered columns">
-          <p id="notice"></p>
 
-          <h2 id="example-name">{{example['name']}}</h2>
+      <div class='readme'>
+        <div class'readme'>
+          <p>Click below to sync with repo <b>{{git['url']}}</b> branch <b>{{git['branch']}}</b>.  Syncing is done with the master branch of the repo.
+            If you run into any errors, please contact <a href='mailto:webmaster@hl7.org'>webmaster@hl7.org</a>
+          </p>
 
-              <a class="button small" id="main-page-link" href="/sections">return to Main screen</a>
+          <p>
+            <a href='/do-sync'><button id='syncButton'>sync now</button></a>
+            {% if status == True %}
+                <div id='success'>sync completed successfully!</div>
+            {% elif status == False %}
+              <div id='failed'>there was an error syncing with github</div>
+              <div id='failed'>{{msg}}</div>
+            {% else %}
+            {% endif %}
+        </div>
+      </div>
 
-              <a href="javascript:history.back()" class="button small" id="search-list-link">return to result list</a>
-
-              <p class="detail-note">Example metadata last updated {{example['updated_on']}} UTC</p>
-
-              <p class="detail-with-list">
-                <strong id="example-status">Approval Status:</strong>
-                {{example['approval']}}
-              </p>
-
-              <div class="large-12 columns">
-                <ul class="large-8 large-offset-1 columns">
-                  {% for line in example['Approval Status'] %}
-                      <li>{{line}}</li>
-                  {% endfor %}
-                </ul>
-              </div>
-
-
-              <p>
-                {% if example['validator']['link'] %}
-                    <a id="example-validation" href="{{example['validator']['link']}}">{{example['validator']['name']}}</a>
-                {% else %}
-                    No validation URL supplied
-                {% endif %}
-              </p>
-              {% if example['Certification'] not in ['', 'N/A'] %}
-                <p>{{example['Certification']}} Certification</p>
-              {% endif %}
-              <p class="detail-with-list">
-                <strong id="example-comments">Comments:</strong>
-              </p>
-              <div class="large-10 large-offset-1 columns">
-                <ul>
-
-
-              <li>
-                {% if example['xml'] != None %}
-                      {{example['Comments']}}
-                {% else %}
-                    {{example['google_sheets_url']|safe}}
-                {% endif %}
-              </li>
-              </ul>
-
-              </div>
-
-              <p>
-                <strong id="example-custodian">Custodian:</strong>
-                {{example['Custodian']}}
-              </p>
-
-              <p>
-                <strong id="example-full">Full sample:</strong>
-                 {{example['Reference to full CDA sample']}}
-              </p>
-              {% if example['xml'] == None %}
-                  <p>
-                    <strong id="example-example">Example:</strong>
-                    no example provided
-                  </p>
-              {% else %}
-                <p>
-                  <strong id="example-example">Example:</strong>
-                  <a class="button tiny" id="example-download" href="/examples/download/{{example['Permalink']}}">download example</a>
-                  <a target='_blank' class="button tiny" id="example-github" href="https://github.com/HL7/C-CDA-Examples/blob/master/{{example['section']}}/{{example['name']}}/{{example['xml_filename']}}">view on GitHub</a>
-                </p>
-                {{xml|safe}}
-              {% endif %}
 
 <ol class="joyride-list" data-joyride>
   <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">

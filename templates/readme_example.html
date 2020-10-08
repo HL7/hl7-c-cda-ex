@@ -5,79 +5,100 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>HL7 CDA Example Search</title>
+    <title>{{readme['name']}}</title>
 
     <link rel="stylesheet" media="screen" href="/static/css/hl7.css" />
-    <script src="/static/js/modernizr.js"></script>
+    <link rel="stylesheet" media="screen" href="/static/css/examples.css" />
+
+    <!--<script src="/static/js/modernizr.js"></script>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
     <script src="/static/js/application.js" data-turbolinks-track="true"></script>
-      <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-param" content="authenticity_token" />
 <meta name="csrf-token" content="7aJZomckXLtdCHIaf+511za4pxWXlT4rkv6OiB05OIl+4UBh0xxX82dhPAysgilqu3ONuN8o0bDj3kcWEN2Y2w==" />
   </head>
 
   <body>
   <div class="sticky">
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name"><h1><img src="/static/images/HL7-Logo-6a7cb6e141fe06112152b99cfd9c0a9a405b0ecc6eae595a6b5b064737bd38cc.png" alt="Hl7 logo" />            HL7 CDA Example Search</h1></li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
+        <nav class="top-bar" data-topbar role="navigation">
+          <ul class="title-area">
+            <li class="name"><h1><img src="/static/images/HL7-Logo-6a7cb6e141fe06112152b99cfd9c0a9a405b0ecc6eae595a6b5b064737bd38cc.png" alt="Hl7 logo" />            HL7 CDA Example Search</h1></li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+          </ul>
 
-    <section class="top-bar-section">
-      <ul class="left">
-        <li class="main-title">{{section['name']}} Section</li>
-      </ul>
-      <ul class="right">
-        <li >
-          <a id="tour-invoke">Help</a>
-        </li>
-        <li><a href="mailto:webmaster@hl7.org"><span>Report an Issue</span></a></li>
-      </ul>
-    </section>
-  </nav>
-</div>
-
-    <section id="main-panel">
-      <div class="row">
-        <div class="large-12 small-12 small-centered columns">
-          <p id="notice"></p>
-
-          <div id="section-title">
-            <h2>{{section['name']}} Section Examples from C-CDA</h2>
-            <p>{{section['description']}}</p>
+          <section class="top-bar-section">
+            <ul class="left">
+              <li class="main-title">{{section['name']}} Section</li>
+            </ul>
+            <ul class="right">
+              <li >
+                <a id="tour-invoke">Help</a>
+              </li>
+              <li><a href="mailto:webmaster@hl7.org"><span>Report an Issue</span></a></li>
+            </ul>
+          </section>
+        </nav>
+  </div>
+      <div class=''>
+        <div class="">
+          <p>&nbsp;</p>
+          <div style="margin: 2%">
           </div>
-{% include "search_form.html" %}
+          {# <a class="button small" href="/sections/name/{{example['section'] | urlencode}}">back to {{example['section']}} Section</a> #}
+          <section id="main-paned">
+          <a name='readme'></a>
+          <div class='readme'>
+              <span class='d-flex justify-content-between'>
+                  <h2 id="example-name">{{readme['name']}}</h2>
+                  <span>
+                    {% if not readme['has_permalink']: %}
+                      <a class="button small"
+                         href="/permalink/generate/{{section['name']}}/{{readme['name']}}/{{readme['filename']}}"
+                      >
+                        generate permalink
+                      </a>
+                    {% endif %}
+                    <a class="button small" href="/">back to homepage</a>
+                  </span>
+              </span>
+              <hr />
+              {{readme['content']|safe}}
+          </div>
+        </div>
+        <div class="col-md-1">
+          <p>&nbsp;</p>
 
-<p class="large-9 columns"  id="query-count"> This section has {{examples | length}} examples</p>
+        </div>
+      </div>
 
-<p class="return-link large-3 columns" id="main-page-link"><a href="/sections">return to Main Search</a></p>
+      <div class=''>
+        <div class="">
+          <div class='inlineExample'>
+              {% for file in example_files %}
+                <p>
+                  <a name='{{file["name"]}}'></a>
+                  <strong id="example-example">Example: </strong>{% if example_files|length > 1 %}<i>{{file['name']}}</i>{% endif %}
+                  <a class="button tiny"
+                    id="example-download"
+                    target="_blank"
+                    href="/examples/download/{{section['name']}}/{{readme['name']}}/{{file['name']}}">
+                    download example
+                  </a>
+                  <a target='_blank' class="button tiny" id="example-github" href="{{file['github_url']}}">view on GitHub</a>
+                </p>
+                {% if file['name'].endswith('.png') %}
+                  <p><img src="data:image/png;base64,{{file['content']}}" /></p>
+                {% elif file['name'].endswith('.pdf') %}
+                    <p>pdf</p>
 
-<table class="listing">
-  <thead>
-    <tr>
-      <th id="results-name">Name</th>
-      <th id="results-status">Status</th>
-    </tr>
-  </thead>
+                {% else %}
+                  {{file['content'] |safe}}
+                {% endif %}
+              {% endfor %}
+          </div>
+        </div>
+      </div>
 
-  <tbody>
-    {% for example in examples %}
-    <tr>
-          <td>
-            <p class="list-title"><a href="/examples/view/{{section['slug']}}/{{example['slug']}}">{{example['name']}}</a></p>
-            <div class="list-detail">
-              <ul>
-  <li>{{ example['Comments'] | join('') | truncate(100) }}</li>
-  </ul>
-
-            </div>
-          </td>
-          <td>{{example['approval_status']}}</td>
-        </tr>
-
-      {% endfor %}
-
-  </tbody>
-</table>
 
 <ol class="joyride-list" data-joyride>
   <li data-button="Begin Tour" data-text="Next"  data-options="prev_button: false">

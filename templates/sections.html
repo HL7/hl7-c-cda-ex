@@ -55,16 +55,16 @@
   </thead>
 
   <tbody>
-    {% for example in examples %}
+    {% for section in sections %}
     <tr>
         <td>
           <div class="large-10 small-9 columns">
-            <p class="list-title"><a href="/sections/{{example['_id']}}">{{ example['name'] }}</a></p>
-            <div class="list-detail"><h2>{{ example['description'] | truncate(100) }}</h2>
+            <p class="list-title"><a href="/sections/{{section['slug']}}">{{ section['name'] }}</a></p>
+            <div class="list-detail"><h2>{{ section['description'] | truncate(100) }}</h2>
             </div>
           </div>
           <div class="large-2 small-3 columns">
-            <a href="/sections/{{example['_id']}}">
+            <a href="/sections/{{section['slug']}}">
                 <span class="list-link-text">Section examples</span><span class="link-pointer"></span>
               </a>
           </div>
