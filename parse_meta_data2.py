@@ -3,8 +3,7 @@ from git import Repo
 from pygments import highlight
 from pygments.lexers import XmlLexer, guess_lexer
 from pygments.formatters import HtmlFormatter
-
-from bson import ObjectId
+from slackbot import sc
 
 folder = '../C-CDA-Examples'
 #folder = '../ccda_examples_repo'
@@ -16,16 +15,12 @@ VALIDATOR_LOOKUP = {
 
 from app.db import db, GIT_BRANCH, GIT_URL
 
-#this lets us see when permalinks are processed in parse below
-total_count_permalinks = 0
-
 def get_name(section):
-    #print("getting names", section)
+    print("getting names from parse_meta_data2")
     lines = section.split("\n\n")
     nme = lines[0].strip()
     if nme.startswith("Comment"):
-        # ipdb.set_trace()
-        pass
+        ipdb.set_trace()
     name = lines[0].strip()
     try:
         colon = name.index(':')
@@ -37,7 +32,7 @@ def get_name(section):
 
 
 def process_section(doc, name, section):
-    #print("start processing section", section)
+    print("processing section from parse_meta_data2")
 
     if section.strip().startswith(name): # not clear what this section maps to in the front end
 
@@ -50,7 +45,6 @@ def process_section(doc, name, section):
         name = name.strip() # catch any lingering white spaces i.e. "# Validaton" => " Validation" => "Validation"
         # make name safe for mongo
         name = name.replace(".", ' ')
-        #print("name to be processed is: ", name)
 
         #   update Permalink field to just be the id, otherwise list of bulleted items
         isStr = name in ['Permalink', 'Comments', 'Custodian', 'Reference to full CDA sample', 'Certification']
@@ -68,13 +62,11 @@ def process_section(doc, name, section):
                 print("no status")
                 pass
 
-        '''
         if name == 'Validation location':
-            # Check if the line starts with an expected format before proceeding
             if lines[0].startswith("CDA valid, no C-CDA rules exist"):
                 link = None
                 name = 'CDA valid, no C-CDA rules exist'
-            elif lines[0].lower() in ['n/a', 'not applicable', 'tbd']:
+            elif lines[0].lower() in ['n/a', 'not applicable']:
                 link = None
                 name = 'N/A'
             else:
@@ -83,7 +75,7 @@ def process_section(doc, name, section):
                     name = VALIDATOR_LOOKUP[link]
                 except Exception as e:
                     link = lines[0]
-                    print(e)
+                    #   print e
                     #   ipdb.set_trace()
                 if link in VALIDATOR_LOOKUP:
                     name = VALIDATOR_LOOKUP[link]
@@ -94,7 +86,6 @@ def process_section(doc, name, section):
                                 "link": link,
                                 "name": name
                                 }
-        '''
 
         doc[name] = lines[0] if isStr and len(lines) == 1  else lines
 
@@ -111,7 +102,7 @@ def process_section(doc, name, section):
         #    ipdb.set_trace()
 
 def process_sections(example_name, sections):
-    #print("processing sections")
+    print("processing sections from parse_meta_data2")
     doc = {}
     for section in sections:
         if section != '':
@@ -134,76 +125,12 @@ def process_sections(example_name, sections):
 
 
 #   def process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, readme_filename, update_one_example_only):
-'''def process_readme(repo, section_name, example_name, data, xml_data, google_sheets_url, path, readme_filename, update_one_example_only=None):
-    sections = data.split('##')
-    doc = process_sections(example_name, sections)
-
-    # Prepare document fields
-    doc['section'] = section_name
-    doc['name'] = example_name
-    doc['readme'] = data
-    doc['updated_on'] = datetime.datetime.now()
-
-    if xml_data:
-        doc['xml_data'] = xml_data
-    if google_sheets_url:
-        doc['google_sheets_url'] = google_sheets_url
-
-    # Search for existing entry by permalink or example name and section
-    search_criteria = {"$or": [{"Permalink": doc.get('Permalink')}, {"name": example_name, "section": section_name}]}
-    existing_entry = db.examples.find_one(search_criteria)
-
-    # Decide whether to insert a new document or update an existing one
-    if existing_entry:
-        # Update the existing document
-        db.examples.update_one({"_id": ObjectId(existing_entry['_id'])}, {"$set": doc})
-        print(f"Updated existing entry for {example_name} in section {section_name}.")
-        should_commit = True
-    else:
-        # Insert a new document and add permalink if not present
-        if 'Permalink' not in doc or not doc['Permalink']:
-            # Generate and assign a new permalink here, if necessary
-            permalink_id = str(db.examples.insert_one(doc).inserted_id)
-            permalink = f"http://cdasearch.hl7.org/examples/view/{permalink_id}"
-            db.examples.update_one({"_id": ObjectId(permalink_id)}, {"$set": {"Permalink": permalink}})
-            print(f"Inserted new entry with permalink {permalink} for {example_name} in section {section_name}.")
-        else:
-            db.examples.insert_one(doc)
-            print(f"Inserted new entry for {example_name} in section {section_name}.")
-        should_commit = True
-
-    # Commit changes to the repository if needed
-    if should_commit:
-        try:
-            repo.git.add(A=True)
-            repo.git.commit('-m', 'Automatically updated example entries.')
-            repo.remotes.origin.push()
-            print("Changes pushed to the repository.")
-        except Exception as e:
-            print(f"Failed to commit changes to the repository: {e}")
-
-    return should_commit
-'''
-
-def process_readme(repo, section_name, example_name, data, xml_data, google_sheets_url, path, readme_filename, update_one_example_only=None):
-    #print("processing readme function")
-    #global reference to total_count_permalinks so we can access in this definition
-    global total_count_permalinks
-
-    #   add example links to readme BEFORE readme is parsed and saved to db
-    if xml_data is None or google_sheets_url:
-        added_links = False
-
-    else:
-        #print("checking for xml links 1")
-        added_links = False
-        #   ONETIME just to add xml links to readme's
-        #   added_links = add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data)
-
+def process_readme(repo, section_name, example_name, data, xml_data, google_sheets_url, path, readme_filename, update_one_example_only):
+    print("processing readme from parse_meta_data2")
 
     sections = data.split('##')
     doc = process_sections(example_name, sections)
-    #print("post process xml links")
+
     #   check if it's just this one example or all examples
     if update_one_example_only and 'Permalink' in doc and doc['Permalink'] != update_one_example_only:
         return False
@@ -224,14 +151,12 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
 
     if xml_data is None or google_sheets_url:
         doc['google_sheets_url'] = google_sheets_url #  markdown2.markdown(doc['Comments'])
+        added_links = False
     else:
-        #print("checking for xml links 2")
-        doc['xml_data'] = xml_data
-        #print("checking for xml links 3")
-        # to do : look for filenames in xml_data[0][filename]
+        #   print "checking for xml links"
+        added_links = False
+        #   ONETIME just to add xml links to readme's
         #   added_links = add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data)
-
-
         # https://github.com/HL7/C-CDA-Examples/tree/master/Mental%20Status/Memory%20Impairment
 
     doc['updated_on'] = datetime.datetime.now()
@@ -239,116 +164,84 @@ def process_readme(repo, section_name, example_name, data, xml_data, google_shee
 
     #if doc['name'] in ['Parent Document Replace Relationship']:
     #    ipdb.set_trace()
-    #if added_links:
-        # should_commit = True
-    '''
+    if added_links:
+        should_commit = True
+
+    #if example_name == 'Test':
+    #    ipdb.set_trace()
+
+    print("checking {}".format(example_name))
+    #   return False
+
     if 'Permalink' in doc and doc['Permalink'] != None:
         #   ipdb.set_trace()
-        print("updating example {}.{} ({})".format(doc['section'], doc['name'], doc['Permalink']))
-        result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
-        #increment the permalink count by 1 and print to heroku log
-        total_count_permalinks += 1
-        print('total processed entries: ',total_count_permalinks)
-    '''
-    if 'Permalink' in doc and doc['Permalink']:
-        # Find the position of the "]" character in the permalink
-        end_pos = doc['Permalink'].find(']')
-        if end_pos != -1:
-            # Extract everything up to the "]" character
-            extracted_part = doc['Permalink'][:end_pos]
-            
-            # Further processing to extract ID or perform other operations
-            # For example, if you need to extract the ID after "/examples/view/"
-            parts = extracted_part.split("/examples/view/")
-            if len(parts) > 1:
-                # Extracted ID from the permalink
-                extracted_id = parts[1]
-                
-                # Convert the extracted ID to ObjectId if necessary
-                # Note: Only do this if the extracted ID is meant to be an ObjectId
-                try:
-                    # Assuming extracted_id is meant to be a MongoDB ObjectId
-                    permalink_id = ObjectId(extracted_id)
-                except:
-                    # If conversion fails or not needed, use extracted_id as is
-                    permalink_id = extracted_id
-                
-                # Set the _id, permalink, and permalinkId
-                doc['_id'] = permalink_id
-                doc['Permalink'] = f"http://cdasearch.hl7.org/examples/view/{permalink_id}"
-                doc['PermalinkId'] = str(permalink_id)
-                
-                # Use the extracted ID to check for existing entries or any other operations
-                existing_entry = db.examples.find_one({"_id": permalink_id})
-                if existing_entry:
-                    # Update the existing entry with new data
-                    print("about to update permalink")
-                    db.examples.update_one({"_id": permalink_id}, {"$set": doc})
-                    print(f"Updated existing entry with _id {permalink_id}")
-                else:
-                    #   add permalink to readme
-                    result = db.examples.insert_one(doc)
-                    permalink_id = str(result.inserted_id)
-                    permalink = "http://cdasearch.hl7.org/examples/view/{}".format(permalink_id)
-
-                    update_readme(repo, path, readme_filename, permalink)
-
-                    doc['Permalink'] = permalink
-                    #doc['PermalinkId'] = permalink
-                    print("creating new permalink {}.{} for {}".format(doc['section'], doc['Permalink'], doc['name']))
-                    #increment the permalink count by 1 and print to heroku log
-                    total_count_permalinks += 1
-                    print('total processed entries: ',total_count_permalinks)
-                    #   result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
-                    #   ipdb.set_trace()
-
-                    query = {"_id": doc['_id']} #  TODO: change back to this
-                    #   query = {"Permalink": permalink}
-                    updates = {
-                        "$set": { "Permalink": str(doc['Permalink']), "PermalinkId": str(permalink_id) }
-                    }
-                    #print("updates about to be updated:  ",updates)
-                    #for section in sections:
-                        #print("section as about to be updated (2): ", section)
-                    update_result = db.examples.update_one(query, updates)
-                    #   commit change to readme
-                    should_commit = True
-                    #   ipdb.set_trace()
-                    #   push change to GitHub repo
-            else:
-                # Handle case where permalink does not contain the expected pattern
-                print("Permalink format does not match expected pattern.")
-        else:
-            # Handle case where permalink does not contain "/examples/view/"
-            print("Invalid Permalink format.", example_name)
+        #   print "updating example {}.{} ({})".format(doc['section'], doc['name'], doc['Permalink'])
+        #result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
+        set_updates = {
+            "readme": data,
+            "updated_on": datetime.datetime.now()
+        }
+        if len(xml_data) > 0:
+            set_updates['xml_data'] = xml_data
+        updates = {
+            "$set": set_updates
+        }
+        result = db.examples.update_one({"Permalink": str(doc['Permalink'])}, updates)
     else:
-        # Handle case where Permalink is not in doc or is None
-        print("Permalink not found or is None.", example_name)
-        
+        #   ipdb.set_trace()
+        #   add permalink to readme
+        result = db.examples.insert_one(doc)
+        _id = result.inserted_id
+        permalink = str(_id)
+
+        new_permalink, new_readme_contents = update_readme(repo, path, readme_filename, permalink)
+
+        #doc['Permalink'] = new_permalink
+        #doc['PermalinkId'] = permalink
+        print("creating new permalink {}.{} for {}".format(doc['section'], permalink, doc['name']))
+        #   result = db.examples.replace_one({"Permalink": str(doc['Permalink'])}, doc, upsert=True)
+        #   ipdb.set_trace()
+
+        query = {"_id": _id} #  TODO: change back to this
+        #   query = {"Permalink": permalink}
+        set_updates = {
+            "Permalink": new_permalink,
+            "PermalinkId": permalink,
+            "readme": new_readme_contents,
+            "updated_on": datetime.datetime.now()
+        }
+        if len(xml_data) > 0:
+            set_updates['xml_data'] = xml_data
+        updates = {
+            "$set": set_updates
+        }
+
+        update_result = db.examples.update_one(query, updates)
+        #   commit change to readme
+        should_commit = True
+        #   push change to GitHub repo
     if section_name.startswith('General'):
         #   ipdb.set_trace()
-        print("{} id {} ".format(example_name, doc['Permalink']))
-        #increment the permalink count by 1 and print to heroku log
-        total_count_permalinks += 1
-        print('total processed entries: ',total_count_permalinks)
+        #print "{} id {} ".format(example_name, permalink)
+        pass
 
-    # return should_commit
-
+    return should_commit
 
 #   loop through each section folder
-def parse(repo, folder, update_one_example_only=None):
-    #print("parsing")
+def parse(repo, folder, update_one_example_only):
+    print("parsing from parse_meta_data2")
     should_commit = False
     for path,dirs,files in os.walk(folder):
-        #   print "path: {} dir: {} "
+        #print "path: {} dir: {} ".format(path, dirs)
         dirs[:] = [d for d in dirs if not d[0] == '.']
+
         for filename in files:
             #   section folder
             if filename.lower() == "readme.md" and len(dirs) != 0:
                 #   print os.path.join(path,filename)
                 pth = os.path.join(re.sub(folder, '', path), filename)
                 pth = pth.lstrip('/')
-                with open(os.path.join(path,filename), 'r', encoding='utf-8') as readme:
+                with open(os.path.join(path,filename), 'rb') as readme:
                     description = readme.read()
                     description = description.replace("##", "")
                     section_name = path.split(os.path.sep)[-1]
@@ -367,7 +260,7 @@ def parse(repo, folder, update_one_example_only=None):
                         )
 
             #   actual example folder
-            if filename.lower() == "readme.md" and dirs == []:
+            if filename.lower() == "readme.md" and len(dirs) == 0:
                 #   get the xml file for the example
                 xml_files =  [ _file for _file in files if _file.lower().endswith(".xml") ]
                 if len(xml_files) == 0:
@@ -385,7 +278,7 @@ def parse(repo, folder, update_one_example_only=None):
                         pth = pth.lstrip('/')
 
                         example_xml = ''
-                        with open(os.path.join(path,xml_filename), 'r', encoding='utf-8') as xml:
+                        with open(os.path.join(path,xml_filename), 'rU') as xml:
                             example_xml = xml.read()
                             xml_data['filename'] = xml_filename
                             xml_data["xml"] = example_xml
@@ -403,7 +296,7 @@ def parse(repo, folder, update_one_example_only=None):
                 else:
                     url_filename = url_files[0]
                     example_xml = ''
-                    with open(os.path.join(path,url_filename), 'r', encoding='utf-8') as urlfile:
+                    with open(os.path.join(path,url_filename), 'rU') as urlfile:
                         urldata = urlfile.read()
                         lines = urldata.split("\n")
                         lines = [ l for l in lines if l.startswith("URL")]
@@ -412,40 +305,61 @@ def parse(repo, folder, update_one_example_only=None):
                             google_sheets_url = urlLineTokens[1] if len(urlLineTokens) >= 2 else "error"
                             #   url_data['url'] = url
                 example_name = path.split(os.path.sep)[-1]
-                with open(os.path.join(path,filename), 'r', encoding='utf-8') as readme:
+                with open(os.path.join(path,filename), 'rU') as readme:
+                    #print os.path.join(path,filename)
                     data = readme.read()
                     #file_pth = os.path.join(path,filename)
                     #ipdb.set_trace()
                     #permalink_id = repo.git.hash_object(file_pth)
                     #   commit_new_id = process_readme(repo, section_name, example_name, data, example_xml, xml_filename, path, filename, update_one_example_only)
-                    commit_new_id = process_readme(repo, section_name, example_name, data, xml_samples, google_sheets_url, path, filename, update_one_example_only=None)
+                    commit_new_id = process_readme(repo, section_name, example_name, data, xml_samples, google_sheets_url, path, filename, update_one_example_only)
 
-                    #if commit_new_id:
-                        # should_commit = True
+                    if commit_new_id:
+                        print("should be committing")
+                        should_commit = True
     if should_commit:
-        #print("updating repo")
+        print("updating repo")
         reader = repo.config_reader()
         #repo.git.config(user_name="hl7bot")
         #repo.git.config(user_email='donotreply@hl7.org')
-        with repo.config_writer() as writer:
-            writer.set_value("user", "name", "Chris Millet")
-            writer.set_value("user", "email", "chris@thelazycompany.com")
+        try:
+            with repo.config_writer() as writer:
+                writer.set_value("user", "name", "Chris Millet")
+                writer.set_value("user", "email", "chris@thelazycompany.com")
 
-        repo.git.add("-A")
-        repo.git.commit(m="adding automagically generated permalink ids for new examples")
-        repo.remotes.origin.push(refspec='master:master')
+            repo.git.add("-A")
+            repo.git.commit(m="adding automagically generated permalink ids for new examples")
+            repo.remotes.origin.push(refspec='{}:{}'.format(GIT_BRANCH,GIT_BRANCH))
+        except Exception as e:
+            sc.api_call(
+              "chat.postMessage",
+              channel="hl7-notifications",
+              text="uh oh: error when committing back to hl7 repo {}".format(str(e))
+            )
         return should_commit
 
 
 def update_readme(repo, path, readme_filename, permalink):
-    #print("updating readme")
+    print("updating readme from parse_meta_data2")
+
+    link = "http://cdasearch.hl7.org/examples/view/{}".format(permalink)
+    markdown_link = "[{}]({})".format(link,link)
+    new_permalink = "\n\n### Permalink \n\n* {}".format(markdown_link)
+    #   append Permalink section to readme file
     with open( os.path.join(path,readme_filename) , 'a+') as readme:
-        readme.write(add_permalink(permalink))
+        readme.write(new_permalink)
+
+    #   get updated readme content
+    with open( os.path.join(path,readme_filename) , 'r') as readme:
+        new_text = readme.read()
+
+    #   return Permalink and updated readme content
+    return markdown_link, new_text
 
 
 
 def generate_permalink(repo, path, readme_filename, xml_filename):
-    #print("generating permalink")
+    print("generating permalink from parse_meta_data2")
     xml_pth =  os.path.join(os.getcwd(), path, readme_filename)
     #ipdb.set_trace()
     #   get git blob hash of actual example xml file
@@ -458,12 +372,12 @@ def generate_permalink(repo, path, readme_filename, xml_filename):
     return git_blob_hash
 
 def add_permalink(id):
-    print("adding permalink")
+    print("adding permalink from parse_meta_data2")
     return "\n\n###Permalink \n\n* %s" %id
 
 
 def add_xml_links_to_readme(repo, path, section_name, example_name, readme_filename, xml_data):
-    print("adding xml to readme")
+    print("adding xml to readme from parse_meta_data2")
     to_add = '\n\n###Links \n\n'
     for xml_link in xml_data:
         base_url = "https://github.com/HL7/C-CDA-Examples/tree/master"

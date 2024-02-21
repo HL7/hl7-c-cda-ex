@@ -1,4 +1,4 @@
-import uuid, urllib, base64, os
+import uuid, urllib, urllib2, base64, os
 from flask import (
     Flask,
     request,
@@ -9,19 +9,16 @@ from flask import (
     jsonify,
     current_app,
     render_template,
-    g,
-    send_from_directory,
-    send_file
+    g
 )
 from app import application
 
 import configparser
 import ipdb
 import requests
-import urllib.parse
 
 from .sync2 import sync
-from .repo import get_sections, get_section, get_example, get_file, search, generate_permalink
+from repo import get_sections, get_section, get_example, get_file, search, generate_permalink
 
 config = configparser.ConfigParser()
 config.read('app/config.ini')
@@ -31,19 +28,19 @@ application.config.update(
         SECRET_KEY=config['GENERAL']['SECRET_KEY']
 )
 
-from .db import db, GIT_URL, GIT_BRANCH
+from db import db, GIT_URL, GIT_BRANCH
 from bson.objectid import ObjectId
 
 #application.register_blueprint(search)
 #search.config=config
-print("syncing with github...")
+print "syncing with github..."
 try:
     sync()
-    print("syncing complete")
+    print "syncing complete"
 
 except Exception as e:
-    print("syncing failed")
-    print(str(e))
+    print "syncing failed"
+    print str(e)
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/sections', methods=['GET', 'POST'])
@@ -86,18 +83,6 @@ def get_example_page_by_permalink_id(permalink_id):
 
 @application.route("/examples/download/<section>/<example>/<filename>", methods=['GET', 'POST'])
 def download_example(section,example,filename):
-    """
-    section = urllib.parse.unquote_plus(section)
-    example =  urllib.parse.unquote_plus(example)
-    filename = urllib.parse.unquote_plus(filename)
-    pth = os.path.join('ccda_examples_repo',section,example)
-    print(pth)
-    file = get_file(section,example,filename)
-    print(file)
-    print("DOWNLOADING {}".format(pth))
-    #return send_file(file, as_attachement=True)
-    #return send_from_directory(pth, filename, as_attachment=True, filename_or_fp=file)
-    """
     content = get_file(section,example,filename)
     response = make_response(content)
     # This is the key: Set the right header for the response
@@ -115,8 +100,7 @@ def get_search_results():
     params = dict(request.form)
     import re
     #terms = '.*{}.*'.format(str(params['search_terms'][0]))
-    #   terms = '{}'.format(str(params['search_terms'][0]))
-    terms = '{}'.format(str(params['search_terms']))
+    terms = '{}'.format(str(params['search_terms'][0]))
 
     criteria = []
     if terms != '""':
@@ -166,7 +150,7 @@ import configparser
 
 @application.before_request
 def before_request():
-    print("initialize db")
+    print "initialize db"
 
 """
 @application.errorhandler(404)

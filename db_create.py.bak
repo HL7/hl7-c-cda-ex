@@ -7,7 +7,6 @@ import git
 import shutil
 from parse_meta_data import parse
 
-print("db_create running")
 LOCAL_EXAMPLES_REPO_DIR = "./ccda_examples_repo"
 BRANCH = 'permalinksHashObject'
 
@@ -19,4 +18,4 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 sections = db.sections.find().count()
 examples = db.examples.find().count()
-print("loaded {} sections and {} examples".format(sections, examples))
+print "loaded {} sections and {} examples".format(sections, examples)

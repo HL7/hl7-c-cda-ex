@@ -2,3 +2,6 @@
 */*.pyc
 .idea
 ./ccda_examples_repo
+.env
+/env
+/ccda_examples_repo
